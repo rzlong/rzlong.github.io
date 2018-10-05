@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -64,7 +64,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
 
 
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
@@ -84,14 +84,14 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '6.4.2',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"slideUpBigIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -109,6 +109,7 @@
 
 
   <meta name="description" content="##多线程技术  主线程 每个进程都会有一个线程, 这个线程是主线程。默认情况下, 所有代码都是在主线程中执行。  子线程 一个进程可以有多个线程,除了主线程的其他子线程需要去创建  创建线程通过导入threading模块。 threading是python中创建线程的内置模块，用来支持多线程。Thread类的对象就是线程，需要线程时，可创建这个类或其子类的对象。">
+<meta name="keywords" content="个人博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mutiphreading.md">
 <meta property="og:url" content="http://yoursite.com/2018/10/05/mutiphreading-md/index.html">
@@ -119,7 +120,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-2549235f2605badf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-4ff9476c8117ccf4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-d6270465da5fc73d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-05T03:14:23.741Z">
+<meta property="og:updated_time" content="2018-10-05T10:02:34.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mutiphreading.md">
 <meta name="twitter:description" content="##多线程技术  主线程 每个进程都会有一个线程, 这个线程是主线程。默认情况下, 所有代码都是在主线程中执行。  子线程 一个进程可以有多个线程,除了主线程的其他子线程需要去创建  创建线程通过导入threading模块。 threading是python中创建线程的内置模块，用来支持多线程。Thread类的对象就是线程，需要线程时，可创建这个类或其子类的对象。">
@@ -189,7 +190,9 @@
 
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
-
+	<!--githubstart-->
+	<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+	<!--githubend-->
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -204,7 +207,7 @@
     </div>
     
       
-        <p class="site-subtitle">打工是一定要打工的.</p>
+        <p class="site-subtitle">我们总是对爱的人苛刻, 却照顾着别人的情绪, 而事实是, 我有多愤怒, 我就多需要你.</p>
       
     
   </div>
@@ -236,9 +239,33 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
   </li>
 
       
@@ -293,8 +320,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="If should see you,after long year.How should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -331,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2018-10-05 10:33:02 / 修改时间：11:14:23" itemprop="dateCreated datePublished" datetime="2018-10-05T10:33:02+08:00">2018-10-05</time>
+              <time title="创建时间：2018-10-05 10:33:02 / 修改时间：18:02:34" itemprop="dateCreated datePublished" datetime="2018-10-05T10:33:02+08:00">2018-10-05</time>
             
 
             
@@ -419,6 +446,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/个人博客/" rel="tag"># 个人博客</a>
+          
+        </div>
+      
 
       
       
@@ -428,18 +461,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/30/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/05/git-md/" rel="prev" title="git.md">
-                git.md <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/05/git-md/" rel="prev" title="git版本控制工具">
+                git版本控制工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,8 +519,12 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/you.jpeg"
+                alt="rzlong" />
+            
               <p class="site-author-name" itemprop="name">rzlong</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">If should see you,after long year.How should i greet, with silence and tears.</p>
           </div>
 
           
@@ -501,7 +534,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -510,11 +543,48 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
             </nav>
           
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/rzlong" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="coding"><i class="fa fa-fw fa-spinner"></i>coding</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="weibo"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/cae36121456c" target="_blank" title="简书"><i class="fa fa-fw fa-copy"></i>简书</a>
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -545,7 +615,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -559,6 +630,13 @@
 
 
 
+
+  <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
@@ -567,10 +645,15 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
 
 
 
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共1.4k字</span>
+</div>
 
         
 
@@ -624,6 +707,9 @@
 
 
 
+  
+  
+
 
 
 
@@ -645,6 +731,16 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
   
 
 
@@ -714,6 +810,9 @@
   
 
   
+
+  <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
+  <script type="text/javascript" src="/js/src/love.js"></script>
 
 </body>
 </html>
