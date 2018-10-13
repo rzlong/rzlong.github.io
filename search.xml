@@ -5,10 +5,11 @@
     <url>%2F2018%2F10%2F12%2F%E9%85%B7%E9%85%B7%E7%9A%84aview%2F</url>
     <content type="text"><![CDATA[1.安装aalib12345678910#下载aalib-1.2wget http://prdownloads.sourceforge.net/aa-project/aalib-1.2.tar.gz#解压缩gunzip aalib-1.2.tar.gz#解归档tar -xvf aalib-1.2.tar#对安装的软件进行配置,检查依赖关系./configure#编译安装make &amp;&amp; make install (先执行make, 在执行make install) 注: 使用linux的内核版本为centeros。]]></content>
       <categories>
-        <category>-Linux</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>-linux -aview</tag>
+        <tag>linux</tag>
+        <tag>aview</tag>
       </tags>
   </entry>
   <entry>
