@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/Mysql初体验/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/mysql-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="rzlong">
@@ -379,8 +379,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/15/Mysql初体验/" itemprop="url">
-                  Mysql初体验
+                <a class="post-title-link" href="/2018/10/17/mysql-python/" itemprop="url">
+                  mysql&python
                 </a>
               
             
@@ -406,7 +406,7 @@
                 
               
 
-              <time title="创建时间：2018-10-15 10:56:21 / 修改时间：16:34:27" itemprop="dateCreated datePublished" datetime="2018-10-15T10:56:21+08:00">2018-10-15</time>
+              <time title="创建时间：2018-10-17 14:07:22 / 修改时间：14:12:58" itemprop="dateCreated datePublished" datetime="2018-10-17T14:07:22+08:00">2018-10-17</time>
             
 
             
@@ -429,6 +429,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -464,40 +471,7 @@
       
         
           
-            <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ul>
-<li><p>数据库, 即<code>database</code>, 通过数据库我们可以实现数据的持久化</p>
-</li>
-<li><p>当我们左数据持久化操作是不仅仅是希望能够把数据长久的保存起来, 更重要的是便利的管理数据—方便的存取。</p>
-</li>
-<li><p>1970s IBM - 关系型数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">理论基础: 关系代数和集合论</span><br><span class="line">具体表象: 用二维表来组织数据</span><br><span class="line">二维表: </span><br><span class="line">- 行, 即记录</span><br><span class="line">- 列, 即字段</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>SQL</code>(Structure Query Language)结构化查询语言</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SQL对大小写不敏感</span><br><span class="line">SQL分为6个部分，分别为:</span><br><span class="line">- DQL数据查询语言(即数据检索select下的where、order by、group by、having)，</span><br><span class="line">- DML数据操作语言(即insert、update、delete)，</span><br><span class="line">- TPL事务处理语言(即begin transaction开始事务,commit提交,rollback回滚)，</span><br><span class="line">- DCL数据控制语言(即grant授予，revoke撤销，确定对单个用户和用户组对数据库对象的访问)，</span><br><span class="line">- DDL数据定义语言(即create创建表,drop删除表和alter修改表,为表加入索引，保留字)，</span><br><span class="line">- CCL指针控制语言(即)。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h1><h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- create database</span><br><span class="line">CREATE DATABASE student DEFAULT CHARSET utf8;</span><br><span class="line"></span><br><span class="line">- drop database</span><br><span class="line">drop database if exists student;</span><br><span class="line"></span><br><span class="line">- alter database</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h2 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">- create table</span><br><span class="line"># create table tb_name(column_name, datatype, constraint);</span><br><span class="line"># 命名方式给前缀如table - tb_student, 便于查看</span><br><span class="line"># 非空约束 -- not null</span><br><span class="line"># 默认值约束 -- default</span><br><span class="line"># 主键约束 -- primary key --&gt; 主键是表中能够唯一标识一条记录的列</span><br><span class="line"># instance:</span><br><span class="line">create table tb_student</span><br><span class="line">(</span><br><span class="line">stuid int not null, </span><br><span class="line">stuname varchar(4) not null, </span><br><span class="line">gender bit not null default 1, </span><br><span class="line">birth date, </span><br><span class="line">addr varchar(50),</span><br><span class="line">primary key(stuid)  </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">- drop table</span><br><span class="line"># drop table if exists tb_name;</span><br><span class="line"></span><br><span class="line">- alter table</span><br><span class="line"># alter table tb_student add column tel char(11) not null;</span><br><span class="line"># alter table tb_student drop column tel;</span><br><span class="line"></span><br><span class="line">- insert</span><br><span class="line">-- a record</span><br><span class="line">insert into tb_student values(2018001, &apos;王晗旭&apos;, 1, &apos;1995-10-10&apos;, &apos;中国大陆&apos;);</span><br><span class="line">insert into tb_student (stuid, stuname, gender) values(2018002, &apos;卢姥爷&apos;, 1);</span><br><span class="line">-- many records</span><br><span class="line">insert into tb_student (stuid, stuname, gender) values</span><br><span class="line">(2018003, &apos;卢姥爷&apos;, 1),</span><br><span class="line">(2018004, &apos;蛇姥爷&apos;, 1),</span><br><span class="line">(2018005, &apos;老姥爷&apos;, 1);</span><br><span class="line"></span><br><span class="line">- delete</span><br><span class="line">-- a record</span><br><span class="line">delete from tb_student where stuid = 2018005;</span><br><span class="line">--many records</span><br><span class="line">delete from tb_student where stuid in (2018005, 2018006, 2018007);</span><br><span class="line"></span><br><span class="line">- truncate </span><br><span class="line">truncate table tb_name;</span><br><span class="line"></span><br><span class="line">- update</span><br><span class="line">update tb_student set addr=&apos;Sichuan,China&apos;, gender=0 where stuid in (2018002, 2018003);</span><br><span class="line"></span><br><span class="line">- select </span><br><span class="line">select * from tb_name;</span><br></pre></td></tr></table></figure>
-<h1 id="DQL-数据查询"><a href="#DQL-数据查询" class="headerlink" title="DQL(数据查询)"></a>DQL(数据查询)</h1><h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><ul>
-<li><p><code>select * from tb_name;</code>  查询tb_name中的全部内容</p>
-</li>
-<li><p><code>select stuname as 姓名, gender as 性别 from tb_name;</code>   别名式查询, 其中的<code>as</code>可以<code>省略</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- alias select</span><br><span class="line">select stuname as 姓名, gender as 性别 from tb_student;</span><br><span class="line">- alias select and handle filed</span><br><span class="line">select stuname as 姓名, if (gender, &apos;男&apos;, &apos;女&apos;) as 性别 from tb_student;</span><br><span class="line">select stuname as 姓名, case gender when 1 then &apos;男&apos; else &apos;女&apos; end as 性别 from tb_student;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>filter筛选</code>  对表中的某列或某些列做处理或给定筛选条件, 再查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select concat(stuname,&apos;: &apos; , addr) as 信息 from tb_student where gender = 0; 将stuname和addr字段连接起来再查询</span><br><span class="line"></span><br><span class="line">select * from  tb_student where stuid between 2018001 and 2018010; 查询2018001和2018010之间的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where addr is null; -- 查询addr为空的所有记录</span><br><span class="line">select * from tb_student where addr is not null; -- 查询addr不为空的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where stuid &gt; 2018001 and gender = 0; -- 查询满足所有条件的记录</span><br><span class="line">select * from tb_student where stuid &gt; 2018001 or gender = 0;  -- 查询满足至少一个条件的所有记录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>fuzzy search</code>  模糊查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student where stuname like &apos;%姥爷%&apos;; %表示0个或多个字符, 查询字段中有&apos;姥爷&apos;的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where stuname like &apos;_姥爷&apos;; _ 表示一个字符, 查询所有一个字符后&apos;姥爷&apos;的所有记录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>sort search</code> 排序查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student order by stuid;   升序查询所有记录</span><br><span class="line">select * from tb_student order by stuid desc;  降序查询所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student order by gender, stuid desc; 先按gender升序排, 对相同的记录再按stuid降序排列所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where gender = 0 order by stuid; 先筛选再排序, 列出所有记录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>paging queries</code>  分页查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student limut 3;  查询3条记录</span><br><span class="line">select * from tb_student limit 3 offset 6;  跳过6条记录在查询3条记录</span><br><span class="line">等价于 select from tb_student limit 6, 3;  跳过6条记录在查询3条记录</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
+            <p>python  -m venv venv 安装虚拟环境</p>
 
           
         
@@ -555,7 +529,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/JS之Window篇/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/windows常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="rzlong">
@@ -574,8 +548,714 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/13/JS之Window篇/" itemprop="url">
-                  JS之 Window
+                <a class="post-title-link" href="/2018/10/16/windows常用命令/" itemprop="url">
+                  windows常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-16 16:45:20 / 修改时间：17:57:54" itemprop="dateCreated datePublished" datetime="2018-10-16T16:45:20+08:00">2018-10-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2></blockquote>
+<ul>
+<li><p><code>cmd</code> 命令提示符(command)</p>
+</li>
+<li><p><code>mspaint</code>  画图</p>
+</li>
+<li><p><code>osk</code> 打开屏幕键盘(open screen keyboard)</p>
+</li>
+<li><p><code>calc</code> 打开计算器 (calculator)</p>
+</li>
+<li><p><code>taskmgr</code>打开任务管理器（task manager）与<code>ctrl+windows delete</code>相同</p>
+</li>
+<li><p><code>msconfig</code>  打开系统配置</p>
+</li>
+<li><p><code>control</code>  打开控制面板</p>
+</li>
+<li><p><code>explorer</code>  打开文件资源管理器 相当于<code>windows+E</code></p>
+</li>
+<li><p><code>windows+d</code> 回到桌面</p>
+</li>
+<li><p><code>windows+e</code> 打开我的计算机</p>
+</li>
+<li><p><code>ver</code>  显示Windows的版本号</p>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="Dos命令"><a href="#Dos命令" class="headerlink" title="Dos命令"></a>Dos命令</h2><h4 id="文件命令"><a href="#文件命令" class="headerlink" title="文件命令"></a>文件命令</h4><ul>
+<li><code>dir</code> 列出当前目录下的文件夹</li>
+<li><code>md</code>  创建目录(make directory)</li>
+<li><code>rd</code>  删除目录(remove directory)</li>
+<li><code>cd</code>  改变目录(change directory) <code>cd ..</code>退后一级 <code>cd \</code> 到根目录</li>
+<li><code>d:</code>  切换盘符</li>
+<li><code>del</code>  删除文件</li>
+<li><code>type file</code>  显示文件内容</li>
+<li><code>exit</code>  退出Dos命令</li>
+<li><code>cls</code>  清屏(clear screen)</li>
+</ul>
+</blockquote>
+<blockquote>
+<h4 id="参数命令"><a href="#参数命令" class="headerlink" title="参数命令"></a>参数命令</h4><ul>
+<li><code>command /?</code>  查看help</li>
+<li><code>cmd /c 其他</code> 直接运行命令后关闭cmd窗口</li>
+<li><code>cmd /k 其他</code>  直接运行命令后保留cmd窗口</li>
+<li>参数命令的路径使用<code>反斜杠\</code> ,同时若路径中出现空格, 要引起来,如<code>del &quot;d:\program files\files\test.txt&quot;</code></li>
+<li><code>tree 目录</code>  显示对应的目录的目录结构</li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/js之-Browser/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/15/js之-Browser/" itemprop="url">
+                  js之-Browser
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-15 20:29:44 / 修改时间：20:46:53" itemprop="dateCreated datePublished" datetime="2018-10-15T20:29:44+08:00">2018-10-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h1 id="DOM-节点"><a href="#DOM-节点" class="headerlink" title="DOM 节点"></a>DOM 节点</h1></blockquote>
+<p><code>DOM</code>  为<code>Document Object Model</code> , 在html的DOM中, 每一个元素都是节点.文档是一个文档节点, 所有的HTML元素都是元素节点, 所有的HTML属性都是属性节点, 文本插入到HTML元素是文本节点, 注释是注释节点.</p>
+<p>当浏览器载入HTML文档时, 它就会称为Document对象, Document对象是HTML文档的根节点.<a href="http://www.runoob.com/jsref/dom-obj-document.html" target="_blank" rel="noopener">More请浏览菜鸟…</a></p>
+<blockquote>
+<h1 id="Document对象"><a href="#Document对象" class="headerlink" title="Document对象"></a>Document对象</h1></blockquote>
+<ul>
+<li><code>document.write</code></li>
+</ul>
+<blockquote>
+<h1 id="元素对象"><a href="#元素对象" class="headerlink" title="元素对象"></a>元素对象</h1></blockquote>
+<blockquote>
+<h2 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h2></blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/Mysql初体验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/15/Mysql初体验/" itemprop="url">
+                  Mysql初体验
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-15 10:56:21" itemprop="dateCreated datePublished" datetime="2018-10-15T10:56:21+08:00">2018-10-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-17 20:14:39" itemprop="dateModified" datetime="2018-10-17T20:14:39+08:00">2018-10-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1></blockquote>
+<ul>
+<li><p>数据库, 即<code>database</code>, 通过数据库我们可以实现数据的持久化</p>
+</li>
+<li><p>当我们左数据持久化操作是不仅仅是希望能够把数据长久的保存起来, 更重要的是便利的管理数据—方便的存取。</p>
+</li>
+<li><p>1970s IBM - 关系型数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">理论基础: 关系代数和集合论</span><br><span class="line">具体表象: 用二维表来组织数据</span><br><span class="line">二维表: </span><br><span class="line">- 行, 即记录</span><br><span class="line">- 列, 即字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>SQL</code>(Structure Query Language)结构化查询语言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SQL对大小写不敏感</span><br><span class="line">SQL分为6个部分，分别为:</span><br><span class="line">- DQL数据查询语言(即数据检索select下的where、order by、group by、having)，</span><br><span class="line">- DML数据操作语言(即insert、update、delete)，</span><br><span class="line">- TPL事务处理语言(即begin transaction开始事务,commit提交,rollback回滚)，</span><br><span class="line">- DCL数据控制语言(即grant授予，revoke撤销，确定对单个用户和用户组对数据库对象的访问)，</span><br><span class="line">- DDL数据定义语言(即create创建表,drop删除表和alter修改表,为表加入索引，保留字)，</span><br><span class="line">- CCL指针控制语言(即)。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>SQL相关组成</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DB - Database 数据库</span><br><span class="line">DBMS - Database Management System  数据库管理系统</span><br><span class="line">DBA - Database Administrator 数据库管理员</span><br><span class="line">DBS - Database System  数据库系统</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图形化MySQL客户端工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- Navicat - 支持SQL</span><br><span class="line"></span><br><span class="line">- Toad - Oracle开发</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h1 id="DDL-data-definition-language"><a href="#DDL-data-definition-language" class="headerlink" title="DDL(data definition language)"></a>DDL(data definition language)</h1></blockquote>
+<blockquote>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- create database</span><br><span class="line">CREATE DATABASE student DEFAULT CHARSET utf8;</span><br><span class="line"></span><br><span class="line">- drop database</span><br><span class="line">drop database if exists student;</span><br><span class="line"></span><br><span class="line">- alter database</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h2></blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">- 在命令列界面(安装mysql时给的,在Navicat中不支持)使用 ? &lt;参数&gt; 可以查看帮助</span><br><span class="line">- create table</span><br><span class="line"># create table tb_name(column_name, datatype, constraint);</span><br><span class="line"># 命名方式给前缀如table - tb_student, 便于查看</span><br><span class="line"># 非空约束 -- not null</span><br><span class="line"># 默认值约束 -- default</span><br><span class="line"># 主键约束 -- primary key --&gt; 主键是表中能够唯一标识一条记录的列</span><br><span class="line"># instance:</span><br><span class="line">create table tb_student</span><br><span class="line">(</span><br><span class="line">stuid int not null, </span><br><span class="line">stuname varchar(4) not null, </span><br><span class="line">gender bit not null default 1, </span><br><span class="line">birth date, </span><br><span class="line">addr varchar(50),</span><br><span class="line">primary key(stuid)  </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">- drop table</span><br><span class="line"># drop table if exists tb_name;</span><br><span class="line"></span><br><span class="line">- alter table</span><br><span class="line"># alter table tb_student add column tel char(11) not null;</span><br><span class="line"># alter table tb_student drop column tel;</span><br><span class="line"></span><br><span class="line">- insert</span><br><span class="line">-- a record</span><br><span class="line">insert into tb_student values(2018001, &apos;王晗旭&apos;, 1, &apos;1995-10-10&apos;, &apos;中国大陆&apos;);</span><br><span class="line">insert into tb_student (stuid, stuname, gender) values(2018002, &apos;卢姥爷&apos;, 1);</span><br><span class="line">-- many records</span><br><span class="line">insert into tb_student (stuid, stuname, gender) values</span><br><span class="line">(2018003, &apos;卢姥爷&apos;, 1),</span><br><span class="line">(2018004, &apos;蛇姥爷&apos;, 1),</span><br><span class="line">(2018005, &apos;老姥爷&apos;, 1);</span><br><span class="line"></span><br><span class="line">- delete</span><br><span class="line">-- a record</span><br><span class="line">delete from tb_student where stuid = 2018005;</span><br><span class="line">--many records</span><br><span class="line">delete from tb_student where stuid in (2018005, 2018006, 2018007);</span><br><span class="line"></span><br><span class="line">- truncate </span><br><span class="line">truncate table tb_name;</span><br><span class="line"></span><br><span class="line">- update</span><br><span class="line">update tb_student set addr=&apos;Sichuan,China&apos;, gender=0 where stuid in (2018002, 2018003);</span><br><span class="line"></span><br><span class="line">- select </span><br><span class="line">select * from tb_name;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="DQL-data-query-language"><a href="#DQL-data-query-language" class="headerlink" title="DQL(data query language)"></a>DQL(data query language)</h1></blockquote>
+<blockquote>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2></blockquote>
+<ul>
+<li><p><code>select * from tb_name;</code>  查询tb_name中的全部内容</p>
+</li>
+<li><p><code>select stuname as 姓名, gender as 性别 from tb_name;</code>   别名式查询, 其中的<code>as</code>可以<code>省略</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- alias select</span><br><span class="line">select stuname as 姓名, gender as 性别 from tb_student;</span><br><span class="line">- alias select and handle filed</span><br><span class="line">select stuname as 姓名, if (gender, &apos;男&apos;, &apos;女&apos;) as 性别 from tb_student;</span><br><span class="line">select stuname as 姓名, case gender when 1 then &apos;男&apos; else &apos;女&apos; end as 性别 from tb_student;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>where</code>  对表中的某列或某些列做处理或给定筛选条件, 再查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select concat(stuname,&apos;: &apos; , addr) as 信息 from tb_student where gender = 0; 将stuname和addr字段连接起来再查询</span><br><span class="line"></span><br><span class="line">select * from  tb_student where stuid between 2018001 and 2018010; 查询2018001和2018010之间的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where addr is null; -- 查询addr为空的所有记录</span><br><span class="line">select * from tb_student where addr is not null; -- 查询addr不为空的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where stuid &gt; 2018001 and gender = 0; -- 查询满足所有条件的记录</span><br><span class="line">select * from tb_student where stuid &gt; 2018001 or gender = 0;  -- 查询满足至少一个条件的所有记录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>like</code>  模糊查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student where stuname like &apos;%姥爷%&apos;; %表示0个或多个字符, 查询字段中有&apos;姥爷&apos;的所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where stuname like &apos;_姥爷&apos;; _ 表示一个字符, 查询所有一个字符后&apos;姥爷&apos;的所有记录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>order by</code> 排序查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student order by stuid;   升序查询所有记录</span><br><span class="line">select * from tb_student order by stuid desc;  降序查询所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student order by gender, stuid desc; 先按gender升序排, 对相同的记录再按stuid降序排列所有记录</span><br><span class="line"></span><br><span class="line">select * from tb_student where gender = 0 order by stuid; 先筛选再排序, 列出所有记录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>limit offset</code>  分页查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb_student limut 3;  查询3条记录</span><br><span class="line">select * from tb_student limit 3 offset 6;  跳过6条记录在查询3条记录</span><br><span class="line">等价于 select from tb_student limit 6, 3;  跳过6条记录在查询3条记录</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>null</code>  查询空内容的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 同时判断条件 null 和 &apos;&apos;</span><br><span class="line">select sname &apos;学生姓名&apos; from tb_student where addr is null or addr = &apos;&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>distinct</code>  去重查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select distinct seldate as &apos;去重后日期&apos; from tb_score;</span><br><span class="line"></span><br><span class="line">对比:</span><br><span class="line">-- 去重运算(distinct)和集合运算(in/not in) 效率很低</span><br><span class="line">-- 通常建议使用exists或not exists替代</span><br><span class="line"># distinct</span><br><span class="line">select ename, job from tbemp where eno in (select distinct mgr from tbemp where mgr is not null);</span><br><span class="line"># where exists</span><br><span class="line">select ename, job from tbemp t1 where exists (select &apos;f&apos; from tbemp t2 where t1.eno=t2.mgr);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>aggregate function</code>  聚合函数 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">聚合函数 max()/ min() / sum() / avg() / count()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>group by</code>  分组查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 通常聚合函数和分组group by是联合使用</span><br><span class="line">select sid as &apos;学号&apos;, avg(mark) as &apos;平均成绩&apos; from tb_score group by sid;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>having</code>  集合运算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># where 在group by(或order by)前查询</span><br><span class="line"># having在group by(或order by)后查询</span><br><span class="line"># 通常若使用having的字段必须在出现在前面的查询的字段中, 而where不能解决对表筛选后再次筛选的目的。</span><br><span class="line">select sid from tb_score group by sid having count(sid)&gt;2</span><br><span class="line">- 在tb_score表中,根据学生id(sid)进行分组查询学生id(sid).再进行sid出现次数大于2的记录</span><br><span class="line">select ename, sal from TbEmp where sal&gt;(select avg(sal) from TbEmp) ;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p><code>subquery</code>  子查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 筛选的字段也是通过查询获取的</span><br><span class="line"># 字段=值</span><br><span class="line">select sname from tb_student where birth=(select min(birth) from tb_student);</span><br><span class="line"># 字段 in table</span><br><span class="line">select sname as &apos;姓名&apos; from tb_student where stuid in (select sid from tb_score group by sid having count(sid)&gt;2);</span><br><span class="line">冉钊同学家庭经济情况描述:该学生家中困难,父母常年从事体力劳动,母亲由于劳动患得慢性病,现在必须使用药物进行疗养；爷爷奶奶年迈从事劳动早已是力不从心,该生自己读书也要花去不小的开销。在上一学年中，该生学习上,刻苦努力，不旷课不早退,积极参与课堂学习任务活动,认真完成作业。生活上,该生勤俭节约,环保意识好,乐于帮助他人,积极参加班级活动。综上所述，其符合2018-2019学年国家助学金的评定标准，特此申请。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>inner join...on</code>  内连接查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sname, cname, mark from tb_student inner join tb_score on stuid=sid inner join tb_course on cid=couid where mark is not null; </span><br><span class="line"># 等价于</span><br><span class="line">select sname, cname, mark from tb_student, tb_course, tb_score where stuid=sid and couid=cid and mark is not null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>left/right join...on</code>  左外连接/右外连接(<code>mysql不支持全外连接</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select sname, num from tb_student as tb1 inner join (select sid, count(cid) as num from tb_score group by sid) as tb2 on tb1.stuid = tb2.sid;</span><br><span class="line"></span><br><span class="line">select sname, num from tb_student as tb1 left join (select sid, count(cid) as num from tb_score group by sid) as tb2 on tb1.stuid = tb2.sid;</span><br><span class="line">-- 左外连接 把左表(写在前面的表)不满足连接条件的记录也查出来对应记录补上null</span><br><span class="line">-- 右外连接 把左表(写在前面的表)不满足连接条件的记录也查出来对应记录补上null</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<h1 id="约束-constraint"><a href="#约束-constraint" class="headerlink" title="约束(constraint)"></a>约束(constraint)</h1></blockquote>
+<blockquote>
+<h4 id="外键-foreign-key"><a href="#外键-foreign-key" class="headerlink" title="外键(foreign key)"></a>外键(foreign key)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 创建外键前要在表中加入外键对应的字段</span><br><span class="line"># alter table tb_name add column tb_field;</span><br><span class="line">alter table tb_student add column clg_id int;</span><br><span class="line"></span><br><span class="line"># 创建外键约束</span><br><span class="line">alter table tb_student add constraint fk_clg2stu foreign key(clg_id) references tb_college(clg_id); </span><br><span class="line"></span><br><span class="line"># 删除外键约束</span><br><span class="line">alter table tb_student drop foreign key fk_clg2stu;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="唯一约束-unique"><a href="#唯一约束-unique" class="headerlink" title="唯一约束(unique)"></a>唯一约束(unique)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 创建唯一约束</span><br><span class="line">alter table tb_college add constraint unique_clg_site unique(clg_site);</span><br><span class="line"># 删除唯一约束</span><br><span class="line">alter table tb_college drop index unique_clg_site;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="非空约束-not-null"><a href="#非空约束-not-null" class="headerlink" title="非空约束(not null)"></a>非空约束(not null)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 修改成非空约束</span><br><span class="line">alter table tb_name modify col_name col_type no null;</span><br><span class="line"></span><br><span class="line"># 删除也是通过修改</span><br><span class="line">alter table tb_name modify col_name col_type;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="默认值约束-default"><a href="#默认值约束-default" class="headerlink" title="默认值约束(default)"></a>默认值约束(default)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 修改成默认值约束</span><br><span class="line">alter table tb_name modify col_name col_type default df_value;</span><br><span class="line"></span><br><span class="line"># 删除也是通过修改</span><br><span class="line">alter table tb_name modify col_name col_type;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="主键约束-primary-key"><a href="#主键约束-primary-key" class="headerlink" title="主键约束(primary key)"></a>主键约束(primary key)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 添加主键约束</span><br><span class="line">alter table tb_name add primary key(col_name);</span><br><span class="line"></span><br><span class="line"># 删除主键约束</span><br><span class="line">## 若有自动增长类型, 要先去除, 再删除主键;若没有, 直接删除主键(因为自动增长是依托于主键的)</span><br><span class="line">alter table tb_name modify col_name int;</span><br><span class="line">alter table tb_name drop primary key</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="数据完整性-data-integrity"><a href="#数据完整性-data-integrity" class="headerlink" title="数据完整性(data integrity)"></a>数据完整性(data integrity)</h1></blockquote>
+<blockquote>
+<h4 id="实体完整性-entity-intergrity"><a href="#实体完整性-entity-intergrity" class="headerlink" title="实体完整性(entity intergrity)"></a>实体完整性(entity intergrity)</h4></blockquote>
+<p>每一条记录都是独一无二的,没有冗余 – 依托于主键<code>primary key</code>/唯一约束<code>unique</code></p>
+<blockquote>
+<h4 id="参照完整性-referential-intergrity"><a href="#参照完整性-referential-intergrity" class="headerlink" title="参照完整性(referential intergrity)"></a>参照完整性(referential intergrity)</h4></blockquote>
+<p>B表参照A表, A表没有的数据B表绝对不能出现 – 依托于外键<code>foreign key</code></p>
+<blockquote>
+<h4 id="域完整性-domain-intergrity"><a href="#域完整性-domain-intergrity" class="headerlink" title="域完整性(domain intergrity)"></a>域完整性(domain intergrity)</h4></blockquote>
+<p>录入的数据都是有效的 – 依托于数据类型 / 非空约束<code>not null</code> / 默认值约束<code>default</code> / 检查约束(可以写入, 但是在<code>mysql</code>中不生效)</p>
+<blockquote>
+<h1 id="DCL-data-control-language"><a href="#DCL-data-control-language" class="headerlink" title="DCL(data control language)"></a>DCL(data control language)</h1></blockquote>
+<blockquote>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- %表示任意地址, 也可以直接指定地址, 本地地址可以是localhost或128.0.0.1</span><br><span class="line">create user &apos;cuser&apos;@&apos;%&apos; identified by&apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="授权-grant"><a href="#授权-grant" class="headerlink" title="授权(grant)"></a>授权(grant)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># src为数据库名, 若为*.* 即是所有数据库中所有资料</span><br><span class="line">-- 授予特定的权限</span><br><span class="line">grant select on srs.* to &apos;cuser&apos;@&apos;%&apos;;</span><br><span class="line">grant insert, delete on srs.* to &apos;cuser&apos;@&apos;%&apos;;</span><br><span class="line">grant create, drop, alter on srs.* to &apos;cuser&apos;@&apos;%&apos;;</span><br><span class="line"></span><br><span class="line">-- 授予所有权限</span><br><span class="line">grant all privileges on srs.* to &apos;cuser&apos;@&apos;%&apos;;</span><br><span class="line"></span><br><span class="line">-- 授予所有权限且还能授权给他人</span><br><span class="line">grant all privileges on srs.* to &apos;cuser&apos;@&apos;%&apos; with grant option;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="召回-revoke"><a href="#召回-revoke" class="headerlink" title="召回(revoke)"></a>召回(revoke)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 召回所有权限</span><br><span class="line">revoke all privileges on srs.* from &apos;cuser&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="DPL-transaction-processing-language"><a href="#DPL-transaction-processing-language" class="headerlink" title="DPL(transaction processing language)"></a>DPL(transaction processing language)</h1></blockquote>
+<blockquote>
+<h4 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h4></blockquote>
+<ul>
+<li><p><code>begin | start transaction</code>  开启事务</p>
+</li>
+<li><p><code>commit</code>  事务提交, 要全部任务成功执行则提交</p>
+</li>
+<li><p><code>rollback</code>  事务回滚, 只要存在任务失败则回滚</p>
+</li>
+</ul>
+<blockquote>
+<h4 id="instance"><a href="#instance" class="headerlink" title="instance"></a>instance</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 事务开启</span><br><span class="line">begin;</span><br><span class="line"># or start transaction</span><br><span class="line">update tb_score set mark=mark+2 where sid=1001;</span><br><span class="line">update tb_score set mark=mark+2 where sid=1002;</span><br><span class="line">-- 事务提交</span><br><span class="line">commit;</span><br><span class="line">-- 事务回滚</span><br><span class="line">rollback;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="视图-view"><a href="#视图-view" class="headerlink" title="视图(view)"></a>视图(view)</h1></blockquote>
+<blockquote>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">视图是虚拟表，本身不存储数据，而是按照指定的方式进行查询。也可以说视图是查询的快照</span><br><span class="line"></span><br><span class="line">权限控制时将用户对表的访问权限,限制到对指定列的访问。可以通过给定查询视图的权限,而不给查询表的权限来实现。</span><br><span class="line"></span><br><span class="line">对创建好的视图, 可以通过查询语句直接使用视图</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># create view vw_name as select ...</span><br><span class="line">create view vw_tbemp as select * from tbemp</span><br><span class="line"></span><br><span class="line">select * from vw_tbemp;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1></blockquote>
+<blockquote>
+<h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">索引相当于图书的目录</span><br><span class="line"></span><br><span class="line">为表创建索引而达到加速查询就是典型的(牺牲空间换取时间)</span><br><span class="line"></span><br><span class="line">索引会使增删改变慢, 不能滥用, 其原因是增删改操作可能导致所以索引的更新</span><br><span class="line"></span><br><span class="line">通常将索引建在经常被查询的字段上</span><br><span class="line"></span><br><span class="line">主键默认唯一索引</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 对于模糊索引, 若它以%开头,索引失效; 若它不以%开头,索引有效(下划线_有效)</span><br><span class="line">-- 创建索引</span><br><span class="line">create index idx_emp_name on tbemp(ename);</span><br><span class="line">-- 创建唯一索引</span><br><span class="line">create unique index uidx_emp_name on tbemp(ename);</span><br><span class="line"></span><br><span class="line">-- 删除索引</span><br><span class="line">alter table tb_name drop index uidx_name;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/JS之-Window/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/13/JS之-Window/" itemprop="url">
+                  JS之-Window
                 </a>
               
             
@@ -618,7 +1298,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-15 17:46:42" itemprop="dateModified" datetime="2018-10-15T17:46:42+08:00">2018-10-15</time>
+                <time title="修改时间：2018-10-15 20:43:56" itemprop="dateModified" datetime="2018-10-15T20:43:56+08:00">2018-10-15</time>
               
             
           </span>
@@ -713,6 +1393,7 @@
 <p><code>alert()</code>  警告框, 可以提示内容</p>
 <p><code>confirm()</code>  确认框, 有确认和取消按钮</p>
 <p><code>prompt()</code>  提示框, 通常提示用户输入怎样的值</p>
+<p><code>close()</code>  关闭窗口</p>
 <blockquote>
 <h1 id="获取标签"><a href="#获取标签" class="headerlink" title="获取标签"></a>获取标签</h1></blockquote>
 <p><code>document.getElementById()</code>   通过标签ID选择器获取标签</p>
@@ -720,9 +1401,21 @@
 <p><code>document.getElementsByClassName()</code>   通过类选择器列表获取标签</p>
 <p><code>document.querySelector()</code>   通过选择器获取标签(可以是类,id)</p>
 <p><code>document.querySelectorAll()</code>   通过全部选择器的列表获取标签(可以是类,id)</p>
+<p><strong>instances:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var h1 = document.getElementById(&quot;message&quot;); </span><br><span class="line">var h1 = document.getElementsByTagName(&quot;h1&quot;)[0]</span><br><span class="line">var h1 = document.getElementsByClassName(&quot;msg&quot;)[0]</span><br><span class="line">var h1 = document.querySelector(&quot;#message&quot;)</span><br><span class="line">var h1 = document.querySelectorAll(&quot;#message&quot;)[0]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p># </p>
-</blockquote>
+<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1></blockquote>
+<blockquote>
+<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2></blockquote>
+<p><strong>设置计时器</strong></p>
+<p><code>setinterval(function, interval_time)</code>   设置一个计时器, 它每隔interval_time的时间执行一次function函数, interval_time的时间单位是<code>毫秒</code></p>
+<p><strong>删除计时器</strong></p>
+<p>在设置计时器的时候, 将计时器函数赋给一个变量, 如 <code>var myVar =setInterval(func,1000)</code>,  当需要解除计时器的时候, 使用<code>clearInterval(myVar)</code> 即可.</p>
+<blockquote>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2></blockquote>
+<p><strong>设置计时器</strong><br><code>setTimeout(function, timeout_time)</code>   设置一个计时器, 它在timeout_time时间结束后执行function函数, timeout_time的时间单位是<code>毫秒</code></p>
+<p><strong>删除计时器</strong></p>
+<p>在设置计时器的时候, 将计时器函数赋给一个变量, 如 <code>var myVar =setTimeout(func,1000)</code>,  当需要解除计时器的时候, 使用<code>clearTimeout(myVar)</code> 即可.</p>
 
           
         
@@ -1733,7 +2426,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1752,7 +2445,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1777,7 +2474,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1878,7 +2583,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共9.8k字</span>
+  <span class="post-count">博客全站共12.2k字</span>
 </div>
 
         
