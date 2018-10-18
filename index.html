@@ -360,6 +360,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/redis-first-time/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/redis-first-time/" itemprop="url">
+                  redis first time
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-18 11:21:54 / 修改时间：17:47:15" itemprop="dateCreated datePublished" datetime="2018-10-18T11:21:54+08:00">2018-10-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h4 id="redis-install"><a href="#redis-install" class="headerlink" title="redis install"></a>redis install</h4></blockquote>
+<p>1.在<a href="http://redis.cn" target="_blank" rel="noopener">redis.cn</a>中可以找到下载源文件链接<code>wget &lt;download site&gt;</code></p>
+<p>2.对下载的文件解压缩 <code>gunzip &lt;file&gt;</code></p>
+<p>3.对解压缩的文件进行解归档 <code>tar &lt;file&gt;</code></p>
+<p>4.进入解归档的文件, 发现它已经有了<code>makefile</code>  的文件, 就不用进行进行配置, 直接构建安装 <code>make &amp;&amp; make install</code></p>
+<blockquote>
+<h4 id="配置redis"><a href="#配置redis" class="headerlink" title="配置redis"></a>配置redis</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#1  ifconfig -- 私网172.18.170.112(bind)</span><br><span class="line">#2  redis端口(merz) 6379(port)</span><br><span class="line">#3  (/requirepass) --修改 requirepass 口令</span><br><span class="line">#4  (/appendonly ) --修改 appendonly yes  ,它会在创建服务器的时候, 生成appendonly.aof的文件, 存储的是每次执行的命令, 当你退出后在进入的时候, 若没有dump.rdb文件就执行所有的命令, 以达成数据持久化.</span><br><span class="line">#5 rdbcompression yes 默认设置yes, dbfilename dump.rdb 就是默认存储所处理的数据的文件, 能达到数据持久化.</span><br><span class="line">foo bar</span><br><span class="line"></span><br><span class="line">redis-server redis.conf &amp; 后台运行redis服务器</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp; 后台启动服务器并输出重定向redis.log文件</span><br><span class="line"></span><br><span class="line">redis-cli -h ip(对自己用私网id, 对别人用公网ip)</span><br><span class="line">关闭redis服务</span><br><span class="line">1. ps -ef | grep redis    然后再kill psid</span><br><span class="line">2.将后台转到前台 在ctrl c关闭</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flushall 删除当前库所有数据</span><br><span class="line">flushdb  删除所有库所有数据</span><br><span class="line">select 1 切换数据库(redis默认启动了16个库)</span><br><span class="line"></span><br><span class="line">save 同步保存</span><br><span class="line">bgsave 异步保存</span><br><span class="line"></span><br><span class="line">测试吞吐量</span><br><span class="line">redis-benchmark -h 公网ip -a passwd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="string字符串"><a href="#string字符串" class="headerlink" title="string字符串"></a>string字符串</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set key value  -&gt; 设置键值对</span><br><span class="line">set key value ex 1000 设置键值对存活(exists) 1000s</span><br><span class="line">- ttl key 查看对应键超时时间(time to live)  -1为永不超时 -2已经超时</span><br><span class="line">- expire key time 指定超时时间</span><br><span class="line">get key 查看对应键的值</span><br><span class="line">exists key 查看键是否存在</span><br><span class="line">del key key可以是多个</span><br><span class="line">keys * 查看多有键</span><br><span class="line">setnx key value 若key不存在就添加键值对(set not exists)</span><br><span class="line">setex key ttl value 设置键值对的时候必须指定超时时间</span><br><span class="line">mset key1 value1 key2 value2... 可以同时指定多条数据</span><br><span class="line">mget key1 key2... 可以同时获取多条数据</span><br><span class="line">若key对应的value是数值时,可以使用incr key增加 decr key减少</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="hash哈希表"><a href="#hash哈希表" class="headerlink" title="hash哈希表"></a>hash哈希表</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hset key field value 添加hash对象</span><br><span class="line">hget key filed 获取hash对象指定的字段</span><br><span class="line">hgetall key 获取hash对象所有键值对</span><br><span class="line">hvals key 获取hash对象的所有value</span><br><span class="line">hmset key filed1 value1 filed2 value2...同时指定hash对象的多个字段</span><br><span class="line">hdel key filed 删除hash对象指定的字段</span><br><span class="line">hexists key filed 检查hash对象有没有指定的字段</span><br><span class="line">hkeys key 显示hash对象有哪些键</span><br><span class="line">hlen key 显示hash对象有几个键值对</span><br><span class="line">hscan key cursor遍历hash对象键值对, 若(1)中为0, 表示已经没有可遍历的对象, 若(1)中大于0, 表示还有可遍历的hash对象</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="list列表"><a href="#list列表" class="headerlink" title="list列表"></a>list列表</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lpush key value [value...] 从list对象的左边放入</span><br><span class="line">rpush key value [value...] 从list对象的右边放入</span><br><span class="line">lpop key 从list对象的左边取出一个值</span><br><span class="line">rpop key 从list对象的右边取出一个值</span><br><span class="line">lrange key start end 从左边找到list[start, end]</span><br><span class="line">rpoplpush key1 key2 从key1的右边取值再放到key2的左边</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="set集合"><a href="#set集合" class="headerlink" title="set集合"></a>set集合</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sadd key value [values...] 往集合中加入元素</span><br><span class="line">scard key 查看集合中有几个元素(有自动去重)</span><br><span class="line">sinter key1 key2 求集合key1和集合key2的交集</span><br><span class="line">sunion key1 key2 求集合key1和集合key2的并集</span><br><span class="line">sdiff key1 key2 求集合key1和集合key2的差集</span><br><span class="line">sismember key value 判断集合key中有没有value</span><br><span class="line">smembers key 查看集合key中所有元素</span><br><span class="line">srandmember key 从集合key中随机取一个元素</span><br><span class="line">spop key 从集合key中随机删除一个元素</span><br><span class="line">srem key value 从集合key中指定的删除一个元素</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="SortedSet有序集合"><a href="#SortedSet有序集合" class="headerlink" title="SortedSet有序集合"></a>SortedSet有序集合</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zadd key score number [socre number...] 添加有序集合</span><br><span class="line">zrange key start stop 查看key[start, stop] 之间所有number</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis.io resis官网</span><br><span class="line">resis.cn resis中文版</span><br><span class="line">redisdoc.com 提供redis参考文档</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/17/mysql-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -406,12 +594,24 @@
                 
               
 
-              <time title="创建时间：2018-10-17 14:07:22 / 修改时间：14:12:58" itemprop="dateCreated datePublished" datetime="2018-10-17T14:07:22+08:00">2018-10-17</time>
+              <time title="创建时间：2018-10-17 14:07:22" itemprop="dateCreated datePublished" datetime="2018-10-17T14:07:22+08:00">2018-10-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-18 19:28:03" itemprop="dateModified" datetime="2018-10-18T19:28:03+08:00">2018-10-18</time>
               
             
           </span>
@@ -429,13 +629,6 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -472,6 +665,44 @@
         
           
             <p>python  -m venv venv 安装虚拟环境</p>
+<blockquote>
+<h4 id="pycharm下载包"><a href="#pycharm下载包" class="headerlink" title="pycharm下载包"></a>pycharm下载包</h4></blockquote>
+<ul>
+<li><p>打开pycharm–&gt;<code>File</code>–&gt;<code>Settings</code>–&gt;<code>Project Interpreter</code> –&gt; 点击<code>+</code>–&gt; 输入需要的包名进行下载</p>
+</li>
+<li><p>使用<code>import you_need_package</code>  –&gt; 会报错, 点击灯泡, 选择<code>install package you_need_package</code></p>
+</li>
+<li><p>在<code>terminal</code> –&gt; <code>pip install you_need_package</code>  通常会使用国外的文件镜像, 比较慢,可以使用<code>doubanio</code> 速度很快, 具体如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 1.在用户主目录 c:\user\administrator 下创建pip目录</span><br><span class="line"># 2.在pip目录中创建pip的文件, 修改器后缀名 ini , 注意要将文件的隐藏后缀.txt 去掉(工具-文件夹选项-查看-去除 隐藏已知文件的扩展名)</span><br><span class="line"># 3.在pip.ini的文件中,写入:</span><br><span class="line">[global]</span><br><span class="line">index-url=https://pypi.doubanio.com/simple</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h4 id="pymysql"><a href="#pymysql" class="headerlink" title="pymysql"></a>pymysql</h4></blockquote>
+<ul>
+<li><p><code>conn = pymysql.connect()</code>  建立连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">options:</span><br><span class="line">host=&apos;localhost&apos;</span><br><span class="line">port=3306</span><br><span class="line">db=&apos;db_hrs&apos;</span><br><span class="line">user=&apos;root&apos;</span><br><span class="line">passwd=&apos;123456&apos;</span><br><span class="line">charset=&apos;utf8&apos;  字符集设置</span><br><span class="line">autocommit=&apos;true&apos;  自动提交事务</span><br><span class="line">cursorclass=pymysql.cursors.DictCursor</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>cursor = conn.cursor()</code>  创建游标</p>
+</li>
+<li><p><code>cursor.execute(sql)</code>  执行sql语句, 它返回的是影响后的行数</p>
+</li>
+<li><p><code>cursor.fetchone()</code>  获取查询到下一条记录</p>
+</li>
+<li><p><code>cursor.fetchall()</code>  获取查询到的全部结果行</p>
+</li>
+<li><p><code>cursor.fetchmany(size)</code>  获得查询到的size条记录</p>
+</li>
+<li><p><code>conn.commit()</code>  提交事务(若没有设置自动提交事务, 则需手动添加该语句)</p>
+</li>
+<li><p><code>conn.rollback()</code>  事务回滚</p>
+</li>
+<li><p><code>conn.close()</code>  关闭连接</p>
+</li>
+<li><p>instance:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line"></span><br><span class="line">class Dept():</span><br><span class="line">    def __init__(self, no, name, loc):</span><br><span class="line">        self.no = no</span><br><span class="line">        self.name = name</span><br><span class="line">        self.loc = loc</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    # 1.create db connection</span><br><span class="line">    conn = pymysql.connect(host=&apos;localhost&apos;, port=3307,</span><br><span class="line">                           db=&apos;hrs&apos;, user=&apos;root&apos;, passwd=&apos;123456&apos;,</span><br><span class="line">                           charset=&apos;utf8&apos;, autocommit=&apos;true&apos;,</span><br><span class="line">                           cursorclass=pymysql.cursors.DictCursor)</span><br><span class="line">    try:</span><br><span class="line">        # 2. 获得游标对象</span><br><span class="line">        with conn.cursor() as cursor:</span><br><span class="line">            # 3.向数据库服务器发出sql</span><br><span class="line">            # result = cursor.execute(&apos;update tbdept set dname=%s, dloc=%s where dno=%s&apos;,(name, addr, no))</span><br><span class="line">            cursor.execute(&apos;&apos;&apos;select dno as no, dname as name, </span><br><span class="line">            dloc as loc from tbdept&apos;&apos;&apos;)</span><br><span class="line">            datas = cursor.fetchall()</span><br><span class="line">            # 查3条记录</span><br><span class="line">            # datas = cursor.fetchmany(3)</span><br><span class="line">            print(datas)</span><br><span class="line">            # 方法 1</span><br><span class="line">            # for data in datas:</span><br><span class="line">            #     print(f&apos;部门编号:&#123;data[0]&#125;\n部门名称:&#123;data[1]&#125;\n部门地址:&#123;data[2]&#125;\n&apos;)</span><br><span class="line"></span><br><span class="line">            # 方法 2</span><br><span class="line">            # for data in datas:</span><br><span class="line">            #     print(f&apos;部门编号:&#123;data[&quot;no&quot;]&#125;&apos;)</span><br><span class="line">            #     print(f&apos;部门名称:&#123;data[&quot;name&quot;]&#125;&apos;)</span><br><span class="line">            #     print(f&apos;部门地址:&#123;data[&quot;loc&quot;]&#125;&apos;)</span><br><span class="line">            #     print(&apos;-&apos;.ljust(30,&apos;-&apos;))</span><br><span class="line"></span><br><span class="line">            # 方法 3</span><br><span class="line">            for data in datas:</span><br><span class="line">                dept = Dept(**data)</span><br><span class="line">                print(dept.no, end=&apos; &apos;)</span><br><span class="line">                print(dept.name, end=&apos; &apos;)</span><br><span class="line">                print(dept.loc, end=&apos; &apos;)</span><br><span class="line">                print()</span><br><span class="line">            conn.commit()</span><br><span class="line">    except pymysql.MySQLError:</span><br><span class="line">        print(&apos;error&apos;)</span><br><span class="line">        conn.rollback()</span><br><span class="line">    finally:</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
 
           
         
@@ -976,7 +1207,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-17 20:14:39" itemprop="dateModified" datetime="2018-10-17T20:14:39+08:00">2018-10-17</time>
+                <time title="修改时间：2018-10-18 10:20:57" itemprop="dateModified" datetime="2018-10-18T10:20:57+08:00">2018-10-18</time>
               
             
           </span>
@@ -1137,6 +1368,11 @@
 <h4 id="域完整性-domain-intergrity"><a href="#域完整性-domain-intergrity" class="headerlink" title="域完整性(domain intergrity)"></a>域完整性(domain intergrity)</h4></blockquote>
 <p>录入的数据都是有效的 – 依托于数据类型 / 非空约束<code>not null</code> / 默认值约束<code>default</code> / 检查约束(可以写入, 但是在<code>mysql</code>中不生效)</p>
 <blockquote>
+<h1 id="数据一致性-data-consistency"><a href="#数据一致性-data-consistency" class="headerlink" title="数据一致性(data consistency)"></a>数据一致性(data consistency)</h1></blockquote>
+<blockquote>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">数据库在出现并发事务访问数据时, 数据库底层有锁机制来保护数据;但是通常我们书写SQL的时候不会显示锁, 数据库会根据我们设定的事务隔离级别自动加锁。</span><br><span class="line"></span><br><span class="line">事务隔离级别(由低到高)</span><br><span class="line">Read Uncommited  读未提交的数据</span><br><span class="line">Read Commited  读提交的数据</span><br><span class="line">Repeatable Read 可重复读</span><br><span class="line">Serializable 串行化</span><br><span class="line"></span><br><span class="line">修改事务隔离级别:</span><br><span class="line">set session/global transaction isolation level 级别字段;</span><br><span class="line">查询事务隔离级别:</span><br><span class="line">select @@tx_isolation;</span><br><span class="line"></span><br><span class="line">并发数据访问可能出现的问题:</span><br><span class="line">第1类丢失更新</span><br><span class="line">第2类丢失更新</span><br><span class="line">脏读  --  一个事务读取到另外一个事务尚未提交的数据</span><br><span class="line">不可重复读   --  一个事务正在查询的时候发现其他事务更新了数据导致无法查询</span><br><span class="line">幻读 -- 一个是事务在执行查询的时候被其他事务提交了新的数据</span><br></pre></td></tr></table></figure>
+<blockquote>
 <h1 id="DCL-data-control-language"><a href="#DCL-data-control-language" class="headerlink" title="DCL(data control language)"></a>DCL(data control language)</h1></blockquote>
 <blockquote>
 <h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4></blockquote>
@@ -1176,9 +1412,12 @@
 <h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4></blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">索引相当于图书的目录</span><br><span class="line"></span><br><span class="line">为表创建索引而达到加速查询就是典型的(牺牲空间换取时间)</span><br><span class="line"></span><br><span class="line">索引会使增删改变慢, 不能滥用, 其原因是增删改操作可能导致所以索引的更新</span><br><span class="line"></span><br><span class="line">通常将索引建在经常被查询的字段上</span><br><span class="line"></span><br><span class="line">主键默认唯一索引</span><br></pre></td></tr></table></figure>
 <blockquote>
-<h4 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 对于模糊索引, 若它以%开头,索引失效; 若它不以%开头,索引有效(下划线_有效)</span><br><span class="line">-- 创建索引</span><br><span class="line">create index idx_emp_name on tbemp(ename);</span><br><span class="line">-- 创建唯一索引</span><br><span class="line">create unique index uidx_emp_name on tbemp(ename);</span><br><span class="line"></span><br><span class="line">-- 删除索引</span><br><span class="line">alter table tb_name drop index uidx_name;</span><br></pre></td></tr></table></figure>
-
+<h4 id="事务的ACID的特性"><a href="#事务的ACID的特性" class="headerlink" title="事务的ACID的特性"></a>事务的ACID的特性</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Atomicity原子性 不可分割</span><br><span class="line">Consistency 一致性 事务前后数据状态一致</span><br><span class="line">Isolation 隔离性 多个事务不能看到彼此的中间状态</span><br><span class="line">Duration 持久性 事务完成后数据要持久化</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 对于模糊索引, 若它以%开头,索引失效; 若它不以%开头,索引有效(下划线_有效)</span><br><span class="line">-- 创建索引</span><br><span class="line">create index idx_emp_name on tbemp(ename);</span><br><span class="line">-- 创建唯一索引</span><br><span class="line">create unique index uidx_emp_name on tbemp(ename);</span><br><span class="line"></span><br><span class="line">-- 删除索引</span><br><span class="line">alter table tb_name drop index uidx_name;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
           
         
       
@@ -2212,176 +2451,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/mutiphreading-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/mutiphreading-md/" itemprop="url">
-                  多线程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-05 10:33:02" itemprop="dateCreated datePublished" datetime="2018-10-05T10:33:02+08:00">2018-10-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-07 15:33:54" itemprop="dateModified" datetime="2018-10-07T15:33:54+08:00">2018-10-07</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>##多线程技术</p>
-<ul>
-<li><p><code>主线程</code> 每个进程都会有一个线程, 这个线程是主线程。默认情况下, 所有代码都是在主线程中执行。</p>
-</li>
-<li><p><code>子线程</code> 一个进程可以有多个线程,除了主线程的其他子线程需要去创建</p>
-</li>
-<li><p><code>创建线程</code>通过导入threading模块。 threading是python中创建线程的内置模块，用来支持多线程。Thread类的对象就是线程，需要线程时，可创建这个类或其子类的对象。</p>
-<center>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/05/mutiphreading-md/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2426,7 +2502,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2482,7 +2558,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2583,7 +2661,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12.2k字</span>
+  <span class="post-count">博客全站共14k字</span>
 </div>
 
         
