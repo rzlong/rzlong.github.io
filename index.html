@@ -406,12 +406,24 @@
                 
               
 
-              <time title="创建时间：2018-10-18 11:21:54 / 修改时间：17:47:15" itemprop="dateCreated datePublished" datetime="2018-10-18T11:21:54+08:00">2018-10-18</time>
+              <time title="创建时间：2018-10-18 11:21:54" itemprop="dateCreated datePublished" datetime="2018-10-18T11:21:54+08:00">2018-10-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-19 14:53:54" itemprop="dateModified" datetime="2018-10-19T14:53:54+08:00">2018-10-19</time>
               
             
           </span>
@@ -465,14 +477,20 @@
         
           
             <blockquote>
-<h4 id="redis-install"><a href="#redis-install" class="headerlink" title="redis install"></a>redis install</h4></blockquote>
-<p>1.在<a href="http://redis.cn" target="_blank" rel="noopener">redis.cn</a>中可以找到下载源文件链接<code>wget &lt;download site&gt;</code></p>
+<h4 id="redis-profile"><a href="#redis-profile" class="headerlink" title="redis profile"></a>redis profile</h4></blockquote>
+<p><code>redis</code>  即remote dictionary server, 主要用于高速缓存, 去优化系统的的性能.</p>
+<blockquote>
+<h4 id="install-red"><a href="#install-red" class="headerlink" title="install red"></a>install red</h4></blockquote>
+<p>1.在<a href="http://redis.cn" target="_blank" rel="noopener">redis.cn</a>中可以找到下载源文件链接<code>wget &lt;download site&gt;</code> </p>
 <p>2.对下载的文件解压缩 <code>gunzip &lt;file&gt;</code></p>
 <p>3.对解压缩的文件进行解归档 <code>tar &lt;file&gt;</code></p>
 <p>4.进入解归档的文件, 发现它已经有了<code>makefile</code>  的文件, 就不用进行进行配置, 直接构建安装 <code>make &amp;&amp; make install</code></p>
 <blockquote>
-<h4 id="配置redis"><a href="#配置redis" class="headerlink" title="配置redis"></a>配置redis</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#1  ifconfig -- 私网172.18.170.112(bind)</span><br><span class="line">#2  redis端口(merz) 6379(port)</span><br><span class="line">#3  (/requirepass) --修改 requirepass 口令</span><br><span class="line">#4  (/appendonly ) --修改 appendonly yes  ,它会在创建服务器的时候, 生成appendonly.aof的文件, 存储的是每次执行的命令, 当你退出后在进入的时候, 若没有dump.rdb文件就执行所有的命令, 以达成数据持久化.</span><br><span class="line">#5 rdbcompression yes 默认设置yes, dbfilename dump.rdb 就是默认存储所处理的数据的文件, 能达到数据持久化.</span><br><span class="line">foo bar</span><br><span class="line"></span><br><span class="line">redis-server redis.conf &amp; 后台运行redis服务器</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp; 后台启动服务器并输出重定向redis.log文件</span><br><span class="line"></span><br><span class="line">redis-cli -h ip(对自己用私网id, 对别人用公网ip)</span><br><span class="line">关闭redis服务</span><br><span class="line">1. ps -ef | grep redis    然后再kill psid</span><br><span class="line">2.将后台转到前台 在ctrl c关闭</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flushall 删除当前库所有数据</span><br><span class="line">flushdb  删除所有库所有数据</span><br><span class="line">select 1 切换数据库(redis默认启动了16个库)</span><br><span class="line"></span><br><span class="line">save 同步保存</span><br><span class="line">bgsave 异步保存</span><br><span class="line"></span><br><span class="line">测试吞吐量</span><br><span class="line">redis-benchmark -h 公网ip -a passwd</span><br></pre></td></tr></table></figure>
+<h4 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">方式一:</span><br><span class="line">修改默认配置文件redis.conf后再运行</span><br><span class="line">#1  ifconfig -- 私网172.18.170.112(在文件中修改bind字段的ip地址)</span><br><span class="line">#2  redis端口(merz) 6379(port)</span><br><span class="line">#3  (/requirepass) --修改 requirepass 口令</span><br><span class="line">#4  (/appendonly ) --修改 appendonly yes  ,它会在创建服务器的时候, 生成appendonly.aof的文件, 存储的是每次执行的命令, 当你退出后在进入的时候, 若没有dump.rdb文件就执行所有的命令, 以达成数据持久化.</span><br><span class="line">注: rdbcompression yes 默认设置yes, dbfilename dump.rdb 就是默认存储所处理的数据的文件, 能达到数据持久化.</span><br><span class="line">foo bar</span><br><span class="line"></span><br><span class="line">配置哨兵(当主服务器崩掉, 利用哨兵选取新的主服务器)</span><br><span class="line">sentinel.conf</span><br><span class="line">cp redis / sentinel.conf .</span><br><span class="line">配置: </span><br><span class="line">sentinel monitor mymaster &lt;masterip&gt; &lt;masterport&gt; &lt;int(哨兵数量投票数量)&gt;</span><br><span class="line">sentinel down-ater-milliseconds mymaster 10000 主机mymaster挂掉10秒就重新选主服务器</span><br><span class="line">sentinel failover-timeout mymaster 180000 故障恢复时间内, 若前服务器重连就使他加入努力， 否则删除主从服务群</span><br><span class="line"></span><br><span class="line">启动哨兵模式</span><br><span class="line">redis-server sentinel.conf --sentinel </span><br><span class="line"></span><br><span class="line">slaveof no one摆脱奴隶</span><br><span class="line"></span><br><span class="line">info replication</span><br><span class="line">120.77.222.217</span><br><span class="line">awk 文字处理</span><br><span class="line">grep -v op  不要带op的一一行</span><br><span class="line">xargs kill 将前面的输出作为kill的参数传入</span><br><span class="line"></span><br><span class="line">redis-server 虽然可以直接启动,但是使用的是默认的配置</span><br><span class="line">redis-server redis.conf &amp; 后台运行redis服务器</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp; 后台启动服务器并输出重定向redis.log文件</span><br><span class="line"></span><br><span class="line">redis-cli -h ip(对自己用私网id, 对别人用公网ip)</span><br><span class="line"></span><br><span class="line">方式二:</span><br><span class="line">直接在redis-server后接参数启动</span><br><span class="line">redis-server --port 6379 --requirepass 123123 --appendonly yes &gt; redis.log &amp;</span><br><span class="line"></span><br><span class="line">flushall 删除当前库所有数据</span><br><span class="line">flushdb  删除所有库所有数据</span><br><span class="line">select 1 切换数据库(redis默认启动了16个库)</span><br><span class="line"></span><br><span class="line">save 同步保存</span><br><span class="line">bgsave 异步保存</span><br><span class="line"></span><br><span class="line">测试吞吐量</span><br><span class="line">redis-benchmark -h 公网ip -a passwd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="关闭redis服务器"><a href="#关闭redis服务器" class="headerlink" title="关闭redis服务器"></a>关闭redis服务器</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关闭redis服务</span><br><span class="line">1. ps -ef | grep redis    然后再kill psid</span><br><span class="line">2.将后台进程转到前台 -- fg %编号 再使用ctrl c关闭</span><br><span class="line">3.在客户端使用shutdown</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h4 id="string字符串"><a href="#string字符串" class="headerlink" title="string字符串"></a>string字符串</h4></blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set key value  -&gt; 设置键值对</span><br><span class="line">set key value ex 1000 设置键值对存活(exists) 1000s</span><br><span class="line">- ttl key 查看对应键超时时间(time to live)  -1为永不超时 -2已经超时</span><br><span class="line">- expire key time 指定超时时间</span><br><span class="line">get key 查看对应键的值</span><br><span class="line">exists key 查看键是否存在</span><br><span class="line">del key key可以是多个</span><br><span class="line">keys * 查看多有键</span><br><span class="line">setnx key value 若key不存在就添加键值对(set not exists)</span><br><span class="line">setex key ttl value 设置键值对的时候必须指定超时时间</span><br><span class="line">mset key1 value1 key2 value2... 可以同时指定多条数据</span><br><span class="line">mget key1 key2... 可以同时获取多条数据</span><br><span class="line">若key对应的value是数值时,可以使用incr key增加 decr key减少</span><br></pre></td></tr></table></figure>
@@ -488,6 +506,9 @@
 <blockquote>
 <h4 id="SortedSet有序集合"><a href="#SortedSet有序集合" class="headerlink" title="SortedSet有序集合"></a>SortedSet有序集合</h4></blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zadd key score number [socre number...] 添加有序集合</span><br><span class="line">zrange key start stop 查看key[start, stop] 之间所有number</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">修改redis.conf文件</span><br><span class="line">slaveof &lt;master_ip&gt; &lt;master_port&gt;</span><br><span class="line">masterauth &lt;passwd&gt;</span><br><span class="line"></span><br><span class="line">redis-cli 连接自己的redis服务器</span><br><span class="line">info replication 查看主从状态信息</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4></blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis.io resis官网</span><br><span class="line">resis.cn resis中文版</span><br><span class="line">redisdoc.com 提供redis参考文档</span><br></pre></td></tr></table></figure>
@@ -1220,7 +1241,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-18 10:20:57" itemprop="dateModified" datetime="2018-10-18T10:20:57+08:00">2018-10-18</time>
+                <time title="修改时间：2018-10-19 15:29:55" itemprop="dateModified" datetime="2018-10-19T15:29:55+08:00">2018-10-19</time>
               
             
           </span>
@@ -1341,7 +1362,7 @@
 <p>​</p>
 </li>
 <li><p><code>subquery</code>  子查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 筛选的字段也是通过查询获取的</span><br><span class="line"># 字段=值</span><br><span class="line">select sname from tb_student where birth=(select min(birth) from tb_student);</span><br><span class="line"># 字段 in table</span><br><span class="line">select sname as &apos;姓名&apos; from tb_student where stuid in (select sid from tb_score group by sid having count(sid)&gt;2);</span><br><span class="line">冉钊同学家庭经济情况描述:该学生家中困难,父母常年从事体力劳动,母亲由于劳动患得慢性病,现在必须使用药物进行疗养；爷爷奶奶年迈从事劳动早已是力不从心,该生自己读书也要花去不小的开销。在上一学年中，该生学习上,刻苦努力，不旷课不早退,积极参与课堂学习任务活动,认真完成作业。生活上,该生勤俭节约,环保意识好,乐于帮助他人,积极参加班级活动。综上所述，其符合2018-2019学年国家助学金的评定标准，特此申请。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 筛选的字段也是通过查询获取的</span><br><span class="line"># 字段=值</span><br><span class="line">select sname from tb_student where birth=(select min(birth) from tb_student);</span><br><span class="line"># 字段 in table</span><br><span class="line">select sname as &apos;姓名&apos; from tb_student where stuid in (select sid from tb_score group by sid having count(sid)&gt;2);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>inner join...on</code>  内连接查询</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sname, cname, mark from tb_student inner join tb_score on stuid=sid inner join tb_course on cid=couid where mark is not null; </span><br><span class="line"># 等价于</span><br><span class="line">select sname, cname, mark from tb_student, tb_course, tb_score where stuid=sid and couid=cid and mark is not null;</span><br></pre></td></tr></table></figure>
@@ -2674,7 +2695,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共15k字</span>
+  <span class="post-count">博客全站共15.1k字</span>
 </div>
 
         

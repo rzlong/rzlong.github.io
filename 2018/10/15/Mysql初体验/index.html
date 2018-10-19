@@ -133,7 +133,7 @@
 <meta property="og:site_name" content="拆南墙">
 <meta property="og:description" content="数据库  数据库, 即database, 通过数据库我们可以实现数据的持久化  当我们左数据持久化操作是不仅仅是希望能够把数据长久的保存起来, 更重要的是便利的管理数据—方便的存取。  1970s IBM - 关系型数据库 12345理论基础: 关系代数和集合论具体表象: 用二维表来组织数据二维表: - 行, 即记录- 列, 即字段  SQL(Structure Query Language)结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-18T02:20:57.595Z">
+<meta property="og:updated_time" content="2018-10-19T07:29:55.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql初体验">
 <meta name="twitter:description" content="数据库  数据库, 即database, 通过数据库我们可以实现数据的持久化  当我们左数据持久化操作是不仅仅是希望能够把数据长久的保存起来, 更重要的是便利的管理数据—方便的存取。  1970s IBM - 关系型数据库 12345理论基础: 关系代数和集合论具体表象: 用二维表来组织数据二维表: - 行, 即记录- 列, 即字段  SQL(Structure Query Language)结">
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-18 10:20:57" itemprop="dateModified" datetime="2018-10-18T10:20:57+08:00">2018-10-18</time>
+                <time title="修改时间：2018-10-19 15:29:55" itemprop="dateModified" datetime="2018-10-19T15:29:55+08:00">2018-10-19</time>
               
             
           </span>
@@ -539,7 +539,7 @@
 <p>​</p>
 </li>
 <li><p><code>subquery</code>  子查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 筛选的字段也是通过查询获取的</span><br><span class="line"># 字段=值</span><br><span class="line">select sname from tb_student where birth=(select min(birth) from tb_student);</span><br><span class="line"># 字段 in table</span><br><span class="line">select sname as &apos;姓名&apos; from tb_student where stuid in (select sid from tb_score group by sid having count(sid)&gt;2);</span><br><span class="line">冉钊同学家庭经济情况描述:该学生家中困难,父母常年从事体力劳动,母亲由于劳动患得慢性病,现在必须使用药物进行疗养；爷爷奶奶年迈从事劳动早已是力不从心,该生自己读书也要花去不小的开销。在上一学年中，该生学习上,刻苦努力，不旷课不早退,积极参与课堂学习任务活动,认真完成作业。生活上,该生勤俭节约,环保意识好,乐于帮助他人,积极参加班级活动。综上所述，其符合2018-2019学年国家助学金的评定标准，特此申请。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 筛选的字段也是通过查询获取的</span><br><span class="line"># 字段=值</span><br><span class="line">select sname from tb_student where birth=(select min(birth) from tb_student);</span><br><span class="line"># 字段 in table</span><br><span class="line">select sname as &apos;姓名&apos; from tb_student where stuid in (select sid from tb_score group by sid having count(sid)&gt;2);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>inner join...on</code>  内连接查询</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select sname, cname, mark from tb_student inner join tb_score on stuid=sid inner join tb_course on cid=couid where mark is not null; </span><br><span class="line"># 等价于</span><br><span class="line">select sname, cname, mark from tb_student, tb_course, tb_score where stuid=sid and couid=cid and mark is not null;</span><br></pre></td></tr></table></figure>
@@ -933,7 +933,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共15k字</span>
+  <span class="post-count">博客全站共15.1k字</span>
 </div>
 
         
