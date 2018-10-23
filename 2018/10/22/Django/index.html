@@ -137,7 +137,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-a65a94ed0a77a3a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-c77bccc1a35e83e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-568e3927509044cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-23T04:21:08.768Z">
+<meta property="og:updated_time" content="2018-10-23T11:45:44.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django">
 <meta name="twitter:description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。">
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-23 12:21:08" itemprop="dateModified" datetime="2018-10-23T12:21:08+08:00">2018-10-23</time>
+                <time title="修改时间：2018-10-23 19:45:44" itemprop="dateModified" datetime="2018-10-23T19:45:44+08:00">2018-10-23</time>
               
             
           </span>
@@ -586,13 +586,14 @@
 <h1 id="ORM对象关系映射"><a href="#ORM对象关系映射" class="headerlink" title="ORM对象关系映射"></a>ORM对象关系映射</h1></blockquote>
 <p><code>ORM</code>  即<code>object relational mapping</code>对象关系映射</p>
 <blockquote>
-<h2 id="对象迁移"><a href="#对象迁移" class="headerlink" title="对象迁移"></a>对象迁移</h2></blockquote>
+<h2 id="ORM应用"><a href="#ORM应用" class="headerlink" title="ORM应用"></a>ORM应用</h2></blockquote>
 <ul>
 <li><p>在当前的<code>app</code>中<code>models.py</code> 文件中创建一个类对象,  需要导入<code>from django.db import models</code></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/13692213-a65a94ed0a77a3a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 </li>
 <li><p>在当前的<code>app</code>中<code>views.py</code>  定义一个自己需要的功能的方法, 这个方法可将将上述的类进行关联, 能使用<code>ORM</code>  形式访问和修改数据库.</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/13692213-c77bccc1a35e83e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>上述添加信息与<code>Students.objects.create(s_name=&#39;大荒&#39;)</code>等价</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">若使用对应的模块需要引入</span><br><span class="line">- from django.http import HttpResponse 引入http模块中HttpResponse响应方法</span><br><span class="line">- from app.models import Students 在app.models模块中引入需要使用的Sudents类</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在项目同名文件中<code>urls</code>文件中, 添加需要<code>url</code>, 如:</p>
@@ -605,6 +606,53 @@
 <li><p>进行迁移文件到数据库 <code>python manage.py migrate</code></p>
 </li>
 </ul>
+<blockquote>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2></blockquote>
+<ul>
+<li><p>all() 查询所有对象信息</p>
+</li>
+<li><p>filter() 过滤查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 过滤查询</span><br><span class="line">stus = Students.objects.filter(s_name = &apos;小明&apos;) 返回的是一个QuerySet对象</span><br><span class="line">注意: 若上述的过滤查询没有结果, 返回的是QuerySet为空. 因此, 与get()相比, filter() 方法更适用.</span><br><span class="line"></span><br><span class="line"># first和last方法被all和filter支持</span><br><span class="line">first()  获取第一个</span><br><span class="line">last()  获取最后一个</span><br><span class="line"></span><br><span class="line"># 可以同时使用多次过滤或者一次过滤多个条件</span><br><span class="line">stus = Students.objects.filter(s_age=20, s_gender=1)</span><br><span class="line">stus = Students.objects.filter(s_age=20).filter(s_gender=1)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>get() 过滤查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus2 = Students.objects.get(s_age = 20) 返回的是一个Students对象</span><br><span class="line">注意：若上述的过滤没有查询到结果或查询的结果有多个, 就会返回错误</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模糊查询 <code>sql</code>中使用<code>like</code></p>
+<ul>
+<li><p><code>&#39;%xxx%&#39;</code>  包含x的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__contains=&apos;武&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&#39;_xxx&#39;</code> 以_开头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__startswith=&apos;武&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>xxx_</code> 以_结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__endswith=&apos;武&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>大于/大于等于 <code>gt/gte</code>   小于/小于等于<code>lt/lte</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_age__gt=18)</span><br><span class="line">stus = Students.objects.filter(s_age__gte=20)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序 <code>order_by()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 升序</span><br><span class="line">stus = Students.objects.order_by(&apos;id&apos;)</span><br><span class="line"></span><br><span class="line"># 降序</span><br><span class="line">stus = Students.objects.order_by(&apos;-s_name&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询不满足条件的数据 <code>exclude()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查询不满足id小于等于10的数据</span><br><span class="line">stus = Students.objects.exclude(id__lte=10)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计查询的结果数 <code>count()</code>或<code>len()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus_count = stus.count()</span><br><span class="line">stus_count = len(stus)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取值可带参数 values()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(stus.values())</span><br><span class="line">print(stus.values(&apos;s_name&apos;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主键的字段名和<code>pk</code>等价</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(id=10)</span><br><span class="line">stus = Students.objects.filter(pk=10)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1></blockquote>
+<p>通过<code>dubug (step into my code)--&gt; console --&gt; show the prompt</code>, 然后可以访问查看各种数据。</p>
 
       
     </div>
@@ -855,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django"><span class="nav-number">1.</span> <span class="nav-text">Django</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC框架模式"><span class="nav-number">1.2.</span> <span class="nav-text">MVC框架模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVT框架模式-Django采用"><span class="nav-number">1.3.</span> <span class="nav-text">MVT框架模式(Django采用)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装虚拟环境"><span class="nav-number">2.1.</span> <span class="nav-text">安装虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VENV使用"><span class="nav-number">2.2.</span> <span class="nav-text">VENV使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Django"><span class="nav-number">2.3.</span> <span class="nav-text">安装Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.4.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件说明"><span class="nav-number">2.5.</span> <span class="nav-text">项目文件说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行服务"><span class="nav-number">2.6.</span> <span class="nav-text">运行服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库配置"><span class="nav-number">2.7.</span> <span class="nav-text">数据库配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建APP"><span class="nav-number">3.</span> <span class="nav-text">创建APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ORM对象关系映射"><span class="nav-number">4.</span> <span class="nav-text">ORM对象关系映射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象迁移"><span class="nav-number">4.1.</span> <span class="nav-text">对象迁移</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django"><span class="nav-number">1.</span> <span class="nav-text">Django</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC框架模式"><span class="nav-number">1.2.</span> <span class="nav-text">MVC框架模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVT框架模式-Django采用"><span class="nav-number">1.3.</span> <span class="nav-text">MVT框架模式(Django采用)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装虚拟环境"><span class="nav-number">2.1.</span> <span class="nav-text">安装虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VENV使用"><span class="nav-number">2.2.</span> <span class="nav-text">VENV使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Django"><span class="nav-number">2.3.</span> <span class="nav-text">安装Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.4.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件说明"><span class="nav-number">2.5.</span> <span class="nav-text">项目文件说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行服务"><span class="nav-number">2.6.</span> <span class="nav-text">运行服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库配置"><span class="nav-number">2.7.</span> <span class="nav-text">数据库配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建APP"><span class="nav-number">3.</span> <span class="nav-text">创建APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ORM对象关系映射"><span class="nav-number">4.</span> <span class="nav-text">ORM对象关系映射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ORM应用"><span class="nav-number">4.1.</span> <span class="nav-text">ORM应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">4.2.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debug"><span class="nav-number">5.</span> <span class="nav-text">Debug</span></a></li></ol></div>
             
 
           </div>
@@ -912,7 +960,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.4k字</span>
+  <span class="post-count">博客全站共17.8k字</span>
 </div>
 
         
