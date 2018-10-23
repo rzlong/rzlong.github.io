@@ -134,7 +134,7 @@
 <meta property="og:description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="c:/Users/Administrator/Desktop/mvc.jpg">
-<meta property="og:updated_time" content="2018-10-22T15:30:47.889Z">
+<meta property="og:updated_time" content="2018-10-23T01:21:20.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django">
 <meta name="twitter:description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。">
@@ -405,12 +405,24 @@
                 
               
 
-              <time title="创建时间：2018-10-22 10:01:41 / 修改时间：23:30:47" itemprop="dateCreated datePublished" datetime="2018-10-22T10:01:41+08:00">2018-10-22</time>
+              <time title="创建时间：2018-10-22 10:01:41" itemprop="dateCreated datePublished" datetime="2018-10-22T10:01:41+08:00">2018-10-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-23 09:21:20" itemprop="dateModified" datetime="2018-10-23T09:21:20+08:00">2018-10-23</time>
               
             
           </span>
@@ -427,7 +439,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
 
                 
                 
@@ -482,7 +501,6 @@
 <ul>
 <li><p>MVC的优缺点:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">优点: 耦合性低, 重用性高, 部署快, 生命周期成本低, 可维护性高</span><br><span class="line">缺点: 不易完全理解, 调试很麻烦, 不适合中小规模的应用程序, 系统结构和实现变复杂</span><br></pre></td></tr></table></figure>
-<p>​</p>
 </li>
 </ul>
 <blockquote>
@@ -533,10 +551,7 @@
 <p><code>python manage.py runserver</code> 运行服务</p>
 <p><code>python manage.py runserver 0.0.0.0:8080</code> 指定可访问的站点和端口号运行服务, <code>0.0.0.0</code>  表示所有人都能访问</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">错误:</span><br><span class="line">1.Error: [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。</span><br><span class="line">通常是端口已经被占用, 可以在terminal中使用 netstat -ano|findstr &lt;port&gt; 查看段口是否被占用, 解决方式: 换个端口</span><br></pre></td></tr></table></figure>
-<p>​</p>
 </li>
-</ul>
-<ul>
 <li><p>方式2–修改配置edit configurations</p>
 <p>Script path选择项目的manage.py文件</p>
 <p>Parameters写入<code>runserver [port](默认8000)</code></p>
@@ -555,7 +570,6 @@
 </li>
 <li><p><code>python manage.py migrate</code>进行信息迁移(映射模型到数据库中), 在修改好数据库配置信息后, 会自动在指定的数据库生成一系列的表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">auth_group/auth_group_permissions/auth_permission/auth_user/auth_user_groups/auth_user_user_permissions 6个关于用户、用户组及其权限相关的表</span><br><span class="line">django_admin_log用户日志表</span><br><span class="line">django_content_type内容类型表</span><br><span class="line">django_migrations 信息迁移表</span><br><span class="line">django_session session表</span><br></pre></td></tr></table></figure>
-<p>​</p>
 </li>
 <li><p><code>python manage.py createsuperuser</code> 创建超级管理员 , 然后可以通过<code>http://127.0.0.1:8000/admin</code>访问</p>
 </li>
@@ -614,10 +628,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/22/test/" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -691,7 +701,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -703,6 +713,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -757,7 +769,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
