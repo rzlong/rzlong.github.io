@@ -612,7 +612,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-20 10:54:31" itemprop="dateModified" datetime="2018-10-20T10:54:31+08:00">2018-10-20</time>
+                <time title="修改时间：2018-10-23 19:55:20" itemprop="dateModified" datetime="2018-10-23T19:55:20+08:00">2018-10-23</time>
               
             
           </span>
@@ -664,8 +664,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <h4 id="简述redis"><a href="#简述redis" class="headerlink" title="简述redis"></a>简述redis</h4></blockquote>
 <p><code>redis</code>  即remote dictionary server, 主要用于高速缓存, 去优化系统的的性能.</p>
 <p><code>redis</code>通常放置体量小的热点数据,  体量大的数据放置在<code>MySQL/ MangoDB</code> 更合适.</p>
@@ -673,37 +672,13 @@
 <h4 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h4></blockquote>
 <p>1.在<a href="http://redis.cn" target="_blank" rel="noopener">redis.cn</a>中可以找到下载源文件链接<code>wget &lt;download site&gt;</code> </p>
 <p>2.对下载的文件解压缩 <code>gunzip &lt;file&gt;</code></p>
-<p>3.对解压缩的文件进行解归档 <code>tar &lt;file&gt;</code></p>
-<p>4.进入解归档的文件, 发现它已经有了<code>makefile</code>  的文件, 就不用进行进行配置, 直接构建安装 <code>make &amp;&amp; make install</code></p>
-<blockquote>
-<h4 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">方式一:</span><br><span class="line">修改默认配置文件redis.conf后再运行</span><br><span class="line">#1  ifconfig -- 私网172.18.170.112(在文件中修改bind字段的ip地址)</span><br><span class="line">#2  redis端口(merz) 6379(port)</span><br><span class="line">#3  (/requirepass) --修改 requirepass 口令</span><br><span class="line">#4  (/appendonly ) --修改 appendonly yes  ,它会在创建服务器的时候, 生成appendonly.aof的文件, 存储的是每次执行的命令, 当你退出后在进入的时候, 若没有dump.rdb文件就执行所有的命令, 以达成数据持久化.</span><br><span class="line">注: rdbcompression yes 默认设置yes, dbfilename dump.rdb 就是默认存储所处理的数据的文件, 能达到数据持久化.</span><br><span class="line">foo bar</span><br><span class="line"></span><br><span class="line">配置哨兵(当主服务器崩掉, 利用哨兵选取新的主服务器)</span><br><span class="line">sentinel.conf</span><br><span class="line">cp redis / sentinel.conf .</span><br><span class="line">配置: </span><br><span class="line">sentinel monitor mymaster &lt;masterip&gt; &lt;masterport&gt; &lt;int(哨兵数量投票数量)&gt;</span><br><span class="line">sentinel down-ater-milliseconds mymaster 10000 主机mymaster挂掉10秒就重新选主服务器</span><br><span class="line">sentinel failover-timeout mymaster 180000 故障恢复时间内, 若前服务器重连就使他加入努力， 否则删除主从服务群</span><br><span class="line"></span><br><span class="line">启动哨兵模式</span><br><span class="line">redis-server sentinel.conf --sentinel </span><br><span class="line"></span><br><span class="line">slaveof no one摆脱奴隶</span><br><span class="line"></span><br><span class="line">info replication</span><br><span class="line">120.77.222.217</span><br><span class="line">awk 文字处理</span><br><span class="line">grep -v op  不要带op的一一行</span><br><span class="line">xargs kill 将前面的输出作为kill的参数传入</span><br><span class="line"></span><br><span class="line">redis-server 虽然可以直接启动,但是使用的是默认的配置</span><br><span class="line">redis-server redis.conf &amp; 后台运行redis服务器</span><br><span class="line">redis-server redis.conf &gt; redis.log &amp; 后台启动服务器并输出重定向redis.log文件</span><br><span class="line"></span><br><span class="line">redis-cli -h ip(对自己用私网id, 对别人用公网ip)</span><br><span class="line"></span><br><span class="line">方式二:</span><br><span class="line">直接在redis-server后接参数启动</span><br><span class="line">redis-server --port 6379 --requirepass 123123 --appendonly yes &gt; redis.log &amp;</span><br><span class="line"></span><br><span class="line">flushall 删除当前库所有数据</span><br><span class="line">flushdb  删除所有库所有数据</span><br><span class="line">select 1 切换数据库(redis默认启动了16个库)</span><br><span class="line"></span><br><span class="line">save 同步保存</span><br><span class="line">bgsave 异步保存</span><br><span class="line"></span><br><span class="line">测试吞吐量</span><br><span class="line">redis-benchmark -h 公网ip -a passwd</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="关闭redis服务器"><a href="#关闭redis服务器" class="headerlink" title="关闭redis服务器"></a>关闭redis服务器</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关闭redis服务</span><br><span class="line">1. ps -ef | grep redis    然后再kill psid</span><br><span class="line">2.将后台进程转到前台 -- fg %编号 再使用ctrl c关闭</span><br><span class="line">3.在客户端使用shutdown</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="string字符串"><a href="#string字符串" class="headerlink" title="string字符串"></a>string字符串</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set key value  -&gt; 设置键值对</span><br><span class="line">set key value ex 1000 设置键值对存活(exists) 1000s</span><br><span class="line">- ttl key 查看对应键超时时间(time to live)  -1为永不超时 -2已经超时</span><br><span class="line">- expire key time 指定超时时间</span><br><span class="line">get key 查看对应键的值</span><br><span class="line">exists key 查看键是否存在</span><br><span class="line">del key key可以是多个</span><br><span class="line">keys * 查看多有键</span><br><span class="line">setnx key value 若key不存在就添加键值对(set not exists)</span><br><span class="line">setex key ttl value 设置键值对的时候必须指定超时时间</span><br><span class="line">mset key1 value1 key2 value2... 可以同时指定多条数据</span><br><span class="line">mget key1 key2... 可以同时获取多条数据</span><br><span class="line">若key对应的value是数值时,可以使用incr key增加 decr key减少</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="hash哈希表"><a href="#hash哈希表" class="headerlink" title="hash哈希表"></a>hash哈希表</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hset key field value 添加hash对象</span><br><span class="line">hget key filed 获取hash对象指定的字段</span><br><span class="line">hgetall key 获取hash对象所有键值对</span><br><span class="line">hvals key 获取hash对象的所有value</span><br><span class="line">hmset key filed1 value1 filed2 value2...同时指定hash对象的多个字段</span><br><span class="line">hdel key filed 删除hash对象指定的字段</span><br><span class="line">hexists key filed 检查hash对象有没有指定的字段</span><br><span class="line">hkeys key 显示hash对象有哪些键</span><br><span class="line">hlen key 显示hash对象有几个键值对</span><br><span class="line">hscan key cursor遍历hash对象键值对, 若(1)中为0, 表示已经没有可遍历的对象, 若(1)中大于0, 表示还有可遍历的hash对象</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="list列表"><a href="#list列表" class="headerlink" title="list列表"></a>list列表</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lpush key value [value...] 从list对象的左边放入</span><br><span class="line">rpush key value [value...] 从list对象的右边放入</span><br><span class="line">lpop key 从list对象的左边取出一个值</span><br><span class="line">rpop key 从list对象的右边取出一个值</span><br><span class="line">lrange key start end 从左边找到list[start, end]</span><br><span class="line">rpoplpush key1 key2 从key1的右边取值再放到key2的左边</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="set集合"><a href="#set集合" class="headerlink" title="set集合"></a>set集合</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sadd key value [values...] 往集合中加入元素</span><br><span class="line">scard key 查看集合中有几个元素(有自动去重)</span><br><span class="line">sinter key1 key2 求集合key1和集合key2的交集</span><br><span class="line">sunion key1 key2 求集合key1和集合key2的并集</span><br><span class="line">sdiff key1 key2 求集合key1和集合key2的差集</span><br><span class="line">sismember key value 判断集合key中有没有value</span><br><span class="line">smembers key 查看集合key中所有元素</span><br><span class="line">srandmember key 从集合key中随机取一个元素</span><br><span class="line">spop key 从集合key中随机删除一个元素</span><br><span class="line">srem key value 从集合key中指定的删除一个元素</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="SortedSet有序集合"><a href="#SortedSet有序集合" class="headerlink" title="SortedSet有序集合"></a>SortedSet有序集合</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zadd key score number [socre number...] 添加有序集合</span><br><span class="line">zrange key start stop 查看key[start, stop] 之间所有number</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">修改redis.conf文件</span><br><span class="line">slaveof &lt;master_ip&gt; &lt;master_port&gt;</span><br><span class="line">masterauth &lt;passwd&gt;</span><br><span class="line"></span><br><span class="line">redis-cli 连接自己的redis服务器</span><br><span class="line">info replication 查看主从状态信息</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis.io resis官网</span><br><span class="line">resis.cn resis中文版</span><br><span class="line">redisdoc.com 提供redis参考文档</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/18/redis-first-time/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1008,7 +983,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-23 10:03:16" itemprop="dateModified" datetime="2018-10-23T10:03:16+08:00">2018-10-23</time>
+                <time title="修改时间：2018-10-23 19:56:05" itemprop="dateModified" datetime="2018-10-23T19:56:05+08:00">2018-10-23</time>
               
             
           </span>
@@ -1060,87 +1035,25 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2></blockquote>
 <ul>
-<li><code>cmd</code> 命令提示符(command)</li>
-<li><code>mspaint</code>  画图</li>
-<li><code>osk</code> 打开屏幕键盘(open screen keyboard)</li>
-<li><code>calc</code> 打开计算器 (calculator)</li>
-<li><code>taskmgr</code>打开任务管理器（task manager）与<code>ctrl+windows delete</code>相同</li>
-<li><code>msconfig</code>  打开系统配置</li>
-<li><code>control</code>  打开控制面板</li>
-<li><code>explorer</code>  打开文件资源管理器 相当于<code>windows+E</code></li>
-<li><code>ver</code>  显示Windows的版本号</li>
-<li><code>services.msc</code>  查看服务</li>
-</ul>
-<blockquote>
-<h2 id="Win命令"><a href="#Win命令" class="headerlink" title="Win命令"></a>Win命令</h2></blockquote>
-<ul>
-<li><p><code>windows+d</code> 最小桌面化</p>
+<li><p><code>cmd</code> 命令提示符(command)</p>
 </li>
-<li><p><code>windows+e</code> 打开资源管理器(我的电脑)</p>
+<li><p><code>mspaint</code>  画图</p>
 </li>
-<li><p><code>windows+l</code>  锁屏</p>
+<li><p><code>osk</code> 打开屏幕键盘(open screen keyboard)</p>
 </li>
-<li><p><code>windows+++++++</code> 放大镜(<code>windows + ----</code>还原)</p>
+<li><p><code>calc</code> 打开计算器 (calculator)</p>
 </li>
-<li><p><code>windows+x</code>  windows移动中心</p>
-</li>
-<li><p><code>windows+p</code>  投影</p>
-</li>
-<li><p><code>windows+上下左右</code>  分别实现窗口最大化/窗口最小化/窗口左布局/窗口右布局(窗口排版)</p>
-</li>
-<li><p><code>windows+tab</code>3D文件切换(win10中是虚拟桌面)</p>
-</li>
-<li><p><code>windows+home</code>  除当前窗口的其他所有窗口最小化</p>
-</li>
-<li><p><code>shift+windows+1~9</code>  按编号启动底部工具栏(同时使用多次会出现窗口分身)</p>
-</li>
-<li><p><code>windows+g</code>  屏幕录制(win10有效)</p>
-</li>
-</ul>
-<blockquote>
-<h2 id="Dos命令"><a href="#Dos命令" class="headerlink" title="Dos命令"></a>Dos命令</h2><h4 id="文件命令"><a href="#文件命令" class="headerlink" title="文件命令"></a>文件命令</h4><ul>
-<li><code>dir</code> 列出当前目录下的文件夹</li>
-<li><code>md</code>  创建目录(make directory)</li>
-<li><code>rd</code>  删除目录(remove directory)</li>
-<li><code>cd</code>  改变目录(change directory) <code>cd ..</code>退后一级 <code>cd \</code> 到根目录</li>
-<li><code>d:</code>  切换盘符</li>
-<li><code>del</code>  删除文件</li>
-<li><code>type file</code>  显示文件内容</li>
-<li><code>exit</code>  退出Dos命令</li>
-<li><code>cls</code>  清屏(clear screen)</li>
-<li><code>doskey /history</code>  查看历史命令</li>
-</ul>
-</blockquote>
-<blockquote>
-<h4 id="参数命令"><a href="#参数命令" class="headerlink" title="参数命令"></a>参数命令</h4><ul>
-<li><code>&lt;command&gt; /?或 help &lt;command&gt;</code>  查看帮助</li>
-</ul>
-</blockquote>
-<ul>
-<li><p><code>cmd /c 其他</code> 直接运行命令后关闭cmd窗口</p>
-</li>
-<li><p><code>cmd /k 其他</code>  直接运行命令后保留cmd窗口</p>
-</li>
-<li><p>参数命令的路径使用<code>反斜杠\</code> ,同时若路径中出现空格, 要引起来,如<code>del &quot;d:\program files\files\test.txt&quot;</code></p>
-</li>
-<li><p><code>tree 目录</code>  显示对应的目录的目录结构</p>
-</li>
-<li><p><code>chcp</code> 改变代码页(默认936简体中文gbk编码) </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用chcp 65001 可以将显示的编码转换为utf-8, 可以解决乱码问题</span><br><span class="line">chcp 437是美国英语编码</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>net start</code> 查看有那些服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">net start 服务名 -- 开启服务</span><br><span class="line">net stop 服务名  -- 关闭服务</span><br><span class="line">net pasuse 服务名 -- 暂停服务</span><br><span class="line">net password 新密码  更改系统登录</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p><code>netstat -ano | findstr 8080</code>  查看端口状态, 并且是和8080端口相关的内容(管道 findstr与linux中的grep功能一致) </p>
-</li>
-</ul>
-
-          
+<li><p><code>taskmgr</code>打开任务管理器（task manager）与<code>ctrl+windows delete</code>相同</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/16/windows常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1259,7 +1172,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-20 10:52:58" itemprop="dateModified" datetime="2018-10-20T10:52:58+08:00">2018-10-20</time>
+                <time title="修改时间：2018-10-23 19:56:42" itemprop="dateModified" datetime="2018-10-23T19:56:42+08:00">2018-10-23</time>
               
             
           </span>
@@ -1311,125 +1224,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <h2 id="DOM-节点"><a href="#DOM-节点" class="headerlink" title="DOM 节点"></a>DOM 节点</h2></blockquote>
 <p><code>DOM</code>  为<code>Document Object Model</code> , 在html的DOM中, 每一个元素都是节点.文档是一个文档节点, 所有的HTML元素都是元素节点, 所有的HTML属性都是属性节点, 文本插入到HTML元素是文本节点, 注释是注释节点.</p>
 <p>当浏览器载入HTML文档时, 它就会称为Document对象, Document对象是HTML文档的根节点.<a href="http://www.runoob.com/jsref/dom-obj-document.html" target="_blank" rel="noopener">More请浏览菜鸟…</a></p>
-<blockquote>
-<h2 id="Document对象"><a href="#Document对象" class="headerlink" title="Document对象"></a>Document对象</h2></blockquote>
-<blockquote>
-<h4 id="改变HTML"><a href="#改变HTML" class="headerlink" title="改变HTML"></a>改变HTML</h4><ul>
-<li><code>document.write</code>  写HTML内容</li>
-</ul>
-</blockquote>
-<blockquote>
-<h4 id="获取元素对象"><a href="#获取元素对象" class="headerlink" title="获取元素对象"></a>获取元素对象</h4></blockquote>
-<ul>
-<li><code>document.getElementById()</code>   通过标签ID选择器获取标签</li>
-<li><code>document.getElementsByTagName()</code>   通过标签标签名列表获取标签</li>
-<li><code>document.getElementsByClassName()</code>   通过类选择器列表获取标签</li>
-<li><code>document.querySelector()</code>   通过选择器获取标签(可以是类,id等)</li>
-<li><code>document.querySelectorAll()</code>   通过全部选择器的列表获取标签(可以是类,id等)</li>
-</ul>
-<blockquote>
-<h4 id="改变CSS"><a href="#改变CSS" class="headerlink" title="改变CSS"></a>改变CSS</h4></blockquote>
-<p>通过获取的元素对象的style属性, 如<code>elm.style.width=90px</code></p>
-<blockquote>
-<h4 id="改变元素属性"><a href="#改变元素属性" class="headerlink" title="改变元素属性"></a>改变元素属性</h4></blockquote>
-<p>通过获取的元素对象的某属性, 如<code>elm.disabled=true</code> , 表示elm元素节点不可用</p>
-<blockquote>
-<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4></blockquote>
-<ul>
-<li><p><strong>事件监听器</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;myBtn&quot;).onclick=function()&#123;displayDate()&#125;;</span><br></pre></td></tr></table></figure>
-<p>但是当多个div或者元素在同一个坐标重合出现, 就会出现事件冒泡现象.(它的意思是事件在子元素节点上触发后, 会在其父节点上触发, 由内向外的触发; 相对的还有事件捕获, 它是一种事件由外向内触发的机制)</p>
-<p>​</p>
-<p>为了解决事件冒泡, 我们可以使用阻止事件来解决, 比如: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">evt.stopPropagation()阻止事件冒泡(子节点向父节点传播的现象)</span><br><span class="line">evt.cancelBubble = true;阻止事件传播(解决的ie的兼容性)</span><br></pre></td></tr></table></figure>
-<p>但是有更好的解决方式, 就是添加事件监听器<code>elm.addEventListener(evt,func)</code> , 它能帮助我们处理事件冒泡的现象.</p>
-<p>注意: 在循环中, 对于多个标签, 不同通过下标取值, 而是通过<code>evt.target</code>获取触发当前事件的节点</p>
-</li>
-<li><p><strong>计时器</strong></p>
-<p>通过计时器有效的控制事件发生的频次和时间.<code>JavaScript</code>中提供了两种计时器, 分别是<code>setTimeout</code>  和 <code>setInterval</code> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myval = setTimeout(func(), time)  time毫秒后发生</span><br><span class="line">myval = setInterval(func(),time)  每time毫秒发生</span><br></pre></td></tr></table></figure>
-<p> 对应的有删除计时器的函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clearTimeout(myval)</span><br><span class="line">clearInterval(myval)</span><br></pre></td></tr></table></figure>
-<p>当我们使用匿名函数, 可以使用<code>arguements.callee</code> 它指向当前的函数, 就能实现递归.</p>
-</li>
-<li><p><strong>节点</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">子节点children </span><br><span class="line">父节点parentNode </span><br><span class="line">兄弟节点previousSibling(前一个)/nextSibling(后一个) </span><br><span class="line">firstChild第一个子节点</span><br><span class="line">lastChild最后一个节点</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>增加节点</strong></p>
-<p>增加节点可以使用<code>elm = document.createElement()</code>创造标签(节点), 当有了elm节点后, 有两种方式可以将它插入<code>document</code>中</p>
-<p>第一种, 使用<code>elm.parentNode.appendChild(insert_elm)</code>在某个节点之后插入节点</p>
-<p>第二种, 使用<code>elm.parentNode.insertBefore(insert_elm, target_elm)</code>  在目标节点前插入节点</p>
-</li>
-<li><p><strong>删除节点</strong></p>
-<p>删除节点请食用 <code>elm.parentNode.removeChild(elm)</code> 通过子节点的父节点删除子节点</p>
-</li>
-<li><p><strong>修改节点</strong></p>
-<ul>
-<li><p>修改在内容属性</p>
-<p><code>innerHTM</code>L – 获取html的标签和内容<br><code>textContent</code> – 获取文本内容(标签也会以文本获取)<br>input标签的内容是value字段</p>
-</li>
-<li><p>修改节点的style属性</p>
-<p><code>elm.style.width</code>  大概就是这个形式,  注意它不能读只能写, 因此使用<code>window.alert(elm.style.width)</code> 是不能得到它的宽度. 要想读样式中的数据, 要通过<code>document.defaultView.getComputedStyle(elm)</code></p>
-</li>
-<li><p>修改节点的其他属性</p>
-<p><code>elm.&lt;property&gt;</code>  直接通过得到的节点对象修改其属性</p>
-</li>
-</ul>
-</li>
-<li><p>查看节点</p>
-<p>直接通过<code>elm.&lt;property&gt;</code>进行读的操作</p>
-</li>
-</ul>
-<blockquote>
-<h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2></blockquote>
-<p><code>json</code> , 即JavaScript Object Notation, 是一种轻量级的数据交换格式。它现在被广泛用于数据的存储和传输.</p>
-<blockquote>
-<h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2></blockquote>
-<p><code>func_name.prototype.&lt;property&gt;</code> 能够通过实例化的对象去访问该属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">实例:</span><br><span class="line">function Student(name,age)&#123;</span><br><span class="line">				this.name = name;</span><br><span class="line">				this.age = age;&#125;</span><br><span class="line">Student.prototype.study = function(courseName)&#123;</span><br><span class="line">					alert(this.name + &quot;正在学习&quot; + courseName);</span><br><span class="line">				&#125;</span><br><span class="line">var obj = new Student(&quot;1000phone&quot;,10);  #实例化的对象 可以访问原型定义的属性</span><br><span class="line">			obj.study(&quot;PYTHON&quot;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h2 id="JQuery"><a href="#JQuery" class="headerlink" title="JQuery"></a>JQuery</h2></blockquote>
-<blockquote>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4></blockquote>
-<p><code>jQuery</code>是一个 <code>JavaScript 库</code>。它帮助我们解决浏览器版本和浏览器种类带来的兼容性问题, 极大地简化了 JavaScript 编程。它的关键用法就是<code>$</code>的使用, 它就代表着<code>jquery</code></p>
-<blockquote>
-<h4 id="四种用法"><a href="#四种用法" class="headerlink" title="$四种用法"></a>$四种用法</h4></blockquote>
-<ul>
-<li><p><code>$</code>函数的参数是个函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;&#125;) 传入函数是页面加载完成之后要执行的函数(回调函数)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>$</code>函数的参数是个选择器字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#move&apos;) 获取页面上的标签并且将它转换成jQuery对象</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>$</code>函数的参数是个标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;li&gt;) -- 创建标签并且返回对应的jQuery对象</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>$</code>函数的参数是原生JS对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> $(evt.target) -- 将原生js对象转换成jQuery对象</span><br><span class="line">-如果bar是一个jQuery对象可以通过bar[0] / bar.get(0) 在循环中可以通过下标去得到</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-<blockquote>
-<h4 id="相关属性和方法"><a href="#相关属性和方法" class="headerlink" title="相关属性和方法"></a>相关属性和方法</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-绑定/反绑定事件: on() / off()  / one()</span><br><span class="line">-获取/修改标签内容: text() / html()  不传参就是获取，传参就是提供内容</span><br><span class="line">-获取/修改标签属性: attr(name, value)</span><br><span class="line">-获取input标签的内容: val()</span><br><span class="line">-添加子节点: append() / prepend()  </span><br><span class="line">-删除/清空节点: remove()  / empty()</span><br><span class="line">-修改样式表: css(&apos;color&apos;)读样式   css(&#123;&apos;color&apos;:&apos;red&apos;,&apos;font-size&apos;:&apos;18px&apos;&#125;)修改多个样式</span><br><span class="line">-获取父节点: parent()</span><br><span class="line">-获取子节点: children()</span><br><span class="line">-获取兄弟节点: prev() / next() 下一个/上一个</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2></blockquote>
-<blockquote>
-<h4 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h4></blockquote>
-<p>Ajax 即 <strong>A</strong>synchronous <strong>J</strong>avascript <strong>A</strong>nd <strong>X</strong>ML（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发技术.  它能够在无需重新加载整个网页的情况下，更新部分网页.</p>
-<blockquote>
-<h4 id="getJSON方式"><a href="#getJSON方式" class="headerlink" title="getJSON方式"></a>getJSON方式</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(api_url, function(jsonobj)&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="ajax方式"><a href="#ajax方式" class="headerlink" title="ajax方式"></a>ajax方式</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(</span><br><span class="line">&#123;</span><br><span class="line">  &quot;url&quot;:url,</span><br><span class="line">  &quot;type&quot;:&quot;get&quot;,</span><br><span class="line">  &quot;data&quot;:&#123;</span><br><span class="line">    &quot;key&quot;:&quot;bilibili&quot;,</span><br><span class="line">    &quot;word&quot;:str</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;datatype&quot;:&quot;json&quot;,</span><br><span class="line">  &quot;success&quot;:function(jsonobj)&#123;</span><br><span class="line">    if(jsonObj.code == 200)&#123; //http状态码  200成功   250成功但是没有查到数据</span><br><span class="line">		$(&quot;#content&quot;).text(jsonObj.newslist[0].result)</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		$(&quot;#content&quot;).text(jsonObj.msg)</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/js之-Browser/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1731,7 +1536,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-15 20:43:56" itemprop="dateModified" datetime="2018-10-15T20:43:56+08:00">2018-10-15</time>
+                <time title="修改时间：2018-10-23 19:58:24" itemprop="dateModified" datetime="2018-10-23T19:58:24+08:00">2018-10-23</time>
               
             
           </span>
@@ -1783,8 +1588,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <h1 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h1></blockquote>
 <blockquote>
 <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2></blockquote>
@@ -1795,62 +1599,14 @@
 5.platform -- 硬件平台  win32
 6.userAgent --用户代理
 7.systemLanguage -- 用户代理语言
-</code></pre><p><img src="C:\Users\Administrator\Desktop\navigator.png" alt="navigator"></p>
-<blockquote>
-<h2 id="浏览器版本黑历史"><a href="#浏览器版本黑历史" class="headerlink" title="浏览器版本黑历史:)"></a>浏览器版本黑历史:)</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    Mosaic(马赛克)，最早的浏览器</span><br><span class="line">    Mozilla(魔斯拉)(意为Mosaic杀手)  -- 后改名为Netscape Mozilla/1.0(Win3.1)，由于网景支持框架，而框架被大众喜爱，网站管理员探测userAgent时</span><br><span class="line">对Mozilla浏览器发送有框架的页面，对非Mozilla的浏览器发送没有框架的页面。网景拿微软寻开心，称微软是&quot;没有调试过的硬件驱动程序&quot;，微软很生气，开发了自己的浏览器。</span><br><span class="line">	微软 IE(Internet Explorer)--IE也支持框架，但它不是Mozilla，总是收不到含有框架的网页， 又等不及所有的网站管理员去了解IE，就宣布IE是兼容Mozilla的，</span><br><span class="line">并模仿Netscape，自称Mozilla/1.22(compatible; MSIE 2.0; Windows 95)，于是IE就能接受所有的含有框架的网页，微软开心了，网站管理员崩溃了。微软和Netscape</span><br><span class="line">的大战，由于微软的捆绑销售等原因，Netscape退出历史舞台。</span><br><span class="line">	FireFox火狐--Netscape以MOzilla的名义，开发了Gecko，它的渲染引擎很出色，Gecko变得出色，其他浏览器使用它的代码，并伪装成Mozilla，但是却使用Gecko。</span><br><span class="line">userAgent的探测规则偏向Gecko</span><br><span class="line">	Linux下的conqueror -- 引擎是KHTML，但因为不是Gecko得不到好的页面，将自己伪装成Mozilla/5.0 (compatible; Konqueror/3.2; FreeBSD) (KHTML, like Gecko)</span><br><span class="line">	Opera欧朋 -- 跳出来说应该让用户决定想让我们伪装成什么浏览器。给定三个选项，“Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.51”==IE</span><br><span class="line">或者“Mozilla/5.0 (Windows NT 6.0; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.51”==火狐， 或者“Opera/9.51 (Windows NT 5.1; U; en)==欧朋</span><br><span class="line">	Safari苹果 -- 使用KHTML作为渲染引擎，后来基于KHTML另开辟分支WebKit，又不想抛弃哪些KHTML的页面，就自称Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) </span><br><span class="line">AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5</span><br><span class="line">	chorme谷歌 --使用Webkit作为渲染引擎，它想要哪些Safari的页面，于是它伪装成Safari.Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36</span><br><span class="line">	于是Chrome使用WebKit，并将自己伪装成Safari，WebKit伪装成KHTML，KHTML伪装成Gecko，最后所有的浏览器都伪装成了Mozilla，这就是为什么所有的浏览器User-Agent里都有Mozilla。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="Screen对象"><a href="#Screen对象" class="headerlink" title="Screen对象"></a>Screen对象</h1></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">width/height --屏幕宽度/高度</span><br><span class="line">availWidth/availheight 可用宽度/高度 (如屏幕底部的状态栏就不含在可用高度内)</span><br><span class="line">colorDepth/pixelDepth -- 颜色深度/颜色分辨率 ，其实是一个意思，但是主流服浏览器多用前者</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="History-对象"><a href="#History-对象" class="headerlink" title="History 对象"></a>History 对象</h1></blockquote>
-<blockquote>
-<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2></blockquote>
-<p><code>length</code> 返回历史记录的地址数</p>
-<blockquote>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">back()加载history列表中的前一个url  》》 加载时只能加载当前标签对应的history列表，而不是整个历史记录</span><br><span class="line">forward() 加载history列表中的后一个url</span><br><span class="line">go(num) 加载到history列表中的第num个页面(以当前来看)  -- go(0)就是刷新页面</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="Location对象"><a href="#Location对象" class="headerlink" title="Location对象"></a>Location对象</h1></blockquote>
-<p><code>URL</code>   Uniform Resource Locator, 即统一资源定位符</p>
-<blockquote>
-<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hash -- 返回一个url的锚部分  -- 即是url中#后的部分。通常用于&lt;a name=&quot;location&quot;&gt;&lt;/a&gt;标记去向的位置；使用&lt;a href=&quot;#location&quot;&gt;&lt;/a&gt;可以直接转到指定的位置 。并且#后数据用于位置标识，在服务端没有作用。 但是改变#后值会增加增加一条历史记录到列表中，可以使用history加载)</span><br><span class="line">search -- 返回url的查询部分 即是?号之后的部分</span><br><span class="line">host  -- 返回对应url的主机名和端口号（若端口号是80http 、443https，不会返回端口号）</span><br><span class="line">hostname  -- 返回对应的url的主机名</span><br><span class="line">href -- 返回对应url的完整URL</span><br><span class="line">pathname -- 返回url路径名  即主机名之后的部分</span><br><span class="line">port -- 返回url的端口号 (若是80端口返回空串)</span><br><span class="line">protocol  -- 返回url的协议(http/https/ftp ...)</span><br></pre></td></tr></table></figure>
-<p>关于hash部分的锚点, 详细请看<a href="https://www.cnblogs.com/kaituorensheng/p/3776527.html" target="_blank" rel="noopener">锚点讲解</a></p>
-<blockquote>
-<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assign -- 加载一个文档 location.assign(url)</span><br><span class="line">reload  -- 重新加载当前的文档，绕过缓存，重新在服务器上加载数据 与ctrl shift R相同 (若有post提交数据，也会重新提交)</span><br><span class="line">replace --替换到一个新文档中 location.replace(url) (网上说replace后的新页面会取代原网页的窗口，不能返回到上一个记录，但是好像可以。。。好像和assign功能上没什么不一样)</span><br></pre></td></tr></table></figure>
-<p>注: 以上实验在<code>chorme</code>上进行的.</p>
-<blockquote>
-<h1 id="弹窗"><a href="#弹窗" class="headerlink" title="弹窗"></a>弹窗</h1></blockquote>
-<p><code>alert()</code>  警告框, 可以提示内容</p>
-<p><code>confirm()</code>  确认框, 有确认和取消按钮</p>
-<p><code>prompt()</code>  提示框, 通常提示用户输入怎样的值</p>
-<p><code>close()</code>  关闭窗口</p>
-<blockquote>
-<h1 id="获取标签"><a href="#获取标签" class="headerlink" title="获取标签"></a>获取标签</h1></blockquote>
-<p><code>document.getElementById()</code>   通过标签ID选择器获取标签</p>
-<p><code>document.getElementsByTagName()</code>   通过标签标签名列表获取标签</p>
-<p><code>document.getElementsByClassName()</code>   通过类选择器列表获取标签</p>
-<p><code>document.querySelector()</code>   通过选择器获取标签(可以是类,id)</p>
-<p><code>document.querySelectorAll()</code>   通过全部选择器的列表获取标签(可以是类,id)</p>
-<p><strong>instances:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var h1 = document.getElementById(&quot;message&quot;); </span><br><span class="line">var h1 = document.getElementsByTagName(&quot;h1&quot;)[0]</span><br><span class="line">var h1 = document.getElementsByClassName(&quot;msg&quot;)[0]</span><br><span class="line">var h1 = document.querySelector(&quot;#message&quot;)</span><br><span class="line">var h1 = document.querySelectorAll(&quot;#message&quot;)[0]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1></blockquote>
-<blockquote>
-<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2></blockquote>
-<p><strong>设置计时器</strong></p>
-<p><code>setinterval(function, interval_time)</code>   设置一个计时器, 它每隔interval_time的时间执行一次function函数, interval_time的时间单位是<code>毫秒</code></p>
-<p><strong>删除计时器</strong></p>
-<p>在设置计时器的时候, 将计时器函数赋给一个变量, 如 <code>var myVar =setInterval(func,1000)</code>,  当需要解除计时器的时候, 使用<code>clearInterval(myVar)</code> 即可.</p>
-<blockquote>
-<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2></blockquote>
-<p><strong>设置计时器</strong><br><code>setTimeout(function, timeout_time)</code>   设置一个计时器, 它在timeout_time时间结束后执行function函数, timeout_time的时间单位是<code>毫秒</code></p>
-<p><strong>删除计时器</strong></p>
-<p>在设置计时器的时候, 将计时器函数赋给一个变量, 如 <code>var myVar =setTimeout(func,1000)</code>,  当需要解除计时器的时候, 使用<code>clearTimeout(myVar)</code> 即可.</p>
-
-          
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/13/JS之-Window/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1952,12 +1708,24 @@
                 
               
 
-              <time title="创建时间：2018-10-13 16:12:28 / 修改时间：17:27:06" itemprop="dateCreated datePublished" datetime="2018-10-13T16:12:28+08:00">2018-10-13</time>
+              <time title="创建时间：2018-10-13 16:12:28" itemprop="dateCreated datePublished" datetime="2018-10-13T16:12:28+08:00">2018-10-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-23 19:58:58" itemprop="dateModified" datetime="2018-10-23T19:58:58+08:00">2018-10-23</time>
               
             
           </span>
@@ -2009,52 +1777,16 @@
 
       
         
-          
-            <h2 id="js概要"><a href="#js概要" class="headerlink" title="js概要"></a>js概要</h2><ul>
+          <h2 id="js概要"><a href="#js概要" class="headerlink" title="js概要"></a>js概要</h2><ul>
 <li><p><code>JavaScript与java</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 与 Java 是两种完全不同的语言，无论在概念上还是设计上。</span><br><span class="line">Java（由 Sun 发明）是更复杂的编程语言。</span><br><span class="line"></span><br><span class="line">ECMA-262 是 JavaScript 标准的官方名称。</span><br><span class="line"></span><br><span class="line">JavaScript 由 Brendan Eich 发明。它于 1995 年出现在 Netscape 中（该浏览器已停止更新），并于 1997 年被 ECMA（一个标准协会）采纳。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>JavaScript</code> 是互联网上最流行的脚本语言, 对于网页来说, 它负责事件和渲染部分。因此通常我们将它放在网页的最后部分。</p>
-</li>
-<li><p>JS由<code>ECMAScript</code> + <code>BOM</code> + <code>DOM</code> 三部分组成</p>
-<ul>
-<li><code>ECMAScript</code> ,ECMA(<code>European Computer Manufactures Association</code> 欧洲电脑制造商协会)。它定义了JavaScript的标准, 现在我们大都使用<code>ECMAScript 5.1</code>，在<code>ECMAScript 6</code>以后添加了类和模块</li>
-<li><code>BOM</code> 是浏览器对象模型 对应<code>window</code>对象</li>
-<li><code>DOM</code> 是 文件对象模型 对应<code>document</code>对象</li>
-</ul>
-</li>
-</ul>
-<h2 id="js基础"><a href="#js基础" class="headerlink" title="js基础"></a>js基础</h2><ul>
-<li><p><code>注释</code>  单行注释使用<code>//</code>  多行注释使用<code>/* */</code></p>
-</li>
-<li><p><code>标识符</code>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.要求是由数字、字母、下划线和$组成 </span><br><span class="line">2.对大小写敏感</span><br><span class="line">3.使用驼峰式命名, 不能是js中的关键字, 见名知意</span><br><span class="line">instance: var abc ,  var $12c</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>基本数据类型</code> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Number 数字类型(包含所有数字, 不支持复数)  +12.2  10e2</span><br><span class="line">Boolean 布尔类型  true  false</span><br><span class="line">String 字符串   &apos;如果有来生&apos; &quot;apple&quot;  单双引号皆可</span><br><span class="line">Array 数组  [1,&apos;abc&apos;,true]</span><br><span class="line">Object 对象  &#123;a:100, name:&apos;张德帅&apos;,age:20&#125;</span><br><span class="line">特殊类型:</span><br><span class="line">NaN 不存在的数字</span><br><span class="line">null 空,一般用来清空变量的内容 </span><br><span class="line">underfined 变量没有赋值或没有结果时</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>js语句</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#1.一条语句结束后可以写分号，也可以不写,但是提倡写,便于js的压缩。如果一行有多条语句，必须写分号</span><br><span class="line">#2.js没有缩进语法的要求，需要使用代码块的时候使用大括号</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>变量</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.变量声明: var 变量名  或  var 变量名 = 初值</span><br><span class="line">2.初值可有可无</span><br><span class="line">3.变量要声明再使用</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>运算符</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数学运算符 + - * / % （**,js7）++ --</span><br><span class="line">比较运算符 &gt; &lt; = == != &gt;= &lt;= ===(完全相等) !== &gt;== &lt;==</span><br><span class="line">- ==只判断值相等   2 == &apos;2&apos; //true</span><br><span class="line">- ===类型和值都要相等</span><br><span class="line">逻辑运算符 &amp;&amp;与   ||或   !非</span><br><span class="line">三目运算符 表达式1？值1:值2   判断表达式，如果为真返回值1，否则返回值2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>分支结构</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#if语句</span><br><span class="line">- if</span><br><span class="line">- if-else</span><br><span class="line">- if-else if-else</span><br><span class="line">#switch语句</span><br><span class="line">switch(表达式)&#123;</span><br><span class="line">  case 值1: 代码段 break</span><br><span class="line">  case 值2: 代码段 break</span><br><span class="line">  ...</span><br><span class="line">  default:代码段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>循环结构</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#for-in循环</span><br><span class="line">for(var 变量 in 序列)&#123;循环体&#125;</span><br><span class="line"></span><br><span class="line">#for循环</span><br><span class="line">for(表达式1:表达式2:表达式3)&#123;循环体&#125;</span><br><span class="line"></span><br><span class="line">#while循环</span><br><span class="line">while(条件语句)&#123;循环体&#125;</span><br><span class="line"></span><br><span class="line">#do-while循环</span><br><span class="line">do&#123;</span><br><span class="line">循环体</span><br><span class="line">&#125;while(条件语句)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>函数</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function 函数名(参数列表)&#123;</span><br><span class="line">  函数体</span><br><span class="line">&#125;</span><br><span class="line">注:function:js中声明函数的关键字;</span><br><span class="line">函数名:标识符，不能是关键字,见名知意</span><br><span class="line">参数列表:形参</span><br><span class="line">js不能同时返回多个值</span><br><span class="line">js中函数能够作为变量 instance： var fn = function(参数列表) &#123;函数体&#125;</span><br><span class="line">js中函数能够作为参数或者返回值</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>## </p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/13/初识JS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2173,7 +1905,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-13 15:54:23" itemprop="dateModified" datetime="2018-10-13T15:54:23+08:00">2018-10-13</time>
+                <time title="修改时间：2018-10-23 19:59:42" itemprop="dateModified" datetime="2018-10-23T19:59:42+08:00">2018-10-23</time>
               
             
           </span>
@@ -2225,44 +1957,17 @@
 
       
         
-          
-            <h2 id="1-安装AAlib"><a href="#1-安装AAlib" class="headerlink" title="1.安装AAlib"></a>1.安装AAlib</h2><p><code>AA(Ascii Art)</code>,<code>AAlib</code>是一个便携式ascii艺术GFX库(GFX lib是一个小型的C库，用于开发针对伟大的MSX计算机的图形应用程序)</p>
+          <h2 id="1-安装AAlib"><a href="#1-安装AAlib" class="headerlink" title="1.安装AAlib"></a>1.安装AAlib</h2><p><code>AA(Ascii Art)</code>,<code>AAlib</code>是一个便携式ascii艺术GFX库(GFX lib是一个小型的C库，用于开发针对伟大的MSX计算机的图形应用程序)</p>
 <p>aalib-1.2的最新版本是1.4, 但是后续安装<code>bb</code>是基于1.2的, 因此要先安装1.2的版本.</p>
 <p>安装AAlib之前需要安装<code>gcc</code>和<code>libtool</code>,可以通过<code>yum install xx</code>直接安装.</p>
 <p>aalib-1.2默认安装在<code>/usr/local</code>下面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#1 下载aalib-1.2</span><br><span class="line">wget http://prdownloads.sourceforge.net/aa-project/aalib-1.2.tar.gz</span><br><span class="line"></span><br><span class="line">#2 解压缩</span><br><span class="line">gunzip aalib-1.2.tar.gz</span><br><span class="line"></span><br><span class="line">#3 解归档</span><br><span class="line">tar -xvf aalib-1.2.tar</span><br><span class="line"></span><br><span class="line">#4 对安装的软件进行配置,检查依赖关系</span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line">#5 编译安装</span><br><span class="line">make &amp;&amp; make install (先执行make, 在执行make install)</span><br></pre></td></tr></table></figure>
-<p>出现的问题: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ltconfig: you must specify a host type if you use `--no-verify&apos;</span><br><span class="line">Try `ltconfig --help&apos; for more information.</span><br><span class="line">configure: error: libtool configure failed</span><br><span class="line"></span><br><span class="line">出现这样的问题,其实是配置时不能识别系统类型,需要自己指定主机类型.</span><br><span class="line">解决方法是将下述的两个文件覆盖带/aalib-1.2/下面.  (下述 . 指当前文件夹下)</span><br><span class="line">cp /usr/share/libtool/config/config.guess .</span><br><span class="line">cp /usr/share/libtool/config/config.sub .</span><br></pre></td></tr></table></figure>
-<h2 id="2-安装bb"><a href="#2-安装bb" class="headerlink" title="2.安装bb"></a>2.安装bb</h2><p>bb是一种图形演示程序,它需要AAlib库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#1 下载bb源文件</span><br><span class="line">wget http://prdownloads.sourceforge.net/aa-project/bb-1.2.tar.gz</span><br><span class="line"></span><br><span class="line">#2 解压缩</span><br><span class="line">gunzip bb-1.2.tar.gz </span><br><span class="line"></span><br><span class="line">#3 解归档</span><br><span class="line">tar -xvf bb-1.2.tar </span><br><span class="line"></span><br><span class="line">#4 配置环境变量,使bb能找到AAlib</span><br><span class="line">export CFLAGS=-I/usr/local/include</span><br><span class="line"></span><br><span class="line">#5 配置</span><br><span class="line">cd bb-1.2</span><br><span class="line">./configure</span><br><span class="line">注: 配置会出错,因为textform.c文件中很多位置缺少结束字符&quot; ,只要将报错的地方全部使用 &quot;&quot; 将之引起来就好了。(仿照正确的地方的格式)</span><br><span class="line"></span><br><span class="line">#6 编译生成可执行文件bb</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-<h2 id="3-安装aview"><a href="#3-安装aview" class="headerlink" title="3.安装aview"></a>3.安装aview</h2><p><code>aview</code>是一款高质量的图像(pnm)浏览器和动画(fli/flc)播放器，以ASCII-art方式输出。它是使用AA-lib实现的。</p>
-<p>它提供了一个<code>asciiview</code>的脚本，利用convert转换图片格式，然后再传递给aview.</p>
-<p>aview是依赖aalib-1.4，因此需要先安装aalib-1.4, 安装方式与aalib-1.2相同, 链接<code>https://downloads.sourceforge.net/aa-project/aalib-1.4rc5.tar.gz</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#1 安装aview</span><br><span class="line">wget http://prdownloads.sourceforge.net/aa-project/aview-1.3.0rc1.tar.gz</span><br><span class="line"></span><br><span class="line">#2 解压缩</span><br><span class="line">gunzip aview-1.3.0rc1.tar.gz </span><br><span class="line"></span><br><span class="line">#3 解归档</span><br><span class="line">tar -xvf aview-1.3.0rc1.tar </span><br><span class="line"></span><br><span class="line">#4 配置</span><br><span class="line">cd aview-1.3.0</span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line">#5 编译安装</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h2 id="4-安装ImageMagick"><a href="#4-安装ImageMagick" class="headerlink" title="4.安装ImageMagick"></a>4.安装ImageMagick</h2><p><code>ImageMagick</code>介绍在此<code>http://www.imagemagick.org/script/index.php</code></p>
-<p>它可以直接通过yum安装</p>
-<h2 id="5-try"><a href="#5-try" class="headerlink" title="5.try"></a>5.try</h2><p>在此,应该是将所有软件安装完毕, 随便在浏览器上扣一张图,使用命令<code>acsiiview 图片路径</code><br>效果如下:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">原图</th>
-<th style="text-align:center">ascii图</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://upload-images.jianshu.io/upload_images/13692213-8ff2d5e28a2a6bc2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="50%" width="50%"></td>
-<td style="text-align:center"><img src="https://upload-images.jianshu.io/upload_images/13692213-96815969f714e850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="60%" width="60%"></td>
-</tr>
-<tr>
-<td style="text-align:center"><img src="https://upload-images.jianshu.io/upload_images/13692213-61aa441e2f833cb3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="50%" width="50%"></td>
-<td style="text-align:center"><img src="https://upload-images.jianshu.io/upload_images/13692213-3a9ff11e9b2cd9f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" height="60%" width="60%"></td>
-</tr>
-</tbody>
-</table>
-<p>注: 上述使用linux的发行版本为CentOS 6.x。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/12/酷酷的aview/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
