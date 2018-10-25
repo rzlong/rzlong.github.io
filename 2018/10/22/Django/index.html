@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #222222; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #ff009e, 0 0 5px #ff009e; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #222222;    /*上边框颜色*/
+        border-left-color: #222222;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"slideUpBigIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。 django1.11官方文档…">
+<meta name="keywords" content="django框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/Django/index.html">
+<meta property="og:site_name" content="拆南墙">
+<meta property="og:description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。 django1.11官方文档…">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.it165.net/uploadfile/files/2015/0104/20150104182406593.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-1014de96da090571.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-c77bccc1a35e83e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-568e3927509044cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-2cdfa67a0d0fbe16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-3fbf37ef0a6425b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-4fb07a9989815caa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-25T15:48:59.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django">
+<meta name="twitter:description" content="Django  简介 Django是一个开放源代码的Web应用框架，由Python写成。采用了MVC的框架模式，即模型model，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。 django1.11官方文档…">
+<meta name="twitter:image" content="http://www.it165.net/uploadfile/files/2015/0104/20150104182406593.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/22/Django/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Django | 拆南墙</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--githubstart-->
+	
+	<a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	
+	<!--githubend-->
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">拆南墙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">nothing</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/Django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-22 10:01:41" itemprop="dateCreated datePublished" datetime="2018-10-22T10:01:41+08:00">2018-10-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-25 23:48:59" itemprop="dateModified" datetime="2018-10-25T23:48:59+08:00">2018-10-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<h1 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h1></blockquote>
+<blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></blockquote>
+<p><code>Django</code>是一个开放源代码的Web应用框架，由Python写成。采用了<code>MVC</code>的框架模式，即模型<code>model</code>，视图(view)和控制器(controller)。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是<code>CMS</code>（内容管理系统）软件。</p>
+<p><a href="https://docs.djangoproject.com/en/1.11/" target="_blank" rel="noopener">django1.11官方文档…</a></p>
+<a id="more"></a>
+<blockquote>
+<h2 id="MVC框架模式"><a href="#MVC框架模式" class="headerlink" title="MVC框架模式"></a>MVC框架模式</h2></blockquote>
+<p>MVC要实现的目标是将软件用户界面和业务逻辑分离以使代码可扩展性、可复用性、可维护性、灵活性加强。核心思想是解耦合。</p>
+<ul>
+<li><p><code>model</code>    指模型表示业务规则。在MVC的三个部件中，模型拥有最多的处理任务。被模型返回的数据是中立的，模型与数据格式无关，这样一个模型能为多个视图提供数据，由于应用于模型的代码只需写一次就可以被多个视图重用，所以减少了代码的重复性。</p>
+</li>
+<li><p><code>view</code>   指用户看到并与之交互的界面。比如由html元素组成的网页界面，或者软件的客户端界面。MVC的好处之一在于它能为应用程序处理很多不同的视图。在视图中其实没有真正的处理发生，它只是作为一种输出数据并允许用户操纵的方式。</p>
+</li>
+<li><p><code>controller</code>  是指控制器接受用户的输入并调用模型和视图去完成用户的需求，控制器本身不输出任何东西和做任何处理。它只是接收请求并决定调用哪个模型构件去处理请求，然后再确定用哪个视图来显示返回的数据。</p>
+<p><img src="http://www.it165.net/uploadfile/files/2015/0104/20150104182406593.jpg" alt=""></p>
+</li>
+<li><p>MVC的优缺点:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">优点: 耦合性低, 重用性高, 部署快, 生命周期成本低, 可维护性高</span><br><span class="line">缺点: 不易完全理解, 调试很麻烦, 不适合中小规模的应用程序, 系统结构和实现变复杂</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="MVT框架模式-Django采用"><a href="#MVT框架模式-Django采用" class="headerlink" title="MVT框架模式(Django采用)"></a>MVT框架模式(Django采用)</h2></blockquote>
+<ul>
+<li><code>model</code>  与MVC中的M功能相同，负责和数据库交互，进行数据处理。</li>
+<li><code>view</code>  与MVC中的C功能相同，接收请求，进行业务处理，返回应答。</li>
+<li><code>template</code>  与MVC中的V功能相同，负责封装构造要返回的html。</li>
+</ul>
+<blockquote>
+<h1 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h1></blockquote>
+<blockquote>
+<h2 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h2></blockquote>
+<p><code>pip install virtualenv</code></p>
+<blockquote>
+<h2 id="VENV使用"><a href="#VENV使用" class="headerlink" title="VENV使用"></a>VENV使用</h2></blockquote>
+<p>参数说明:</p>
+<ul>
+<li>-p 指定版本</li>
+<li>–no-site-packages  指定纯净模式下安装</li>
+<li>virtualenv –no-site-packages -p d:\python\python.exe djvenv 安装虚拟环境</li>
+<li>pip -h 查看帮助</li>
+<li>pip list 查看安装的包</li>
+<li>pip freeze 查看版本</li>
+<li>python -m pip install –upgrade pip  升级pip命令</li>
+</ul>
+<p>如上 在<code>djvenv/script</code>   执行<code>activate</code> 就会进入虚拟环境, 使用<code>deactivate</code>退出虚拟环境</p>
+<blockquote>
+<h2 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h2></blockquote>
+<p>进入对应的虚拟环境下进行安装 <code>pip install django==1.11</code></p>
+<blockquote>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2></blockquote>
+<p><code>django-admin startproject &lt;projec-name&gt;</code></p>
+<blockquote>
+<h2 id="项目文件说明"><a href="#项目文件说明" class="headerlink" title="项目文件说明"></a>项目文件说明</h2></blockquote>
+<ul>
+<li><code>manage.py</code>  工具集管理文件</li>
+<li><code>settings.py</code>   项目配置文件</li>
+<li><code>urls.py</code>   资源定位文件</li>
+<li><code>wsgi.py</code>  即<code>Python Web Server Gateway Interface</code> python关于web服务器网关接口, 是Python应用程序或框架和Web服务器之间的一种接口，已经被广泛接受, 它已基本达成它的可移植性方面的目标</li>
+<li><code>__init__.py</code>  文件</li>
+</ul>
+<blockquote>
+<h2 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h2></blockquote>
+<ul>
+<li><p>方式1–通过终端terminal</p>
+<p><code>python manage.py runserver</code> 运行服务</p>
+<p><code>python manage.py runserver 0.0.0.0:8080</code> 指定可访问的站点和端口号运行服务, <code>0.0.0.0</code>  表示所有人都能访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">错误:</span><br><span class="line">1.Error: [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。</span><br><span class="line">通常是端口已经被占用, 可以在terminal中使用 netstat -ano|findstr &lt;port&gt; 查看段口是否被占用, 解决方式: 换个端口</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式2–修改配置edit configurations</p>
+<p>Script path选择项目的manage.py文件</p>
+<p>Parameters写入<code>runserver [port](默认8000)</code></p>
+</li>
+</ul>
+<blockquote>
+<h2 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h2></blockquote>
+<ul>
+<li><p>在settings中配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处使用的是mysql数据库</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'django'</span>,   <span class="comment"># 数据库名</span></span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,   </span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,  </span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'3307'</span>    <span class="comment"># 通常是3306, 可以通过--&gt; 运行--&gt; services.msc查看对应的mysql服务的端口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>pip install pymysql</code>  安装需要的包</p>
+</li>
+</ul>
+<ul>
+<li><p>在<code>__init__.py</code>文件中配置, 进行初始化数据库的驱动 (因为python3不提供<code>MYSQLdb</code> 这个驱动, 必须导入)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mysql </span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>python manage.py migrate</code>进行信息迁移(映射模型到数据库中), 在修改好数据库配置信息后, 会自动在指定的数据库生成一系列的表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">auth_group/auth_group_permissions/auth_permission/auth_user/auth_user_groups/auth_user_user_permissions  <span class="comment">#6个关于用户、用户组及其权限相关的表</span></span><br><span class="line">django_admin_log <span class="comment"># 用户日志表</span></span><br><span class="line">django_content_type <span class="comment"># 内容类型表</span></span><br><span class="line">django_migrations <span class="comment"># 信息迁移表</span></span><br><span class="line">django_session <span class="comment"># session表</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>python manage.py createsuperuser</code> 创建超级管理员 , 然后可以通过<code>http://127.0.0.1:8000/admin</code>访问</p>
+</li>
+</ul>
+<p>登录后台</p>
+<blockquote>
+<h1 id="创建APP"><a href="#创建APP" class="headerlink" title="创建APP"></a>创建APP</h1></blockquote>
+<ul>
+<li><code>django-admin startapp &lt;app-name&gt;/ python manage.py startapp &lt;app-name&gt;</code> 在控制台创建app的命令</li>
+</ul>
+<blockquote>
+<h1 id="ORM对象关系映射"><a href="#ORM对象关系映射" class="headerlink" title="ORM对象关系映射"></a>ORM对象关系映射</h1></blockquote>
+<p><code>ORM</code>  即<code>object relational mapping</code>对象关系映射</p>
+<blockquote>
+<h2 id="ORM应用流程"><a href="#ORM应用流程" class="headerlink" title="ORM应用流程"></a>ORM应用流程</h2></blockquote>
+<ul>
+<li>在当前的<code>app</code>中<code>models.py</code> 文件中创建一个类对象,  需要导入<code>from django.db import models</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-1014de96da090571.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>  注: 若使用类<code>Meta</code> 下定义了<code>db_table = &#39;student&#39;</code>, 在数据库中表名就是<code>student</code>, 否则数据库的表名就是<code>appname_classname (app_Student)</code></p>
+<ul>
+<li><p>在当前的<code>app</code>中<code>views.py</code>  定义一个自己需要的功能的方法, 这个方法可将将上述的类进行关联, 能使用<code>ORM</code>  形式访问和修改数据库.</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-c77bccc1a35e83e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>上述添加信息与<code>Students.objects.create(s_name=&#39;大荒&#39;)</code>等价</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若使用对应的模块需要引入</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse  <span class="comment"># 引入http模块中HttpResponse响应方法</span></span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Students <span class="comment"># 在app.models模块中引入需要使用的Sudents类</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目同名文件中<code>urls</code>文件中, 添加需要<code>url</code>, 如:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-568e3927509044cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>在项目同名文件中<code>setting.py</code>文件中, 修改<code>INSTALLED_APP</code>中添加当前的<code>app</code></p>
+</li>
+<li><p>配置迁移文件<code>python manage.py makemigrations</code></p>
+</li>
+<li><p>进行迁移文件到数据库 <code>python manage.py migrate</code></p>
+</li>
+</ul>
+<blockquote>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2></blockquote>
+<ul>
+<li><p>all() 查询所有对象信息</p>
+</li>
+<li><p>filter() 过滤查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤查询</span></span><br><span class="line">stus = Students.objects.filter(s_name = <span class="string">'小明'</span>) <span class="comment">#返回的是一个QuerySet对象</span></span><br><span class="line"><span class="comment"># 注意: 若上述的过滤查询没有结果, 返回的是QuerySet为空. 因此, 与get()相比, filter() 方法更适用.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># first和last方法被all和filter支持</span></span><br><span class="line">first()  <span class="comment">#获取第一个</span></span><br><span class="line">last()  <span class="comment">#获取最后一个</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以同时使用多次过滤或者一次过滤多个条件</span></span><br><span class="line">stus = Students.objects.filter(s_age=<span class="number">20</span>, s_gender=<span class="number">1</span>)</span><br><span class="line">stus = Students.objects.filter(s_age=<span class="number">20</span>).filter(s_gender=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>get() 获取确定的唯一一个结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus2 = Students.objects.get(s_age = <span class="number">20</span>) <span class="comment">#返回的是一个Students对象</span></span><br><span class="line"><span class="comment"># 注意：若上述的查询没有结果或查询的结果有多个, 就会返回错误</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模糊查询 <code>sql</code>中使用<code>like</code></p>
+<ul>
+<li><p><code>&#39;%xxx%&#39;</code>  包含x的情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__contains=<span class="string">'武'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&#39;_xxx&#39;</code> 以_开头</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__startswith=<span class="string">'武'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>xxx_</code> 以_结束</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_name__endswith=<span class="string">'武'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>大于/大于等于 <code>gt/gte</code>   小于/小于等于<code>lt/lte</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(s_age__gt=<span class="number">18</span>)</span><br><span class="line">stus = Students.objects.filter(s_age__gte=<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序 <code>order_by()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 升序</span></span><br><span class="line">stus = Students.objects.order_by(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降序py</span></span><br><span class="line">stus = Students.objects.order_by(<span class="string">'-s_name'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询不满足条件的数据 <code>exclude()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询不满足id小于等于10的数据</span></span><br><span class="line">stus = Students.objects.exclude(id__lte=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计查询的结果数 <code>count()</code>或<code>len()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus_count = stus.count()</span><br><span class="line">stus_count = len(stus)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取值可带参数 values()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.values()</span><br><span class="line">stus = Students.objects.values(<span class="string">'s_name'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主键的字段名和<code>pk</code>等价</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stus = Students.objects.filter(id=<span class="number">10</span>)</span><br><span class="line">stus = Students.objects.filter(pk=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Q() 方法: 用于对一条记录的多个字段进行操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或条件 Q()|Q()</span></span><br><span class="line">stus = Students.objects.filter(Q(s_age = <span class="number">15</span>) | Q(s_gender = <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 且条件 Q()&amp;Q()</span></span><br><span class="line">stus = Students.objects.filter(Q(s_age = <span class="number">15</span>) &amp; Q(s_gender = <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非条件 ~Q()</span></span><br><span class="line">stus = Students.objects.filter(~Q(s_age = <span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>F() 方法: 用于对多条记录的一个字段进行操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询语文成绩比数学成绩大10分 的学生信息</span></span><br><span class="line">stus = Students.objects.filter(chinese__gt=F(<span class="string">'mathematics'</span>) + <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2></blockquote>
+<p>写修改的相关方法, 具体的修改语句为 <code>&lt;object&gt;.objects.filter(field=xxx...).update(field=xxx...)</code></p>
+<blockquote>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2></blockquote>
+<p>写删除的相关方法, 具体删除语句为<code>&lt;object&gt;.objects.filter(field=xxx...).delete()</code></p>
+<blockquote>
+<h1 id="模板层使用"><a href="#模板层使用" class="headerlink" title="模板层使用"></a>模板层使用</h1></blockquote>
+<blockquote>
+<h2 id="拓展数据表"><a href="#拓展数据表" class="headerlink" title="拓展数据表"></a>拓展数据表</h2></blockquote>
+<ul>
+<li><p>对于实际应用而言, 如学生信息的电话号码, 地址不是学生的必要信息时, 我们通常将他们拓展到另外的表中, 便于管理, 如下:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-2cdfa67a0d0fbe16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<blockquote>
+<h2 id="创建模板层目录"><a href="#创建模板层目录" class="headerlink" title="创建模板层目录"></a>创建模板层目录</h2></blockquote>
+<ul>
+<li><p>在项目主目录下, 新建一个名为<code>templates</code> 的目录, 其中放置<code>html</code>文件</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-3fbf37ef0a6425b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>此时为了使templates生效, 需要在<code>settings.py</code>文件进行配置<code>TEMPLATES</code>项</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-4fb07a9989815caa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注:</span><br><span class="line"><span class="comment"># os.path.abspath(__file__) 当前文件的绝对路径</span></span><br><span class="line"><span class="comment"># os.path.dirname(os.path.abspath(__file__)) 当前文件的绝对路径的上一级路径</span></span><br><span class="line"><span class="comment"># BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span></span><br><span class="line"><span class="comment"># os.path.join(a, b) 是将b拼接在a后面</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h2></blockquote>
+<blockquote>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3></blockquote>
+<ul>
+<li><p><code>&lt;!--xx--&gt;</code>  html中提供的注释方法,  但是注释内容会在网页中显示.</p>
+</li>
+<li><p><code></code> Django中对网页内容的单行注释, 注释内容网页中不显示.</p>
+</li>
+<li><p>Django中对网页内容的多行注释, 注释内容在网页中不显示.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% comment %&#125; &#123;% endcomment %&#125;</span><br><span class="line"># 注: django中单行注释语法与hexo转换md文件使用到nunjucks语法冲突</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3></blockquote>
+<ul>
+<li>通常我们对于一系列具有相同内容的网页, 通常使用模板的方式让子网页去继承模板网页中<code>base.html</code>的内容. </li>
+<li><p>在模板网页内容中, 尽量<code>不去放置标签/css/js</code>, 可以再创建一个<code>base_main.html</code> 让它继承<code>base.html</code> , 然后其他子页面再去继承<code>base_main.html</code></p>
+</li>
+<li><p>父模板<code>base.html</code>, 在父模板中定义block的位置(挖坑)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block xxx %&#125; &#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子模板<code>index.html</code> , 在子模板中填写block(填坑)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line">&#123;% block xxx %&#125; contents  &#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tag %&#125; &#123;% endtag %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>for</code> 使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for stu in students %&#125;</span><br><span class="line">	&lt;p&gt;姓名: &#123;&#123;stu.s_name&#125;&#125;, 年龄: &#123;&#123;stu.s_age&#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>safe</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 阻止转义, 即是阻止django将html语言的关键字过滤掉</span><br><span class="line">&#123;% var|safe %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ifequal</code>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 如果变量var的值等于value</span><br><span class="line">&#123;% ifequal var value %&#125;</span><br><span class="line">    &#123;% else %&#125;</span><br><span class="line">    &#123;% endifequal %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>extends</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 继承某个页面(html)</span><br><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p><a href="https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags" target="_blank" rel="noopener">更多标签从这儿寻找</a></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3></blockquote>
+<p>变量从context中输出一个值, 它是一个类似于dict的对象, 将键映射到值</p>
+<p>通过<code>字典查找</code>, <code>属性查找</code>, <code>列表索引查找</code> 使用<strong><code>点</code></strong>表示法实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 字典查找</span><br><span class="line">&#123;&#123; my_dict.key &#125;&#125;</span><br><span class="line"># 属性查找</span><br><span class="line">&#123;&#123; my_object.atrribute &#125;&#125;</span><br><span class="line"># 列表索引查找</span><br><span class="line">&#123;&#123; my_list.0 &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>对于context中输出的值, 也可以通过其一对一,一对多,多对多的特性得到其他的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 在views.py中返回context中含stu对象, 通过反向查询得到stu.studentinfo对象,获取其phone属性</span><br><span class="line">2*&#123;stu.studentinfo.phone&#125;*2</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>forloop</code> 使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">forloop.counter - 排序,依次递增序号,1开始</span><br><span class="line">forloop.counter0 - 排序,依次递增序号,0开始</span><br><span class="line">forloop.revcounter0 - 逆序,依次递减序号,0结束</span><br><span class="line">forloop.revcounter0 - 逆序,依次递减序号,1结束</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>block super</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 引用上级代码块, 并且能在其后作出修改(若不修改, 直接使用继承的block就好)</span><br><span class="line">&#123;% block js %&#125;</span><br><span class="line">    &#123;&#123; block.super &#125;&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3></blockquote>
+<p>通过管道进行数据的过滤或转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注:使用过滤器达到整除的目的</span><br><span class="line">&#123;% if forloop.counter|divisibleby:&quot;2&quot;%&#125;</span><br><span class="line">	xxx</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">	xxx</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters" target="_blank" rel="noopener">详情请见官方文档…</a></p>
+<blockquote>
+<h3 id="static文件的引入"><a href="#static文件的引入" class="headerlink" title="static文件的引入"></a>static文件的引入</h3></blockquote>
+<ol>
+<li><p>在django工程目录下创建<code>static</code>文件夹</p>
+</li>
+<li><p>在<code>settings.py</code>文件下配置, 找到<code>STATIC_URL=&#39;/static&#39;</code> , 在它的下面添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS = [</span><br><span class="line">  os.path.join(BASE_DIR, <span class="string">'static'</span>)</span><br><span class="line">  </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前端引入</p>
+<ul>
+<li><p>方式一:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 使用&#123;% load static %&#125;</span><br><span class="line">&#123;% block css %&#125;</span><br><span class="line">    &#123;% load static %&#125;</span><br><span class="line">    &lt;link href=&quot;&#123;% static &apos;css/index.css&apos; %&#125;&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二: 直接使用绝对路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/static/css/index.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<h3 id="urls-py的包含关系"><a href="#urls-py的包含关系" class="headerlink" title="urls.py的包含关系"></a><code>urls.py</code>的包含关系</h3></blockquote>
+<ul>
+<li><p>我们在新建工程时, 会生成一个和工程同名的目录, 其下<code>urls.py</code> 用于路由识别. 但是开发中, 为了不使这个文件过于繁重, 也便于管理app; 我们在每个app的下面都创建一个<code>urls.py</code>文件, 那么如何使这个文件有效呢?</p>
+</li>
+<li><p>项目文件下的<code>urls.py</code> 其实是包含着app中的<code>urls.py</code>, 我们需要在项目文件下的<code>urls.py</code>中修改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. Import the include() function: from django.conf.urls import url, include</span></span><br><span class="line"><span class="comment"># 2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))</span></span><br></pre></td></tr></table></figure>
+<p>这样子, 当我们访问某个路由时, 使用<code>http://xxx.xxx.xxx.xxx/blog/url_name/</code> 进行访问.</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="Template使用过程"><a href="#Template使用过程" class="headerlink" title="Template使用过程"></a>Template使用过程</h2></blockquote>
+<blockquote>
+<h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3></blockquote>
+<ul>
+<li><p>1.在<code>urls.py</code>中添加查询的路由地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r'^all_stu/'</span>, views.all_stu),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.在<code>views.py</code>中添加需要使用到的方法(访问路由需要使用方法/功能)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_stu</span><span class="params">(request)</span>:</span></span><br><span class="line">    stus = Students.objects.all()</span><br><span class="line">    <span class="comment"># 返回页面</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'stus.html'</span>, &#123;<span class="string">'students'</span>:stus&#125;)</span><br><span class="line"><span class="comment"># 通过传递context到html文件中以达到填充模板的目的</span></span><br><span class="line"><span class="comment"># render() 中返回时Unicode对象, Django也一致使用Unicode编码的字符</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.在<code>stus.html</code>中使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    &#123;% for stu in students %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>姓名: &#123;&#123;stu.s_name&#125;&#125;, 年龄: &#123;&#123;stu.s_age&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3></blockquote>
+<ul>
+<li><p>1.在<code>urls.py</code>增加路由信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'add_info/'</span>, views.add_info)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.新增<code>add_info</code>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_info</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># method 获取请求HTTP方法</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'info.html'</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>3.修改(新增)<code>stus.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            &#123;% for stu in students %&#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;stu.s_name&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;stu.s_age&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/add_info/?stu_id=&#123;&#123; stu.id &#125;&#125;"</span>&gt;</span>添加拓展表信息<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">             &#123;% endfor %&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.增加<code>info.html</code>文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">        电话号码:</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"phone"</span>&gt;</span></span><br><span class="line">        地址:</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"address"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5.在views中修改相应函数<code>add_info()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_info</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># method 获取请求HTTP方法</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'info.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        phone = request.POST.get(<span class="string">'phone'</span>)</span><br><span class="line">        address = request.POST.get(<span class="string">'address'</span>)</span><br><span class="line">        stu_id = request.GET.get(<span class="string">'stu_id'</span>)</span><br><span class="line">        <span class="comment"># 保存</span></span><br><span class="line">        StudentInfo.objects.create(</span><br><span class="line">            phone=phone,</span><br><span class="line">            address=address,</span><br><span class="line">            stu_id=stu_id</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'创建扩展表信息成功'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="拓展查询"><a href="#拓展查询" class="headerlink" title="拓展查询"></a>拓展查询</h2></blockquote>
+<ul>
+<li><p>在<code>urls.py</code>中添加路由信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^sel_info_by_stu'</span>, views.sel_info_by_stu),</span><br><span class="line">url(<span class="string">r'^sel_stu_by_info'</span>, views.sel_stu_by_info),</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>views.py</code>添加执行的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sel_info_by_stu</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        stu = Students.objects.get(s_name=<span class="string">'lee'</span>)</span><br><span class="line">        <span class="comment"># 方式一 获取关联表对象</span></span><br><span class="line">        <span class="comment"># info = StudentInfo.objects.filter(stu_id=stu.id)</span></span><br><span class="line">        <span class="comment">## 等价于 info = StudentIndo.objects.filter(stu=stu)</span></span><br><span class="line">        <span class="comment"># 方式二 学生对象关联模型名的小写</span></span><br><span class="line">        info = stu.studentinfo</span><br><span class="line">        print(info.address)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'通过学生表查学生信息扩展表'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sel_stu_by_info</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        info = StudentInfo.objects.get(phone=<span class="string">'13547191919'</span>)</span><br><span class="line">        student =info.stu</span><br><span class="line">        print(student.s_name)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'通过扩展表查看学生信息表'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2></blockquote>
+<blockquote>
+<h3 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h3></blockquote>
+<p>对两张表中的任意一张表,  使用<code>OneToOneFiled</code> , 指定一对一的关联</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TempleA</span>:</span></span><br><span class="line">	id = xx</span><br><span class="line">	b = OneToOneField(TempleB)</span><br><span class="line">	</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TempleB</span>:</span></span><br><span class="line">	id = xx</span><br><span class="line">	</span><br><span class="line"><span class="comment">#正向: 查找b对象(通过a对象): a.b</span></span><br><span class="line"><span class="comment">#反向: 查找a对象(通过b对象): b.templeb(类名的小写)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3></blockquote>
+<p>对两张表中选择  “多”  的表,  使用<code>ForeignKey</code> , 指定一对多的关联. (TempleA 属于”多”的表)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TempleA</span>:</span></span><br><span class="line">	id = xx</span><br><span class="line">	b = ForeignKey(TempleB, null=<span class="keyword">False</span>)</span><br><span class="line">	</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TempleB</span>:</span></span><br><span class="line">	id = xx</span><br><span class="line">	 </span><br><span class="line"><span class="comment"># 正向查询: 查找b对象(通过a对象): a.b</span></span><br><span class="line"><span class="comment"># 反向查询: 查找a对象(通过b对象): b.templeb_set</span></span><br><span class="line"><span class="comment"># 添加直接使用 create()方法</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h3></blockquote>
+<p>对两张表中任意选择一张表, 使用<code>ManyToManyField</code>  , 指定多对多的关联。</p>
+<p>当我们对两张表进行数据库迁移的时候, django为我们会自动生成了两张表之间的关系表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class TempleA:</span><br><span class="line">	id = xx</span><br><span class="line">	b = ManyToManyField(TempleB)</span><br><span class="line">	</span><br><span class="line">class TempleB:</span><br><span class="line">	id = xx</span><br><span class="line">	</span><br><span class="line">注: </span><br><span class="line">正向查询: 查找b对象(通过a对象): a.b</span><br><span class="line">反向查询: 查找a对象(通过b对象): b.templeb_set</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>多对多的添加: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向添加</span></span><br><span class="line">stu.course_set.add(course)</span><br><span class="line"><span class="comment"># 正向添加</span></span><br><span class="line">course.stu.add(stu)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多对多的删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向删除</span></span><br><span class="line">stu.course_set.remove(course)</span><br><span class="line"><span class="comment"># 正向删除</span></span><br><span class="line">course.stu.remove(stu)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应重定向需要引入<code>HttpResponseRedirect</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, HttpResponseRedirect</span><br><span class="line"><span class="comment"># 使用响应重定向在后续操作执行完后又会回到指定路由位置</span></span><br><span class="line"><span class="keyword">return</span> HttpResponseRedirect(<span class="string">'/all_stu/'</span>,)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1></blockquote>
+<p>通过<code>dubug (step into my code)--&gt; console --&gt; show the prompt</code>, 然后可以访问查看各种数据。</p>
+<blockquote>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1></blockquote>
+<blockquote>
+<p>##<em>pycharm</em>语法</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl d 复制光标所在行(选中多行后, 复制多行)</span><br><span class="line">ctrl y 删除</span><br><span class="line">alt enter 快速导入</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+<div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------end-------------</div>
+
+</div>
+
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django框架/" rel="tag"><i class="fa fa-tag"></i> django框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/18/redis-first-time/" rel="next" title="redis first time">
+                <i class="fa fa-chevron-left"></i> redis first time
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/you.jpeg"
+                alt="rzlong" />
+            
+              <p class="site-author-name" itemprop="name">rzlong</p>
+              <p class="site-description motion-element" itemprop="description">If should see you, after long year. How <br> should i greet, with silence and tears.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/rzlong" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="coding"><i class="fa fa-fw fa-spinner"></i>coding</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="weibo"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/cae36121456c" target="_blank" title="简书"><i class="fa fa-fw fa-copy"></i>简书</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django"><span class="nav-number">1.</span> <span class="nav-text">Django</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC框架模式"><span class="nav-number">1.2.</span> <span class="nav-text">MVC框架模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVT框架模式-Django采用"><span class="nav-number">1.3.</span> <span class="nav-text">MVT框架模式(Django采用)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装虚拟环境"><span class="nav-number">2.1.</span> <span class="nav-text">安装虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VENV使用"><span class="nav-number">2.2.</span> <span class="nav-text">VENV使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Django"><span class="nav-number">2.3.</span> <span class="nav-text">安装Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.4.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件说明"><span class="nav-number">2.5.</span> <span class="nav-text">项目文件说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行服务"><span class="nav-number">2.6.</span> <span class="nav-text">运行服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库配置"><span class="nav-number">2.7.</span> <span class="nav-text">数据库配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建APP"><span class="nav-number">3.</span> <span class="nav-text">创建APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ORM对象关系映射"><span class="nav-number">4.</span> <span class="nav-text">ORM对象关系映射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ORM应用流程"><span class="nav-number">4.1.</span> <span class="nav-text">ORM应用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">4.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改"><span class="nav-number">4.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">4.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板层使用"><span class="nav-number">5.</span> <span class="nav-text">模板层使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展数据表"><span class="nav-number">5.1.</span> <span class="nav-text">拓展数据表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建模板层目录"><span class="nav-number">5.2.</span> <span class="nav-text">创建模板层目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板继承"><span class="nav-number">5.3.</span> <span class="nav-text">模板继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">5.3.1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">5.3.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">5.3.3.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">5.3.4.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器"><span class="nav-number">5.3.5.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static文件的引入"><span class="nav-number">5.3.6.</span> <span class="nav-text">static文件的引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#urls-py的包含关系"><span class="nav-number">5.3.7.</span> <span class="nav-text">urls.py的包含关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Template使用过程"><span class="nav-number">5.4.</span> <span class="nav-text">Template使用过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加"><span class="nav-number">5.4.2.</span> <span class="nav-text">增加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展查询"><span class="nav-number">5.5.</span> <span class="nav-text">拓展查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联关系"><span class="nav-number">5.6.</span> <span class="nav-text">关联关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一"><span class="nav-number">5.6.1.</span> <span class="nav-text">一对一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多"><span class="nav-number">5.6.2.</span> <span class="nav-text">一对多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多"><span class="nav-number">5.6.3.</span> <span class="nav-text">多对多</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debug"><span class="nav-number">6.</span> <span class="nav-text">Debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">7.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rzlong</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+  <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+
+</body>
+</html>
