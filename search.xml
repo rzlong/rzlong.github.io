@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[te]]></title>
     <url>%2F2018%2F10%2F25%2Fte%2F</url>
-    <content type="text"><![CDATA[Django中对网页内容的单行注释 1&#123;% block xxx %&#125; &#123;% endblock %&#125; 12&#123;% extends 'base.html' %&#125;&#123;% block xxx %&#125; contents &#123;% endblock %&#125;]]></content>
+    <content type="text"><![CDATA[Django中对网页内容的单行注释 1&#123;% block xxx %&#125; &#123;% endblock %&#125; 12&#123;% extends 'base.html' %&#125;&#123;% block xxx %&#125; contents &#123;% endblock %&#125; 12&#123;% comment %&#125;&#123;% endcomment %&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[redis first time]]></title>
