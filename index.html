@@ -360,6 +360,1043 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Flask/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/12/Flask/" itemprop="url">
+                  Python Web框架之Flask
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-12 10:03:47" itemprop="dateCreated datePublished" datetime="2018-11-12T10:03:47+08:00">2018-11-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-19 22:28:16" itemprop="dateModified" datetime="2018-11-19T22:28:16+08:00">2018-11-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Flask简介"><a href="#Flask简介" class="headerlink" title="Flask简介"></a>Flask简介</h2><h2 id="Flask安装"><a href="#Flask安装" class="headerlink" title="Flask安装"></a>Flask安装</h2><ul>
+<li>安装虚拟环境 <code>virtualenv --no-site-packages -p &lt;python.exe位置&gt; env_name</code>, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装</li>
+<li>使用时需要安装<code>pip install flask</code> </li>
+</ul>
+<h2 id="Flask最小的应用"><a href="#Flask最小的应用" class="headerlink" title="Flask最小的应用"></a>Flask最小的应用</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>需要先进行安装<code>flask</code>和<code>flask_script</code>,<strong>当有多个安装的库(模块)时, 可以将需要的库名逐行写入到一个txt文件(req.txt), 在使用pip install -r req.txt进行逐行安装</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"><span class="comment"># 使用manager管理app对象</span></span><br><span class="line">manager = Manager(app)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/app')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello world'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run(host=<span class="string">'0.0.0.0'</span>, port=<span class="number">8081</span>, debug=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 使用manager管理, 运行方式python xxx.py runserver</span></span><br><span class="line">    <span class="comment"># 运行可选参数-p post -h host -d</span></span><br><span class="line">    <span class="comment"># manager.run()</span></span><br><span class="line"><span class="comment"># 运行 python xxx.py</span></span><br></pre></td></tr></table></figure>
+<p>当使用<code>Manager</code>管理app对象时, 运行方式为<code>python xxx.py runserver -p port -h host -d</code> (-p端口号, -h主机号, -d调试模式)</p>
+<h3 id="路由匹配规则"><a href="#路由匹配规则" class="headerlink" title="路由匹配规则"></a>路由匹配规则</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &lt;converter: variable_name&gt;&lt;选择器: 参数名&gt;</span></span><br><span class="line"><span class="comment"># &lt;int: id&gt; </span></span><br><span class="line"><span class="meta">@app.route('/int/&lt;int:id&gt;/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mg</span><span class="params">(id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'大屌萌哥<span class="subst">&#123;id&#125;</span>号'</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># &lt;name&gt; 接受id参数器类型为str, 它等价于&lt;string: name&gt;</span></span><br><span class="line"><span class="meta">@app.route('/str/&lt;name&gt;/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mg3</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'星星还是那个星星<span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># &lt;float: num&gt; 接受num参数类型是float(也接受int类型)</span></span><br><span class="line"><span class="meta">@app.route('/float/&lt;float:num&gt;/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mg2</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'float类型<span class="subst">&#123;num&#125;</span>咋了'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;path: name&gt; 接受name参数, 其作用是将&lt;app:name&gt;路由信息全部打出来(可以后续接任意路由, 能读取/符号),例如: 运行127.0.0.1:8080/path/123/123/d2/, 就返回 大屌萌哥天下第一123/123/d2</span></span><br><span class="line"><span class="meta">@app.route('/path/&lt;path:name&gt;/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mg4</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'大屌萌哥天下第一<span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;uuid: uid&gt; 接受uid参数, 得到hash运算后的32位(uuid运算), 需要引入uuid</span></span><br><span class="line"><span class="meta">@app.route('/get_uuid/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mg5</span><span class="params">()</span>:</span></span><br><span class="line">    uid = uuid.uuid4()</span><br><span class="line">    <span class="keyword">return</span> str(uid)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/uuid/&lt;uuid:name&gt;/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">uuid_name</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'uuid<span class="subst">&#123;name&#125;</span>'</span></span><br></pre></td></tr></table></figure>
+<h2 id="蓝图管理"><a href="#蓝图管理" class="headerlink" title="蓝图管理"></a>蓝图管理</h2><p>虽然在初始的py文件可以放置所有网站内容, 但是这样显得很怪异并且不方便管理, 为了达到分离视图层, 业务逻辑, 可以使用蓝图<code>blueprint</code>来管理路由, 达到模块化管理应用的目的.</p>
+<h3 id="Blueprint"><a href="#Blueprint" class="headerlink" title="Blueprint"></a>Blueprint</h3><ul>
+<li><p>第一步, 安装库文件</p>
+<blockquote>
+<p>pip install flask-blueprint</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>第二步, 获取蓝图对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line">app_blueprint = Blueprint(<span class="string">'app'</span>, __name__)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步, 注册蓝图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app是建立的一个模块(准确的用包来说明更合适), url_prefix指路由的前缀, 相当于django中的namespace</span></span><br><span class="line"><span class="keyword">from</span> app.views <span class="keyword">import</span> app_blueprint</span><br><span class="line">app.register_blueprint(blueprint=app_blueprint, url_prefix=<span class="string">'/flask/'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="request请求"><a href="#request请求" class="headerlink" title="request请求"></a>request请求</h3><p>在<code>pycharm</code>中, 使用debug+postman使用添加request字段进行调试</p>
+<ul>
+<li><p>get请求</p>
+<blockquote>
+<p>request.get<br>request.getlist</p>
+</blockquote>
+</li>
+<li><p>post请求</p>
+<blockquote>
+<p>request.form</p>
+</blockquote>
+</li>
+<li><p>上传文件</p>
+<blockquote>
+<p>request.files</p>
+</blockquote>
+</li>
+<li><p>获取路径</p>
+<blockquote>
+<p>request.path</p>
+</blockquote>
+</li>
+<li><p>请求方式</p>
+<blockquote>
+<p>request.methods</p>
+</blockquote>
+</li>
+</ul>
+<p>在flask中可以指定请求方式, 通过<code>methods</code>来指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app_blueprint.route('/re/', methods=['GET', 'POST', 'PATCH'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment"># 获取get方式提交的数据: request.args</span></span><br><span class="line">        <span class="comment"># request.args[key]或request.args[key]</span></span><br><span class="line">        <span class="comment"># request.args.getlist()</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'大屌萌哥'</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> 获取POST提交的参数</span></span><br><span class="line">        <span class="comment"># request.form()</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'星星还是那个星星'</span></span><br></pre></td></tr></table></figure>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>在<strong>django</strong>中使用:</p>
+<blockquote>
+<p>HttpResponseRedirect(reverse(‘namespace:name’))</p>
+</blockquote>
+<p>在<strong>flask</strong>中使用</p>
+<blockquote>
+<p><strong>视图函数有参数的情况下</strong></p>
+<p>redirect(url_for(‘蓝图别名.路由下的执行函数’), name=’123’)</p>
+<p><strong>视图函数没有参数</strong></p>
+<p>redirect(url_for(‘蓝图别名.路由下的执行函数’))</p>
+</blockquote>
+<h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><p>创建响应</p>
+<blockquote>
+<p>make_response(响应内容, 响应状态码)</p>
+</blockquote>
+<p>响应绑定cookie</p>
+<blockquote>
+<p>set_cookie  /  delete_cookie</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app_blueprint.route('/make_response/', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_my_response</span><span class="params">()</span>:</span></span><br><span class="line">    res =  make_response(<span class="string">'&lt;h1&gt;大屌萌哥&lt;/&gt;'</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>通过<code>about (number)</code>来抛出异常,  使用errorhandler(number)来处理, 具体如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app_blueprint.route('/foo/', methods=['POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a = int(request.form.get(<span class="string">'a'</span>))</span><br><span class="line">        b = int(request.form.get(<span class="string">'b'</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f'<span class="subst">&#123;a&#125;</span>/<span class="subst">&#123;b&#125;</span>=<span class="subst">&#123;a/b&#125;</span>'</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="comment"># 抛出异常</span></span><br><span class="line">        abort(<span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app_blueprint.errorhandler(500)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">error_handler</span><span class="params">(error)</span>:</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> 返回错误界面</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'Exception is: <span class="subst">&#123;error&#125;</span>'</span></span><br></pre></td></tr></table></figure>
+<h2 id="Session和Cookie"><a href="#Session和Cookie" class="headerlink" title="Session和Cookie"></a>Session和Cookie</h2><p><strong>第一种</strong>: session数据存储在客户端: Flask采用’secure cookie’方式保存session，即session数据是使用base64编码后保存在客户端的cookie中。也就是说无须依赖第三方数据库保存session数据。</p>
+<p><strong>第二种</strong>: session数据存储在服务端，分为以下三步骤:</p>
+<ul>
+<li>步骤1: 当客户端发送请求到服务端的时候，服务端会校验请求中cookie参数中的sessionid值，如果cookie中不存在sessionid则认为客户端访问服务端时，是发起了一个新的会话。</li>
+<li>步骤2: 如果是新的会话，则服务端会传递给客户端一个cookie，并在cookie中存储一个新的sessionid值，并将相关数据保存在session中。</li>
+<li>步骤3: 客户端下次再发送请求的时候，请求上下文对象会携带cookie，通过校验cookie中的sessionid值，即可判断是否是同一会话。</li>
+<li>步骤4: 如果校验会话是同一会话，则可以从session中获取到之前保存的数据。</li>
+</ul>
+<p>访问者的标识问题服务器需要识别来自同一访问者的请求。这主要是通过浏览器的cookie实现的。 访问者在第一次访问服务器时，服务器在其cookie中设置一个唯一的ID号——会话ID(session)。 这样，访问者后续对服务器的访问头中将自动包含该信息，服务器通过这个ID号，即可区 隔不同的访问者。</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
+<li><p>概念</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.数据存在于客户端(即浏览器中)</span></span><br><span class="line"><span class="comment"># 2.是以键值对进行存储的</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 特点:</span></span><br><span class="line"><span class="comment"># 1.支持过期时间</span></span><br><span class="line"><span class="comment"># 2.默认自动携带网站的cookie</span></span><br><span class="line"><span class="comment"># 3.不能跨越名和跨浏览器</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建</p>
+<blockquote>
+<p>set_cookie(key, value, max_ages, expires)</p>
+<p>max_ages为超时时间, 以秒计时, expires也是超时时间, 以分计时</p>
+</blockquote>
+</li>
+<li><p>删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.直接删除浏览器的cookie缓存</span></span><br><span class="line"><span class="comment"># 2.delete_cookie(key)</span></span><br><span class="line"><span class="comment"># 3.set_cookie(key, expires=0)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取</p>
+<blockquote>
+<p>request.cookies.get(‘field’)</p>
+</blockquote>
+</li>
+</ul>
+<p>  <img src="https://upload-images.jianshu.io/upload_images/13692213-04d2a3a8f5874968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="将Session数据存于数据库中"><a href="#将Session数据存于数据库中" class="headerlink" title="将Session数据存于数据库中"></a>将Session数据存于数据库中</h3><p>下面所述选用<code>redis</code>数据库, flask-session是flask框架的session组件</p>
+<ul>
+<li><p>安装<code>redis</code>,<code>flask-session</code></p>
+<blockquote>
+<p>pip install redis,flask-session</p>
+</blockquote>
+</li>
+<li><p>配置session存储redis数据库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.config[<span class="string">'SESSION_TYPE'</span>] = <span class="string">'redis'</span></span><br><span class="line">app.config[<span class="string">'SESSION_REDIS'</span>] = redis.Redis(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">6379</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.添加</span></span><br><span class="line">session[<span class="string">'key'</span>] = value</span><br><span class="line"><span class="comment"># 2.读取</span></span><br><span class="line">result = session[<span class="string">'key'</span>] <span class="comment">#内容不存在, 将会报异常</span></span><br><span class="line">result = session.get(<span class="string">'key'</span>)  <span class="comment">#内容不存在, 将返回None(很多时候没有判断session['key']中是否有值, 返回NoneType错误)</span></span><br><span class="line"><span class="comment"># 3.删除</span></span><br><span class="line">session.pop(<span class="string">'key'</span>)</span><br><span class="line"><span class="comment"># 4.清空</span></span><br><span class="line">session.clear()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 引入redis -- import redis</span><br><span class="line"># 1.初始化Flask对象</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"># 2.注册蓝图</span><br><span class="line">app.register_blueprint(blueprint=app_blueprint, url_prefix=&apos;/app/&apos;)</span><br><span class="line"># 3.配置密钥, 密钥的字符串应该是随机的,非固定的</span><br><span class="line">app.secret_key = &apos;daihiodhoahwoi&apos;</span><br><span class="line"># 4.配置session存储数据库(如上)</span><br><span class="line"># 5.初始化flask对象app</span><br><span class="line"># 5.1 方法1</span><br><span class="line">Session(app)</span><br><span class="line"># 5.2 方法2</span><br><span class="line">session = Session()</span><br><span class="line">session.init_app(app)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装<code>redis</code>数据库</p>
+<p>开启<code>redis</code>服务, 然后执行flask项目。此时分为两种情况</p>
+<ul>
+<li>第一种, 没有登录的情况, 客户端中没有服务器发给他的<code>sessionid</code>， 因此此时相当于开启一次新的会话</li>
+<li>第二种, 在已经登录的情况下, 客户端(浏览器)与服务器通过比较sessionid来匹配是否是同一个用户。此时登录完成后,在浏览器中以sessionid为key,  会自动将sessionid的值前加上”session:”作为key, 其值是一串加密的字符串, 传到redis数据库中。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-3355fc1fce657158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ul>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>​    在flask中的配置, 都是在实例化Flask对象的py文件中操作的, 我们需要对实例化的对象(如:<code>app=Flask(__name__)</code>) 通过修改app的属性已达到配置的目的。</p>
+<p>​    flask对象的初始化中, 已经帮我们完成<code>static</code>和<code>templates</code>的配置, 能找到文件的路径。</p>
+<p>​    <img src="https://upload-images.jianshu.io/upload_images/13692213-e4b4643ea913cd48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><code>flask</code>中的继承语法和<code>django</code>几乎是一样的, 通过使用挖坑, 填坑达到目的</p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><ul>
+<li><p>模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block xxx %&#125; &#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for/if</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># for</span><br><span class="line">&#123;% for i in xxx %&#125; &#123;% endfor %&#125;</span><br><span class="line"># if</span><br><span class="line">&#123;% if xxx %&#125; &#123;% else %&#125; &#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明函数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 声明的函数可以有参数</span><br><span class="line">&#123;% macro say(name) %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>你好,&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endmacro %&#125;</span><br><span class="line">注: 若将函数写在当前要使用的页面时, 函数中可以使用js, 否则不能使用</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入函数</p>
+<p>当需要从别的页面导入函数时, 我们可以新建一个<code>functions.html</code>的文件, 在其中只存放各种函数声明。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 从functions.html中导入函数的语法, foo是函数名</span><br><span class="line">&#123;&#123; from 'functions.html' import foo &#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入静态文件的方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 方式1:</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/css/style.css"</span>&gt;</span></span><br><span class="line"># 方式2:</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; url_for('static', filename='css/style.css') &#125;&#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>在模板中可以使用从后端传过来的变量</p>
+<p>后端传变量的方式是通过render_template返回渲染页面, 并将上下文一并返回(context):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app_blueprint.route('/temp/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">temp</span><span class="params">()</span>:</span></span><br><span class="line">    content = [<span class="string">'英雄联盟'</span>, <span class="string">'地下城与勇士'</span>, <span class="string">'绝地求生'</span>, <span class="string">'剑灵'</span>]</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'temp.html'</span>, title=<span class="string">'此地无银三百两'</span>, content=content)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 对于循环for中</span><br><span class="line">&#123;&#123; loop.first &#125;&#125; 判断第一个</span><br><span class="line">&#123;&#123;loop.last&#125;&#125; 判断最后一个</span><br><span class="line">&#123;&#123;loop.index&#125;&#125;得到第几个</span><br></pre></td></tr></table></figure>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><p>过滤器使用方法和内容与django中几乎一样, 如使用对于后端传过来来由样式,标签或js的内容,使用safe阻止转义等</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>flask没有自带支持数据库的部分, 需要引入第三方库<code>sqlalchemy</code>, 要使用mysql需要引入<code>pymysql</code></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
+<p>pip install sqlalchemy, pymysql</p>
+</blockquote>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><p>参考django内容,在app下新建一个<code>models.py</code>作为模型文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span>  SQLAlchemy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化一个SQLAlchemy对象</span></span><br><span class="line">db = SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一步: 声明模型</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    username = db.Column(db.String(<span class="number">10</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line">    password = db.Column(db.String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    __tablename__ = <span class="string">'day02_user'</span></span><br></pre></td></tr></table></figure>
+<h3 id="关键配置"><a href="#关键配置" class="headerlink" title="关键配置"></a>关键配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 引入db对象</span><br><span class="line">from app.models import db</span><br><span class="line"># 数据库配置</span><br><span class="line"># dialect+driver://username:password@host:port/database</span><br><span class="line">app.config[&apos;SQLALCHEMY_DATABASE_URI&apos;] = &apos;mysql+pymysql://root:123456@127.0.0.1:3307/flask6&apos;</span><br><span class="line">app.config[&apos;SQLALCHEMY_TRACK_MODIFICATIONS&apos;] = False</span><br><span class="line"># 初始化app和db</span><br><span class="line">db.init_app(app)</span><br></pre></td></tr></table></figure>
+<h2 id="数据库-1"><a href="#数据库-1" class="headerlink" title="数据库"></a>数据库</h2><p>采用mysql数据库</p>
+<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个Student对象, 进行添加， 最后提交事务</span></span><br><span class="line">stu = Student()</span><br><span class="line">stu.name = <span class="string">'xxx'</span></span><br><span class="line">stu.gender = <span class="number">0</span></span><br><span class="line">db.session.add(self)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<p><strong>flask中没有save()方法, 但是我可以自定一个save()方法在<code>models.py</code>的<code>Student</code>类中,如下:</strong></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">	db.session.add(self)</span><br><span class="line">	db.session.commit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># views.py中使用 stu.save()</span></span><br></pre></td></tr></table></figure>
+<p><strong>一次添加多个</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">grade_name = [<span class="string">'物理151'</span>, <span class="string">'物理152'</span>, <span class="string">'大气151'</span>, <span class="string">'大气152'</span>]</span><br><span class="line">grade_list = []</span><br><span class="line"><span class="keyword">for</span> g <span class="keyword">in</span> grade_name:</span><br><span class="line">	grade = Grade()</span><br><span class="line">	grade.g_name = g</span><br><span class="line">	grade_list.append(grade)</span><br><span class="line">db.session.add_all(grade_list)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p><strong>第一种</strong>: 通过先找到对应的数据, 修改其字段, 再进行保存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stu = Student.query.filter(Student.name == &apos;云澈&apos;).first()</span><br><span class="line">stu.name = &apos;沐玄音&apos;</span><br><span class="line">stu.save()</span><br></pre></td></tr></table></figure>
+<p><strong>第二种</strong>: 通过<code>update</code>进行修改, 再使用commit提交事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student.query.filter(Student.name == &apos;沐玄音&apos;).update(&#123;&apos;name&apos;: &apos;茉莉&apos;&#125;)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>通过delete方法进行删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stu = Student.query.filter(Student.name == <span class="string">'云澈'</span>).first()</span><br><span class="line">stu.del_stu()</span><br><span class="line"></span><br><span class="line"><span class="comment"># del_stu()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">del_stu</span><span class="params">(self)</span>:</span></span><br><span class="line">	db.session.delete(self)</span><br><span class="line">	db.session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p><strong>filter_by</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># filter_by(字段名=值)</span><br><span class="line">Student.query.filter_by(name=&apos;茉莉&apos;).first()</span><br></pre></td></tr></table></figure>
+<p><strong>filter</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># filter(模型名.字段名 == 值) ,返回一个basequery对象</span><br><span class="line">Student.query.filter(Student.name == &apos;云澈&apos;).first()</span><br></pre></td></tr></table></figure>
+<p><strong>get</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># get(ident), ident是主键id, 获取不到就返回空</span><br><span class="line">Student.query.get(ident=2)</span><br><span class="line">Student.query.get(2)</span><br></pre></td></tr></table></figure>
+<p><strong>all</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 获取所有的结果, 返回的是一个包含查询结果对象的列表</span><br><span class="line">Student.query.filter_by(xxx).all()</span><br></pre></td></tr></table></figure>
+<p><strong>first</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 返回的是一个查询结果的第一个对象, 但是不能使用all.first()</span><br><span class="line">Student.query.filter_by(name=&apos;茉莉&apos;).first()</span><br></pre></td></tr></table></figure>
+<p><strong>order_by</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 升序</span><br><span class="line">Student.query.order_by(&apos;id&apos;)</span><br><span class="line">Student.query.order_by(&apos;id asc&apos;)</span><br><span class="line"># 降序</span><br><span class="line">Student.query.order_by(&apos;-id&apos;)</span><br><span class="line">Student.query.order_by(&apos;id desc&apos;)</span><br></pre></td></tr></table></figure>
+<p><strong>模糊查询</strong></p>
+<ul>
+<li><p><strong>contains</strong> 等价于 <strong>like(‘%x%’)</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找student表中name字段包含 沐 的所有记录, 返回的是list</span></span><br><span class="line">Student.query.filter(Student.name.contains(<span class="string">'沐'</span>)).all()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>startswith</strong>等价于<strong>like(‘x%’)</strong>   | <strong>endswith</strong>等价于<strong>like(‘%x’)</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找student表中name字段以 沐 开头的所有记录</span></span><br><span class="line">Student.query.filter(Student.name.startswith(<span class="string">'沐'</span>)).all()</span><br><span class="line"><span class="comment"># 查找student表中name字段以 月 结束的所有记录</span></span><br><span class="line">Student.query.filter(Student.name.endswith(<span class="string">'月'</span>)).all()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>like</strong> 分为<strong>_ 和 %</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找student表中name字段包含 月 的所有记录</span></span><br><span class="line">Student.query.filter(Student.name.like(<span class="string">'%月%'</span>)).all()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>in_</strong> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找student表中id字段在1-4之间的的所有记录</span></span><br><span class="line">Student.query.filter(Student.id.in_(range(<span class="number">1</span>,<span class="number">5</span>))).all()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>__gt__</strong> 和 <strong>&gt;</strong>(大于)  <strong>__ge__</strong>(大于等于) | <strong>__lt__</strong>和<strong>&lt;</strong> (小于) <strong>__le__</strong>(小于等于)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两个等价</span></span><br><span class="line">Student.query.filter(Student.id.__ge__(<span class="number">5</span>)).all()</span><br><span class="line">stu = Student.query.filter(Student.id&gt;<span class="number">5</span>).all()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>分页</strong></p>
+<p><code>views.py</code>中显示函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 获取page的值</span><br><span class="line">page = request.args.get(&apos;page&apos;, 1)</span><br><span class="line"># 获取分页对象(page值, 每页包含的记录数目)</span><br><span class="line">paginate = Student.query.paginate(int(page), 3)</span><br><span class="line"># 得到集体的数据, 列表</span><br><span class="line">stus = paginate.items</span><br></pre></td></tr></table></figure>
+<p>网页中, 路径中反向解析是<strong>蓝图名.执行函数名</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">当前共有&#123;&#123;paginate.pages&#125;&#125;页|</span><br><span class="line">第&#123;&#123;paginate.page&#125;&#125;页|</span><br><span class="line"></span><br><span class="line">&#123;%if paginate.has_prev %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; url_for('app.sel_stu') &#125;&#125;?page=&#123;&#123;paginate.prev_num&#125;&#125;"</span>&gt;</span>上一页| <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%for i in paginate.iter_pages()%&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; url_for('app.sel_stu') &#125;&#125;?page=&#123;&#123;i&#125;&#125;"</span>&gt;</span> &#123;&#123;i&#125;&#125; <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% if paginate.has_next %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; url_for('app.sel_stu')&#125;&#125;?page=&#123;&#123;paginate.next_num&#125;&#125;"</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>and_   or_   not_</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> and_, or_, not_</span><br><span class="line"><span class="comment"># 功能和and_一样, 且的功能 </span></span><br><span class="line">Student.query.filter(Student.name.like(<span class="string">'%月%'</span>),</span><br><span class="line">					Student.gender == <span class="number">0</span>).all()</span><br><span class="line"><span class="comment"># and_ 且的功能</span></span><br><span class="line">Student.query.filter(and_(Student.name.contains(<span class="string">'月'</span>),</span><br><span class="line">						Student.gender == <span class="number">0</span>)).all()</span><br><span class="line"><span class="comment"># or_ 并的功能</span></span><br><span class="line">Student.query.filter(or_(Student.name.contains(<span class="string">'月'</span>),</span><br><span class="line">						Student.name.like(<span class="string">'沐%'</span>))).all()</span><br><span class="line"><span class="comment"># not_ 非的功能</span></span><br><span class="line">stus = Student.query.filter(not_(Student.gender == <span class="number">1</span>)).all()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p><strong>一对多</strong></p>
+<p>一 :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grade</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    <span class="comment"># flask不提供主键, 需要自己指定</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</span><br><span class="line">    g_name = db.Column(db.String(<span class="number">10</span>), nullable=<span class="keyword">False</span>, unique=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># relationship中Student对应多的表的模型名</span></span><br><span class="line">    student = db.relationship(<span class="string">'Student'</span>, backref=<span class="string">'grade'</span>)</span><br></pre></td></tr></table></figure>
+<p>多 :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String(<span class="number">10</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line">    gender = db.Column(db.Boolean, default=<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># grade_id 指定的外键的字段, 迁移到数据库后就是这个名称,  ForeignKey对应的外键的字段来源(来自grade表的id字段: grade.id)</span></span><br><span class="line">    grade_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'grade.id'</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>正向查询(通过1查询多, grade–student)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grade = Grade.query.get(6)</span><br><span class="line">student_obj = grade.student</span><br><span class="line"># 多的对象 =  1的对象.多的模型名的小写</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向查询(通过多查询1, student–grade)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stu = student.query.filter_by(name=&apos;茉莉&apos;)</span><br><span class="line">grade_obj = stu.grade</span><br><span class="line"># 1的对象 = 多的对象.1的对象中backref字段的值(若得到多个就返回对象的列表, 若得到一个就返回这个对象)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>多对多</strong></p>
+<p><strong>多</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学生表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String(<span class="number">10</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line">    gender = db.Column(db.Boolean, default=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>多</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 课程表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Course</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>, autoincrement=<span class="keyword">True</span>)</span><br><span class="line">    c_name = db.Column(db.String(<span class="number">20</span>), nullable=<span class="keyword">False</span>, unique=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 指定关系 senodary指定中间表的名字</span></span><br><span class="line">    student = db.relationship(<span class="string">'Student'</span>, secondary=stu_cou, backref=<span class="string">'course'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>中间表</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定外键</span></span><br><span class="line">stu_cou = db.Table(<span class="string">'stu_cou'</span>,</span><br><span class="line">                   db.Column(<span class="string">'s_id'</span>, db.Integer, db.ForeignKey(<span class="string">'student.id'</span>)),</span><br><span class="line">                   db.Column(<span class="string">'c_id'</span>, db.Integer, db.ForeignKey(<span class="string">'course.id'</span>)))</span><br></pre></td></tr></table></figure>
+<p><strong>多对多的关系与一对多关系中正向查询/反向查询使用方式相同, <a href="http://flask-sqlalchemy.pocoo.org/2.3/models/#many-to-many-relationships" target="_blank" rel="noopener">官方文档</a></strong></p>
+<h2 id="带参数路由访问"><a href="#带参数路由访问" class="headerlink" title="带参数路由访问"></a>带参数路由访问</h2><h3 id="带参数路由"><a href="#带参数路由" class="headerlink" title="带参数路由"></a>带参数路由</h3><p>如<code>@app_blueprints.route(&#39;/stu_cous/&lt;int:id&gt;/&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])</code> 这样的一个路由信息, 如果要通过get方式访问网页, 其反向解析的路径为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&#123;&#123; url_for(&apos;app.cous&apos;, id=stu.id) &#125;&#125;&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p> 它需要自己指定<code>字段=值</code></p>
+<h3 id="添加和删除"><a href="#添加和删除" class="headerlink" title="添加和删除"></a>添加和删除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># views.py中</span></span><br><span class="line"><span class="meta">@app_blueprints.route('/cous/&lt;int:id&gt;/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cous</span><span class="params">(id)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        cous = Course.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'cous.html'</span>, cous=cous)</span><br><span class="line">    <span class="comment"># 给指定id的学生添加课程</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        add_cou = request.form.get(<span class="string">'add_cou'</span>)</span><br><span class="line">        couse_id = request.form.get(<span class="string">'cou_id'</span>)</span><br><span class="line">        student_id = id</span><br><span class="line">        stu = Student.query.get(student_id)</span><br><span class="line">        cou = Course.query.get(couse_id)</span><br><span class="line">        <span class="comment"># 正向添加</span></span><br><span class="line">        <span class="comment"># cou.student.append(stu)</span></span><br><span class="line">        <span class="comment"># 反向添加</span></span><br><span class="line">        <span class="keyword">if</span> add_cou == <span class="string">'提交'</span>:</span><br><span class="line">            stu.course.append(cou)</span><br><span class="line">        db.session.commit()</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'app.all_stu'</span>))</span><br></pre></td></tr></table></figure>
+<p>在flask中使用<code>method</code>, 已经不局限于get和post两种方式, 同可以定义指定更多的如<code>PATCH修改部分  DELETE删除  PUT修改全部</code>等常见的传值方式.</p>
+<p><strong>删除</strong> : 拿到student和course的对象, 就能使用remove方法,进行正向或反向删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 正向删除</span><br><span class="line">        # cou.student.remove(stu)</span><br><span class="line">        # 反向删除</span><br><span class="line">        if del_cou == &apos;删除&apos;:</span><br><span class="line">            stu.course.remove(cou)</span><br><span class="line">        db.session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="使用ajax删除"><a href="#使用ajax删除" class="headerlink" title="使用ajax删除"></a>使用ajax删除</h3><p>后台删除表中数据的当时与上述的方式无异, 前端使用ajax方式进行局部的操作</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block js %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-3.1.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    function del_cou(c_id, s_id)&#123;</span></span><br><span class="line"><span class="undefined">        $.ajax(&#123;</span></span><br><span class="line"><span class="undefined">            url: '/app/del_stu_cou/' + s_id +'/',</span></span><br><span class="line"><span class="undefined">            type: 'DELETE',</span></span><br><span class="line"><span class="undefined">            dataType: 'json',</span></span><br><span class="line"><span class="undefined">            data: &#123;'c_id': c_id,</span></span><br><span class="line"><span class="undefined">                    's_id': s_id&#125;,</span></span><br><span class="line"><span class="undefined">            success: function(data)&#123;</span></span><br><span class="line"><span class="undefined">                console.log(data);</span></span><br><span class="line"><span class="undefined">                location.href='/app/all_stu/';</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            error: function(data)&#123;</span></span><br><span class="line"><span class="undefined">                alert('删除失败')</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>将删除的链接上, 添加del_cou()的点击事件, 进行这个链接即执行对应ajax函数, <strong>AJAX通过指定url属性表示传递数据的路由, type表示传递数据的方式, 上述使用DELETE用于删除数据，一目了然, dataType表示数据格式,都是json， data是出传递数据的内容, 当ajax执行将数据传到后端, 后端的执行函数处理完成, 又会返回到ajax中对应函数中, 处理成功, 就执行success属性下的函数, 否则执行error属性下的函数 </strong><code>location.href=&#39;/app/all_stu/&#39;</code>即执行后台中这个路由下的函数</p>
+<h2 id="钩子"><a href="#钩子" class="headerlink" title="钩子"></a>钩子</h2><p>在flask中没有<strong>中间件</strong>的概念, 代替的是<strong>钩子</strong>的出现</p>
+<p>在<code>django</code>中, 其中间件类里<strong>precess_request</strong>对应flask中的<a href="mailto:**@app.befor" target="_blank" rel="noopener">**@app.befor</a>e_request<strong> ,它是在处理函数前执行的;</strong>process_response<strong>对应flask中</strong>@app.after_request<strong>, 是在函数处理完成后执行的, 同时还有一个</strong>@app.teardown_request**是在函数处理完成后最后执行的, 它典型的使用就是创建数据库的连接后, 最后在这个函数中关闭连接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, g</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/hello/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 获取学生表信息</span></span><br><span class="line">    sql = <span class="string">'select * from student;'</span></span><br><span class="line">    result = g.cursor.execute(sql)</span><br><span class="line">    data = g.cursor.fetchall()</span><br><span class="line">    <span class="keyword">return</span> str(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.before_request</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">before_request</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> connect database by pymysql</span></span><br><span class="line">    <span class="comment"># 获取pymysql对象</span></span><br><span class="line">    conn = pymysql.Connection(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">3307</span>, user=<span class="string">'root'</span>,</span><br><span class="line">                       password=<span class="string">'123456'</span>, database=<span class="string">'flask6'</span>)</span><br><span class="line">    <span class="comment"># 获取游标</span></span><br><span class="line">    cursor = conn.cursor()</span><br><span class="line">    g.cursor = cursor</span><br><span class="line">    g.conn = conn</span><br><span class="line">    print(<span class="string">'在请求之间执行, 相当于django中的process_request'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.teardown_request</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">teardown_request</span><span class="params">(exception)</span>:</span></span><br><span class="line">    <span class="comment"># 关闭数据库的连接</span></span><br></pre></td></tr></table></figure>
+<p>其中g对象是一个全局对象, 是专门用来保护用户的数据的, g对象在一次请求中request所有的代码的地方, 都是可以使用的</p>
+<p>对比session也是全局对象, 但是它对于不同的请求request也能使用</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Django-部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/09/Django-部署/" itemprop="url">
+                  使用CentOS进行Django项目部署
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-09 09:35:16 / 修改时间：20:44:35" itemprop="dateCreated datePublished" datetime="2018-11-09T09:35:16+08:00">2018-11-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用centos部署Django项目"><a href="#使用centos部署Django项目" class="headerlink" title="使用centos部署Django项目"></a>使用centos部署Django项目</h1><h2 id="安装MariaDB"><a href="#安装MariaDB" class="headerlink" title="安装MariaDB"></a>安装MariaDB</h2><ul>
+<li><p>简述mariadb</p>
+<p>MariaDB Server是世界上最受欢迎的数据库服务器之一。它由MySQL的原始开发人员制作，并保证保持开源。着名的用户包括维基百科，WordPress.com和谷歌。</p>
+<p>MariaDB将数据转换为各种应用程序中的结构化信息，包括银行业务和网站。它是MySQL的增强型替代品。MariaDB的使用是因为它快速，可扩展且强大，具有丰富的存储引擎生态系统，插件和许多其他工具，使其适用于各种用例。</p>
+<p>MariaDB是作为开源软件开发的，作为关系数据库，它提供了一个用于访问数据的SQL接口。MariaDB的最新版本还包括GIS和JSON功能。</p>
+<p><strong>MariaDB的API和协议兼容MySQL，另外又添加了一些功能，以支持本地的非阻塞操作和进度报告。这意味着，所有使用MySQL的连接器、库和应用程序也将会在MariaDB下工作。</strong></p>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li><p>安装<code>mariadb-server</code></p>
+<blockquote>
+<p>yum -y install mariadb mariadb-server</p>
+</blockquote>
+</li>
+<li><p>启动和自启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 启动</span><br><span class="line">systemctl start mariadb</span><br><span class="line"># 自启</span><br><span class="line">systemctl enable mariadb</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><ul>
+<li><p><code>mysql</code>安装(注意云服务器开启3306端口)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 1.执行命令</span><br><span class="line">mysql_secure_installation</span><br><span class="line"># 2.为root输入密码</span><br><span class="line">Enter current password for root:   enter</span><br><span class="line"># 3.是否设置root用户密码</span><br><span class="line">Set root password? [Y/n]   y或enter</span><br><span class="line"># 4.设置密码和确认密码</span><br><span class="line">New password:</span><br><span class="line">Re-enter new password:</span><br><span class="line"># 5.是否删除匿名用户</span><br><span class="line">Remove anonymous users? [Y/n]   enter</span><br><span class="line"># 6.是否禁止root远程登录</span><br><span class="line">Disallow root login remotely? [Y/n]     enter</span><br><span class="line"># 7.是否删除test数据库</span><br><span class="line">Remove test database and access to it? [Y/n]   enter</span><br><span class="line"># 8.是否重新加载权限表</span><br><span class="line">Reload privilege tables now? [Y/n]  enter</span><br><span class="line"># 9.登录</span><br><span class="line">mysql -u root -p</span><br><span class="line">输入密码...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启远程连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 1.创建用户</span><br><span class="line"></span><br><span class="line"># 使用数据库(;不可省略)</span><br><span class="line">use mysql;</span><br><span class="line"></span><br><span class="line"># 针对ip</span><br><span class="line">create user &apos;root&apos;@&apos;&lt;ip&gt;&apos; identified by &apos;&lt;password&gt;&apos;;</span><br><span class="line"></span><br><span class="line">#全部</span><br><span class="line"> create user &apos;root&apos;@&apos;%&apos; identified by &apos;&lt;password&gt;&apos;;</span><br><span class="line">#&lt;ip&gt; 为ip地址, &lt;password&gt;为密码, 必填</span><br><span class="line"></span><br><span class="line"># 2.授权</span><br><span class="line"></span><br><span class="line"># 给用户最大权限</span><br><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;password&apos;;</span><br><span class="line"></span><br><span class="line"># 给部分权限(test 数据库)</span><br><span class="line"></span><br><span class="line">grant all privileges on test.* to &apos;root&apos;@&apos;%&apos; identified by &apos;password&apos; with grant option;</span><br><span class="line"></span><br><span class="line"># 刷新权限表</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line"># 查看</span><br><span class="line">show grants for &apos;root&apos;@&apos;localhost&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装python"><a href="#安装python" class="headerlink" title="安装python"></a>安装python</h2><p>查看<a href="">这儿</a></p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li><p>安装<code>virtualenv</code></p>
+<blockquote>
+<p>yum install python-virtualenv</p>
+</blockquote>
+</li>
+<li><p>创建虚拟环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --no-site-packages -p &lt;python3地址&gt; &lt;env_name&gt;</span><br><span class="line">激活环境</span><br><span class="line">cd &lt;env_name&gt;</span><br><span class="line">source bin/activete</span><br><span class="line">退出环境</span><br><span class="line">cd &lt;env_name&gt;</span><br><span class="line">source bin/deactivete</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Django项目对应虚拟环境下所需要的包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">django==1.11</span><br><span class="line">pymysql</span><br><span class="line">Pillow</span><br><span class="line"># 安装方式</span><br><span class="line"># 进入虚拟环境,直接安装 例如: pip3 install &lt;package_name1&gt;  &lt;package_name2&gt; ...</span><br><span class="line"># 进入虚拟环境,将需要的包名存放在文件中, 在对文件中的所有内容进行安装 例如: install.txt 中存放上述的包名, 使用 pip3 install -r &lt;filename&gt;</span><br><span class="line"># 进入虚拟环境的操作进行pip3的安装, 也可以由 /home/env/testenv/bin/pip3 代替</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>文档所述是<code>CentOS 7.3</code>的linux系统进行部署</p>
+<p>做部署的操作,在Django的工程目录下, 修改<code>DEBUG=False</code>, 项目的生产阶段使用<code>DEBUG=True</code></p>
+<p>Django框架仅在开发模式下提供静态文件服务, 当开启<code>DEBUG=False</code>时,其不再提供静态文件服务, 主要是针对static和media。 当然如果想让它仍然支持静态文件服务, 也是有方法的, 下述会讲到。</p>
+<h3 id="测试环境进行部署"><a href="#测试环境进行部署" class="headerlink" title="测试环境进行部署"></a>测试环境进行部署</h3><p>在测试环境下一般直接使用python manage.py runserver的方式, 因为足够使用并且容易。</p>
+<ul>
+<li><p>修改<code>urls.py</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 1.修改settings.py文件配置中DEBUG=False, 修改ALLOWED_HOST=[&apos;*&apos;]</span><br><span class="line"># 2.修改工程目录下的urls.py文件</span><br><span class="line">from django.views.static import serve</span><br><span class="line">from &lt;工程文件同名目录文件&gt; import settings</span><br><span class="line">urlpatterns = [</span><br><span class="line">  # 增加以下的url路由</span><br><span class="line">    url(r&apos;^static/(?P&lt;path&gt;.*)$&apos;, serve, &#123;&quot;document_root&quot;: settings.STATICFILES_DIRS[0]&#125;),</span><br><span class="line">	url(r&apos;^media/(?P&lt;path&gt;.*)$&apos;, serve, &#123;&quot;document_root&quot;: settings.MEDIA_ROOT&#125;),</span><br><span class="line">	# 修改首页, 使用户在输入网站的域名或者ip地址(没有附加的路由)时直接访问首页</span><br><span class="line">  	url(r&apos;/&apos;, views.index),</span><br><span class="line">  </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>中间件</code>,添加一个空的路由地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">no_checks = [&apos;/user/login/&apos;, &apos;/user/register/&apos;,</span><br><span class="line">                     &apos;/goods/index/&apos;, &apos;/goods/detail/(.*)/&apos;,</span><br><span class="line">                     &apos;/media/(.*)/&apos;, &apos;/static/(.*)/&apos;,</span><br><span class="line">                     &apos;/cart/add_cart/&apos;, &apos;/cart/cart/&apos;, &apos;/&apos;]</span><br><span class="line">        path = request.path</span><br><span class="line">        for not_path in no_checks:</span><br><span class="line">            if re.match(not_path, path):</span><br><span class="line">                # 匹配当前路径是否为不需要登录的路径</span><br><span class="line">                return None</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个fresh_shop.sh文件, 里面内容</span><br><span class="line">/home/env/testenv/bin/python3 /home/src/fresh_shop/manage.py runserver 0.0.0.0:80</span><br><span class="line"># 在执行时使用 ./fresh_shop</span><br><span class="line"># 若想后台执行使用 nohup  ./start_fresh.sh</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="正式环境部署"><a href="#正式环境部署" class="headerlink" title="正式环境部署"></a>正式环境部署</h3><p>正式环境部署采用<code>nginx+uwsgi</code>的方式部署项目</p>
+<h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><ul>
+<li><p>添加nginx存储库</p>
+<blockquote>
+<p>yum install epel-release</p>
+</blockquote>
+</li>
+<li><p>安装nginx</p>
+<blockquote>
+<p>yum install nginx</p>
+</blockquote>
+</li>
+<li><p>运行nginx</p>
+<blockquote>
+<p>systemctl start nginx</p>
+</blockquote>
+</li>
+<li><p>查看nginx状态, 通过看状态能看到是否错误和错误信息</p>
+<blockquote>
+<p>systemctl status nginx</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="uwsgi"><a href="#uwsgi" class="headerlink" title="uwsgi"></a>uwsgi</h4><ul>
+<li><p>安装<code>uwsgi</code>, 在虚拟环境下安装uwsgi, 假设虚拟环境安装在<code>/home/env/testenv/</code>中</p>
+<blockquote>
+<p>/home/env/testenv/bin/python3 install uwsgi</p>
+</blockquote>
+</li>
+<li><p>项目基本文件</p>
+<ul>
+<li><p>将项目的配置文件, 日志文件, 项目文件, 虚拟环境分别放置, 便于管理，大概如下:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-bea491ac0709866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><code>conf</code>是配置文件, 用于存放nginx.conf文件, uwsgi.ini文件</p>
+<p><code>env</code>是存放虚拟环境</p>
+<p><code>logs</code>存放日志的文件, 含nginx启动成功或失败的日志文件, uwsgi的运行日志文件</p>
+<p><code>src</code>是项目文件, 含项目所有代码</p>
+</li>
+</ul>
+</li>
+<li><p>配置<code>nginx.conf</code> (freshnginx.conf)</p>
+<p>在conf目录下, 创建一个与项目相关的配置文件如: <code>freshnginx.conf</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line"># 端口号  服务器名(可以是域名和ip地址)</span><br><span class="line">    listen   80; </span><br><span class="line">    server_name 39.108.229.154 localhost;</span><br><span class="line"># nginx开启成功或失败的日志文件</span><br><span class="line">    access_log /home/logs/access.log;</span><br><span class="line">    error_log /home/logs/error.log;</span><br><span class="line"># 指定ip地址对应的网关, 端口号(固定写法)</span><br><span class="line">    location / &#123;</span><br><span class="line">        include uwsgi_params;    </span><br><span class="line">        uwsgi_pass 127.0.0.1:8989;</span><br><span class="line">    &#125; </span><br><span class="line"># 配置静态文件, 指定静态文件地址便于服务器进行解析(这样就不用上述测试环境中的添加url)</span><br><span class="line">    location /static/ &#123;</span><br><span class="line">        alias /home/src/fresh_shop/static/;</span><br><span class="line">    &#125;</span><br><span class="line"># 配置media文件</span><br><span class="line">    location /media/ &#123;</span><br><span class="line">        alias /home/src/media/;</span><br><span class="line">    &#125;         </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将自定义的<code>nginx.conf</code>文件添加的nginx的主配置文件中</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-cd382a9ac2bc51f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>重启nginx</p>
+</li>
+<li><p>配置<code>uwsgi.ini</code>文件, (freshuwsgi.ini)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line"># 守护京城</span><br><span class="line">master = true</span><br><span class="line"># 进程数量</span><br><span class="line">processes = 4</span><br><span class="line"># 项目文件</span><br><span class="line">chdir = /home/src/fresh_shop</span><br><span class="line"># 指定虚拟环境python地址</span><br><span class="line">pythonpath = /home/env/testenv/bin/python3</span><br><span class="line"></span><br><span class="line"># 指定wsgi文件</span><br><span class="line">module = fresh_shop.wsgi</span><br><span class="line"># nginx通信地址:端口</span><br><span class="line">socket = 127.0.0.1:8989</span><br><span class="line"># 日志文件地址</span><br><span class="line">logto = /home/logs/freshuwsgi.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行项目</p>
+<blockquote>
+<p>/home/env/freshenv/bin/uwsgi –ini freshuwsgi.ini</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>netstat -lntp</code>  查看当前被监听(LISTEN)的进程</p>
+<p><code>tail -f filename</code> 显示文件最后一次被更新的内容</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/01/Django-rest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/01/Django-rest/" itemprop="url">
+                  Django-rest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-01 10:56:55" itemprop="dateCreated datePublished" datetime="2018-11-01T10:56:55+08:00">2018-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-02 14:40:10" itemprop="dateModified" datetime="2018-11-02T14:40:10+08:00">2018-11-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h2 id="Django-Rest-FrameWork"><a href="#Django-Rest-FrameWork" class="headerlink" title="Django-Rest-FrameWork"></a>Django-Rest-FrameWork</h2></blockquote>
+<blockquote>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3></blockquote>
+<p><code>Django REST</code>框架是一个功能强大且灵活的工具包，用于构建<code>Web API</code>。</p>
+<p>借助这个网站可以帮助开发者查看API</p>
+<p>它也支持<a href="https://baike.baidu.com/item/ORM/3583252?fr=aladdin" target="_blank" rel="noopener">ORM</a><code>和</code>非ORM数据源的<a href="https://baike.baidu.com/item/%E5%BA%8F%E5%88%97%E5%8C%96/2890184?fr=aladdin" target="_blank" rel="noopener">序列化</a></p>
+<ul>
+<li>序列化:序列化 (Serialization)将对象的状态信息转换为可以存储或传输的形式的过程。(下述中就是讲Article对象转换成json格式的数据)</li>
+</ul>
+<blockquote>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3></blockquote>
+<ul>
+<li><p>在当前工程的虚拟环境下面使用pip安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装djangorestframework</span></span><br><span class="line">pip install djangorestframework</span><br><span class="line"><span class="comment"># 若想安装指定版本</span></span><br><span class="line">pip install djangorestframework==<span class="number">3.4</span><span class="number">.6</span> </span><br><span class="line"><span class="comment"># 安装过滤依赖项包</span></span><br><span class="line">pip install django-filter  <span class="comment"># Filtering support</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3></blockquote>
+<ul>
+<li>在<code>setting.py</code>文件中加入<code>rest_framework</code></li>
+</ul>
+<blockquote>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3></blockquote>
+<p>在<code>models.py</code>文件创建一个模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    title = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    dec = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    img = models.ImageField(upload_to=<span class="string">'article'</span>)</span><br><span class="line">    create_time = models.DateTimeField(auto_now_add=<span class="keyword">True</span>)</span><br><span class="line">    is_delete = models.BooleanField(default=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        db_table = <span class="string">'article'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="序列模块"><a href="#序列模块" class="headerlink" title="序列模块"></a>序列模块</h3></blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从包中引入序列模块</span></span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="comment"># 引入模型</span></span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Article</span><br><span class="line"><span class="comment"># 写对模型序列化的类, model和fields都是模块指定的字段, 不能改变</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        <span class="comment"># 指定序列化的模型</span></span><br><span class="line">        model = Article</span><br><span class="line">        <span class="comment"># 序列化的字段</span></span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'dec'</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="路由模块"><a href="#路由模块" class="headerlink" title="路由模块"></a>路由模块</h3></blockquote>
+<p>在<code>app</code>的<code>urls.py</code>模块中配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="comment"># 从包里获取指定的路由类</span></span><br><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> SimpleRouter</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取路由对象</span></span><br><span class="line">router = SimpleRouter()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定路由 127.0.0.1:8081/app/article/</span></span><br><span class="line">router.register(<span class="string">'article'</span>, views.ArticleView)</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^all_article/'</span>, views.all_article)</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 将特定路由对象加入到urlpatterns列表里面</span></span><br><span class="line">urlpatterns += router.urls</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="视图模块"><a href="#视图模块" class="headerlink" title="视图模块"></a>视图模块</h3></blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins, viewsets</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Article</span><br><span class="line"><span class="keyword">from</span> app.serializers <span class="keyword">import</span> ArticleSerializer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleView</span><span class="params">(viewsets.GenericViewSet,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.ListModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.DestroyModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.CreateModelMixin)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 查询数据(queryset固定使用)</span></span><br><span class="line">    queryset = Article.objects.filter(is_delete=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 序列化(serializer_class固定)</span></span><br><span class="line">    serializer_class = ArticleSerializer</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 重写DestroyModelMixin类下的perform_destory()方法, 使删除编程软删除(当指定删除时,指定是否删除的字段值为1,通过查询过滤使其不可见)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_destroy</span><span class="params">(self, instance)</span>:</span></span><br><span class="line">        instance.is_delete = <span class="number">1</span></span><br><span class="line">        instance.save()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_article</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'articles.html'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># viewsets.GenericViewSet提供了供后续使用的get_object()和get_queryset()两个重要的方法</span></span><br><span class="line"><span class="comment"># ListModelMixin 将表中所有的信息展现出来</span></span><br><span class="line"><span class="comment"># DestroyModelMixin 可以删除表中某条记录</span></span><br><span class="line"><span class="comment"># UpdateModelMixin 更新</span></span><br><span class="line"><span class="comment"># RetrieveModelMixin 能够查看表中指定id的记录</span></span><br><span class="line"><span class="comment"># CreateModelMixin 能够添加新的记录</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>访问<code>127.0.0.1:8081/app/article/</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-1c14d600b2deceb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3></blockquote>
+<p>通过<code>Jquery</code>实现<code>ajax</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: 接口地址,</span><br><span class="line">  type: &apos;POST/GET/DELETE/PUT/PATCH&apos;,</span><br><span class="line">  dataType: &apos;json&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    # 当type方式为POST时, 需要传递值, 就需要通过data字段</span><br><span class="line">  &#125;,</span><br><span class="line">  success: function(data)&#123;</span><br><span class="line">    # 操作成功后执行的函数</span><br><span class="line">  &#125;,</span><br><span class="line">  error:function(data)&#123;</span><br><span class="line">    # 操作失败后执行的函数</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h3></blockquote>
+<ul>
+<li>一种web开发工具, 可以直接下载<a href="https://www.getpostman.com/" target="_blank" rel="noopener">app</a>进行使用, 或者下载<a href="http://www.cnplugins.com/devtool/postman/" target="_blank" rel="noopener">postman</a>作为chorme的插件使用</li>
+<li>postman是一款功能超级强大的用于发送 HTTP 请求的 Chrome插件</li>
+<li>利用它可以创建和发送任何的HTTP请求</li>
+</ul>
+<blockquote>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4></blockquote>
+<ul>
+<li>创建<code>filters.py</code>文件, 增加一个过滤的类</li>
+<li>在<code>views.py</code>文件中指定上面所说的过滤类</li>
+<li>在<code>settings.py</code>文件中进行过滤配置</li>
+</ul>
+<blockquote>
+<h3 id="Django跨域请求"><a href="#Django跨域请求" class="headerlink" title="Django跨域请求"></a>Django跨域请求</h3></blockquote>
+<p><strong>跨域请求</strong>就是指：当前发起请求的域与该请求指向的资源所在的域不一样。这里的域指的是这样的一个概念：我们认为若协议 + 域名 + 端口号均相同，那么就是同域。当</p>
+<blockquote>
+<h3 id="COOKIE和SESSION"><a href="#COOKIE和SESSION" class="headerlink" title="COOKIE和SESSION"></a>COOKIE和SESSION</h3></blockquote>
+<blockquote>
+<h3 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h3></blockquote>
+<ul>
+<li>前端的工作：实现整一个前端页面以及交互逻辑，以及利用<code>ajax</code>与<code>nodejs</code>服务器（中间层)交互</li>
+<li>后端的工作：提供<code>API</code>接口，利用<code>redis</code>来管理<code>session</code>,与数据库交互</li>
+<li><strong>优点</strong>:前后端分离的话，则可以很好的解决前后端分工不均的问题，将更多的交互逻辑分配给前端来处理，而后端则可以专注于其本职工作，比如提供<code>API</code>接口，进行权限控制以及进行运算工作。而前端开发人员则可以利用<code>nodejs</code>来搭建自己的本地服务器，直接在本地开发，然后通过一些插件来将<code>api</code>请求转发到后台，这样就可以完全模拟线上的场景，并且与后台解耦。前端可以独立完成与用户交互的整一个过程，两者都可以同时开工，不互相依赖，开发效率更快，而且分工比较均衡。(<a href="http://blog.jobbole.com/111624/" target="_blank" rel="noopener">引用自..</a>)</li>
+<li>个人见解: 后端将需要的数据写成接口, 前端可以使用ajax对接口数据(做增删查改的操作), 也可以通过ajax将数据回传到后端再传入数据库.</li>
+</ul>
+<blockquote>
+<h3 id="HTTP请求方式"><a href="#HTTP请求方式" class="headerlink" title="HTTP请求方式"></a>HTTP请求方式</h3></blockquote>
+<ul>
+<li>GET 获取数据</li>
+<li>POST 创建数据</li>
+<li>PUT 修改数据(修改全部属性)</li>
+<li>PATCH 修改数据(修改部分属性)</li>
+<li>DELETE 删除数据</li>
+<li>除上述最常见的5种, 还有请看<a href="https://blog.csdn.net/qq_38191191/article/details/78671063" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<blockquote>
+<h3 id="HTTP常见状态码"><a href="#HTTP常见状态码" class="headerlink" title="HTTP常见状态码"></a>HTTP常见状态码</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态码</th>
+<th style="text-align:center">翻译</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">200</td>
+<td style="text-align:center">OK</td>
+<td style="text-align:center">请求已成功</td>
+</tr>
+<tr>
+<td style="text-align:center">202</td>
+<td style="text-align:center">Accepted</td>
+<td style="text-align:center">服务器已接受请求，但尚未处理</td>
+</tr>
+<tr>
+<td style="text-align:center">304</td>
+<td style="text-align:center">Not Modified</td>
+<td style="text-align:center">如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码</td>
+</tr>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">Bad Request</td>
+<td style="text-align:center">语义有误，当前请求无法被服务器理解。或者，请求参数有误。</td>
+</tr>
+<tr>
+<td style="text-align:center">401</td>
+<td style="text-align:center">Unauthorized</td>
+<td style="text-align:center">当前请求需要用户身份验证</td>
+</tr>
+<tr>
+<td style="text-align:center">403</td>
+<td style="text-align:center">Forbidden</td>
+<td style="text-align:center">服务器已经理解请求，但是拒绝执行它。（csrf验证）</td>
+</tr>
+<tr>
+<td style="text-align:center">404</td>
+<td style="text-align:center">Not Found</td>
+<td style="text-align:center">页面未找到(路由或者资源不存在)</td>
+</tr>
+<tr>
+<td style="text-align:center">408</td>
+<td style="text-align:center">Request Timeout</td>
+<td style="text-align:center">客户端请求超时</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">Internal Server Error</td>
+<td style="text-align:center">服务器出错</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Django权限/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1996,559 +3033,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/js之-Browser/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/15/js之-Browser/" itemprop="url">
-                  js之-Browser
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 20:29:44" itemprop="dateCreated datePublished" datetime="2018-10-15T20:29:44+08:00">2018-10-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-23 19:56:42" itemprop="dateModified" datetime="2018-10-23T19:56:42+08:00">2018-10-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<h2 id="DOM-节点"><a href="#DOM-节点" class="headerlink" title="DOM 节点"></a>DOM 节点</h2></blockquote>
-<p><code>DOM</code>  为<code>Document Object Model</code> , 在html的DOM中, 每一个元素都是节点.文档是一个文档节点, 所有的HTML元素都是元素节点, 所有的HTML属性都是属性节点, 文本插入到HTML元素是文本节点, 注释是注释节点.</p>
-<p>当浏览器载入HTML文档时, 它就会称为Document对象, Document对象是HTML文档的根节点.<a href="http://www.runoob.com/jsref/dom-obj-document.html" target="_blank" rel="noopener">More请浏览菜鸟…</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/15/js之-Browser/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/Mysql初体验/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/15/Mysql初体验/" itemprop="url">
-                  Mysql初体验
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 10:56:21" itemprop="dateCreated datePublished" datetime="2018-10-15T10:56:21+08:00">2018-10-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-22 20:13:48" itemprop="dateModified" datetime="2018-10-22T20:13:48+08:00">2018-10-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1></blockquote>
-<ul>
-<li><p>数据库, 即<code>database</code>, 通过数据库我们可以实现数据的持久化</p>
-</li>
-<li><p>当我们左数据持久化操作是不仅仅是希望能够把数据长久的保存起来, 更重要的是便利的管理数据—方便的存取。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/15/Mysql初体验/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/JS之-Window/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/13/JS之-Window/" itemprop="url">
-                  JS之-Window
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-13 17:29:20" itemprop="dateCreated datePublished" datetime="2018-10-13T17:29:20+08:00">2018-10-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-23 19:58:24" itemprop="dateModified" datetime="2018-10-23T19:58:24+08:00">2018-10-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<h1 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h1></blockquote>
-<blockquote>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2></blockquote>
-<pre><code>1.appCodeName -- 返回浏览器的代码名  Mozilla
-2.appName  -- 返回浏览器的名称  Netscape
-3.appVersion -- 返回浏览器的平台和版本消息
-4.cookieEnabled -- 启用cookie
-5.platform -- 硬件平台  win32
-6.userAgent --用户代理
-7.systemLanguage -- 用户代理语言
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/13/JS之-Window/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2600,7 +3084,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2627,7 +3111,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2670,7 +3156,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2771,7 +3263,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共28.5k字</span>
+  <span class="post-count">博客全站共36.3k字</span>
 </div>
 
         
