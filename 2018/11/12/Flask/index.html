@@ -125,21 +125,21 @@
 
 
 
-  <meta name="description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask   Flask最小的应用代码需要先进行安装flask和flask_sc">
+  <meta name="description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask">
 <meta name="keywords" content="flask">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python Web框架之Flask">
 <meta property="og:url" content="http://yoursite.com/2018/11/12/Flask/index.html">
 <meta property="og:site_name" content="拆南墙">
-<meta property="og:description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask   Flask最小的应用代码需要先进行安装flask和flask_sc">
+<meta property="og:description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-04d2a3a8f5874968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-3355fc1fce657158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-e4b4643ea913cd48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-19T14:28:16.796Z">
+<meta property="og:updated_time" content="2019-01-02T12:56:29.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python Web框架之Flask">
-<meta name="twitter:description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask   Flask最小的应用代码需要先进行安装flask和flask_sc">
+<meta name="twitter:description" content="Flask简介Flask安装 安装虚拟环境 virtualenv --no-site-packages -p &amp;lt;python.exe位置&amp;gt; env_name, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装 使用时需要安装pip install flask">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13692213-04d2a3a8f5874968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-19 22:28:16" itemprop="dateModified" datetime="2018-11-19T22:28:16+08:00">2018-11-19</time>
+                <time title="修改时间：2019-01-02 20:56:29" itemprop="dateModified" datetime="2019-01-02T20:56:29+08:00">2019-01-02</time>
               
             
           </span>
@@ -486,6 +486,7 @@
 <li>安装虚拟环境 <code>virtualenv --no-site-packages -p &lt;python.exe位置&gt; env_name</code>, 其中-p参数是在有个python版本时指定自己想要的版本, –no-site-packages指定干净安装</li>
 <li>使用时需要安装<code>pip install flask</code> </li>
 </ul>
+<a id="more"></a>
 <h2 id="Flask最小的应用"><a href="#Flask最小的应用" class="headerlink" title="Flask最小的应用"></a>Flask最小的应用</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>需要先进行安装<code>flask</code>和<code>flask_script</code>,<strong>当有多个安装的库(模块)时, 可以将需要的库名逐行写入到一个txt文件(req.txt), 在使用pip install -r req.txt进行逐行安装</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"><span class="comment"># 使用manager管理app对象</span></span><br><span class="line">manager = Manager(app)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/app')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello world'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run(host=<span class="string">'0.0.0.0'</span>, port=<span class="number">8081</span>, debug=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 使用manager管理, 运行方式python xxx.py runserver</span></span><br><span class="line">    <span class="comment"># 运行可选参数-p post -h host -d</span></span><br><span class="line">    <span class="comment"># manager.run()</span></span><br><span class="line"><span class="comment"># 运行 python xxx.py</span></span><br></pre></td></tr></table></figure>
 <p>当使用<code>Manager</code>管理app对象时, 运行方式为<code>python xxx.py runserver -p port -h host -d</code> (-p端口号, -h主机号, -d调试模式)</p>
@@ -787,6 +788,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/11/26/spider/" rel="prev" title="spider基础之requests">
+                spider基础之requests <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -859,7 +864,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -888,7 +893,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -937,7 +950,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1018,7 +1043,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1054,7 +1079,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共36.3k字</span>
+  <span class="post-count">博客全站共46k字</span>
 </div>
 
         
