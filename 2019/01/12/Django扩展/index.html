@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #222222; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #ff009e, 0 0 5px #ff009e; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #222222;    /*上边框颜色*/
+        border-left-color: #222222;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"slideUpBigIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多路数据库配置使用多个数据库的最简单方法是设置数据库路由方案。默认路由方案可确保对象对其原始数据库保持“粘性”（即，从foo数据库检索的对象将保存在同一数据库中）。默认路由方案可确保在未指定数据库的情况下，所有查询都会回退到default数据库。 在Django中支持多路数据库联合使用, ·详细内容可以查看官方文档">
+<meta name="keywords" content="inspectdb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-扩展">
+<meta property="og:url" content="http://yoursite.com/2019/01/12/Django扩展/index.html">
+<meta property="og:site_name" content="拆南墙">
+<meta property="og:description" content="多路数据库配置使用多个数据库的最简单方法是设置数据库路由方案。默认路由方案可确保对象对其原始数据库保持“粘性”（即，从foo数据库检索的对象将保存在同一数据库中）。默认路由方案可确保在未指定数据库的情况下，所有查询都会回退到default数据库。 在Django中支持多路数据库联合使用, ·详细内容可以查看官方文档">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-87f1f5532b59d86f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-afcac788148a4b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13692213-030f9b4658bd1da5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620">
+<meta property="og:updated_time" content="2019-02-13T04:15:08.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-扩展">
+<meta name="twitter:description" content="多路数据库配置使用多个数据库的最简单方法是设置数据库路由方案。默认路由方案可确保对象对其原始数据库保持“粘性”（即，从foo数据库检索的对象将保存在同一数据库中）。默认路由方案可确保在未指定数据库的情况下，所有查询都会回退到default数据库。 在Django中支持多路数据库联合使用, ·详细内容可以查看官方文档">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13692213-87f1f5532b59d86f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/12/Django扩展/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Django-扩展 | 拆南墙</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--githubstart-->
+	
+	<a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	
+	<!--githubend-->
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">拆南墙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">nothing</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/Django扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django-扩展
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-12 10:45:15" itemprop="dateCreated datePublished" datetime="2019-01-12T10:45:15+08:00">2019-01-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-13 12:15:08" itemprop="dateModified" datetime="2019-02-13T12:15:08+08:00">2019-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="多路数据库"><a href="#多路数据库" class="headerlink" title="多路数据库"></a>多路数据库</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>使用多个数据库的最简单方法是设置数据库路由方案。默认路由方案可确保对象对其原始数据库保持“粘性”（即，从<code>foo</code>数据库检索的对象将保存在同一数据库中）。默认路由方案可确保在未指定数据库的情况下，所有查询都会回退到<code>default</code>数据库。</p>
+<p>在Django中支持多路数据库联合使用, ·详细内容可以查看官方<a href="https://docs.djangoproject.com/en/2.1/topics/db/multi-db/#topics-db-multi-db-routing" target="_blank" rel="noopener">文档</a></p>
+<a id="more"></a>
+<p><strong>数据库配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'fangtx'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'TIME_ZONE'</span>: <span class="string">'Chongqing'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'hrs'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'hrs'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'TIME_ZONE'</span>: <span class="string">'Chongqing'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定一个提供数据库路由的类</span></span><br><span class="line">DATABASE_ROUTERS = [</span><br><span class="line">    <span class="string">'common.routers.BackendRouter'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>数据库路由类</strong></p>
+<p>如上在<code>common/routers.py</code>中创建路由类<code>BackendRouter</code> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BackendRouter</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在已认证的app中,控制所有数据库模型操作的类</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">db_for_read</span><span class="params">(self, model, **hints)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        从对应数据库中读入</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> model._meta.app_label == <span class="string">'hrs'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'hrs'</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'default'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">db_for_write</span><span class="params">(self, model, **hints)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        写数据到对应数据库</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> model._meta.app_label == <span class="string">'hrs'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'hrs'</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'default'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allow_relation</span><span class="params">(self, obj1, obj2, **hints)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        若app已注册,允许建立联系</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allow_migrate</span><span class="params">(self, db, app_label, model_name=None, **hints)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        允许迁移</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<h3 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h3><p><strong>反向生成和反向迁移</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向生成key为hrs的数据库模型到backend.models.py中</span></span><br><span class="line">python manage.py inspectdb --database hrs &gt; backend/models.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正向迁移key为hrs的数据库中</span></span><br><span class="line">python manage.py migrate --database=hrs</span><br></pre></td></tr></table></figure>
+<p><strong>给模型文件指定数据库</strong></p>
+<p>如上, 在common.models.py中, 在需要的模型对象中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在meta中指定这个类对应的数据库, hrs是数据库配置中的key</span></span><br><span class="line">app_label = <span class="string">'hrs'</span></span><br></pre></td></tr></table></figure>
+<p>##正向迁移和反向生成</p>
+<h3 id="正向迁移"><a href="#正向迁移" class="headerlink" title="正向迁移"></a>正向迁移</h3><p>通过手动建立模型(models), 然后使用<code>python manage.py makemigrations</code> 进行生成迁移文件, 在使用<code>python manage.py migrate</code>执行迁移</p>
+<h3 id="反向生成"><a href="#反向生成" class="headerlink" title="反向生成"></a>反向生成</h3><p><strong>生成SQL文件</strong></p>
+<p>使用<strong>PowerDesigner</strong>反向生成逻辑模型, 将逻辑模型生成物理模型, 再将物理模型反向生成数据库建库建表sql文件</p>
+<p><strong>生成数据库表</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录mysql(以MySQL为例)</span></span><br><span class="line">source &lt;sql文件位置&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>反向生成模型</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在settings配置好数据库后, 默认反向生成key为default的数据库模型文件</span></span><br><span class="line"><span class="comment"># backend是app名</span></span><br><span class="line">python manage.py inspectdb &gt; backend/models.py</span><br></pre></td></tr></table></figure>
+<h2 id="数据库性能优化"><a href="#数据库性能优化" class="headerlink" title="数据库性能优化"></a>数据库性能优化</h2><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p><strong>查看SQL执行情况</strong></p>
+<ul>
+<li><p>Django中可以配置日志, 通过日志查看数据库操作执行时间和执行次数</p>
+</li>
+<li><p><a href="https://django-debug-toolbar.readthedocs.io/en/latest/" target="_blank" rel="noopener">Django-Debug-Toolbar</a></p>
+</li>
+</ul>
+<p>日志级别**</p>
+<blockquote>
+<p>NOTSET &lt; DEBUG &lt; INFO &lt; WARNING &lt; ERROR &lt; FATAL</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">LOGGING = &#123;</span><br><span class="line">    <span class="string">'version'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'disable_existing_loggers'</span>: <span class="keyword">False</span>,</span><br><span class="line">    <span class="comment"># 配置日志格式化器</span></span><br><span class="line">    <span class="string">'formatters'</span>: &#123;</span><br><span class="line">        <span class="string">'simple'</span>: &#123;</span><br><span class="line">            <span class="string">'format'</span>: <span class="string">'%(asctime)s %(module)s.%(funcName)s: %(message)s'</span>,</span><br><span class="line">            <span class="string">'datefmt'</span>: <span class="string">'%Y-%m-%d %H:%M:%S'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'verbose'</span>: &#123;</span><br><span class="line">            <span class="string">'format'</span>: <span class="string">'%(asctime)s %(levelname)s [%(process)d-%(threadName)s] '</span></span><br><span class="line">                      <span class="string">'%(module)s.%(funcName)s line %(lineno)d: %(message)s'</span>,</span><br><span class="line">            <span class="string">'datefmt'</span>: <span class="string">'%Y-%m-%d %H:%M:%S'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 配置日志过滤器</span></span><br><span class="line">    <span class="string">'filters'</span>: &#123;</span><br><span class="line">        <span class="string">'require_debug_true'</span>: &#123;</span><br><span class="line">            <span class="string">'()'</span>: <span class="string">'django.utils.log.RequireDebugTrue'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 配置日志处理器</span></span><br><span class="line">    <span class="string">'handlers'</span>: &#123;</span><br><span class="line">        <span class="string">'console'</span>: &#123;</span><br><span class="line">            <span class="string">'class'</span>: <span class="string">'logging.StreamHandler'</span>,</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'DEBUG'</span>,</span><br><span class="line">            <span class="string">'filters'</span>: [<span class="string">'require_debug_true'</span>],</span><br><span class="line">            <span class="string">'formatter'</span>: <span class="string">'simple'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'file1'</span>: &#123;</span><br><span class="line">            <span class="string">'class'</span>: <span class="string">'logging.handlers.TimedRotatingFileHandler'</span>,</span><br><span class="line">            <span class="string">'filename'</span>: <span class="string">'access.log'</span>,</span><br><span class="line">            <span class="string">'when'</span>: <span class="string">'W0'</span>,</span><br><span class="line">            <span class="string">'backupCount'</span>: <span class="number">12</span>,</span><br><span class="line">            <span class="string">'formatter'</span>: <span class="string">'simple'</span>,</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'INFO'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'file2'</span>: &#123;</span><br><span class="line">            <span class="string">'class'</span>: <span class="string">'logging.handlers.TimedRotatingFileHandler'</span>,</span><br><span class="line">            <span class="string">'filename'</span>: <span class="string">'error.log'</span>,</span><br><span class="line">            <span class="string">'when'</span>: <span class="string">'D'</span>,</span><br><span class="line">            <span class="string">'backupCount'</span>: <span class="number">31</span>,</span><br><span class="line">            <span class="string">'formatter'</span>: <span class="string">'verbose'</span>,</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'WARNING'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 配置日志器</span></span><br><span class="line">    <span class="string">'loggers'</span>: &#123;</span><br><span class="line">        <span class="string">'django'</span>: &#123;</span><br><span class="line">            <span class="string">'handlers'</span>: [<span class="string">'console'</span>, <span class="string">'file1'</span>, <span class="string">'file2'</span>],</span><br><span class="line">            <span class="string">'propagate'</span>: <span class="keyword">True</span>,</span><br><span class="line">            <span class="string">'level'</span>: <span class="string">'DEBUG'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="取消外键约束"><a href="#取消外键约束" class="headerlink" title="取消外键约束"></a>取消外键约束</h3><p>如果要优化数据库性能, 就要减少不必要的外键约束, 通过代码层面的约束来保证参照完整性<br>使用正向工程时, 可以给<code>ForeignKey</code>添加一个<code>db_contraint=False</code>的设定来取消外键约束</p>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>如果查询对象的同时还是要查询它的关联对象, 就会引发1+N查询(或N+1查询), 程序的性能会下降的非常明显, 而且数据库的压力非常大。因此, 必须对自动生成的SQL语句进行优化.</p>
+<p>如果有<u>一对多关联</u>, 需要用连接查询加载关联对象, 使用<code>select_related()</code>加载</p>
+<p>如果有<u>多对多关联</u>, 需要用连接查询加载关联对象, 使用<code>prefetch_related()</code>加载</p>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>通过映射(投影)的方式, 限制查询对象的字段</p>
+<p>使用<code>only()</code>限制只要哪些字段</p>
+<p>使用<code>defer</code>限制不要哪些字段</p>
+<p>###原生SQL</p>
+<p>Django中可以使用聚合函数<code>aggregate()</code>和分组函数<code>annotate()</code>, 但是真正使用对象来操作时, 非常麻烦, 可使用原生SQL代替ORM的方式</p>
+<blockquote>
+<p>from django.db import connection, connections</p>
+</blockquote>
+<p>通过引入<u>connection</u>来选择默认的数据库连接去建立游标对象;  <u>coonections</u>可以用字典的形式取任意数据库的连接的游标, 它的键对应数据库配置的键 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> connections</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chart_data</span><span class="params">(request)</span>:</span></span><br><span class="line">    names, totals = [], []</span><br><span class="line">    <span class="keyword">with</span> connections[<span class="string">'default'</span>].cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        cursor.execute(<span class="string">'select name, total from ( '</span></span><br><span class="line">                       <span class="string">' select agentid, count(agentid) as total from tb_agent_estate group by(agentid)) as t1 '</span></span><br><span class="line">                       <span class="string">' inner join tb_agent t2 on t1.agentid=t2.agentid'</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> cursor.fetchall():</span><br><span class="line">        names.append(row[<span class="number">0</span>])</span><br><span class="line">        totals.append(row[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'names'</span>: names, <span class="string">'totals'</span>: totals&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="短信服务"><a href="#短信服务" class="headerlink" title="短信服务"></a>短信服务</h2><p>借助第三方短信服务提供商, 如<a href="https://www.yunpian.com/" target="_blank" rel="noopener">云片</a>,<a href="https://sendcloud.sohu.com/" target="_blank" rel="noopener">SendClound</a> <a href="https://luosimao.com/" target="_blank" rel="noopener">螺丝帽</a>, <a href="http://www.shmiaosai.com/" target="_blank" rel="noopener">秒赛</a>, <a href="http://www.ihuyi.com/?s=baidu&amp;m=ppc&amp;k=9087521" target="_blank" rel="noopener">互亿无线</a>,<a href="https://www.ucpaas.com/" target="_blank" rel="noopener">云之讯</a>等等这样的平台非常多, 我们选择的时候通常以它的性价比, 短信到达率,到达时间作为使用的参考点。下面以秒赛作为例子:</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>进入秒赛官网,注册登录</strong></p>
+<p><strong>进行签名配置</strong></p>
+<p><strong>进行模板配置</strong>, 后续代码中的message内容就源于此</p>
+<p><strong>找到API或者实例中python部分</strong></p>
+<p><strong>官方给的基础的实现</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SendCode</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send</span><span class="params">(self, account, pswd, mobile, msg, ts, state)</span>:</span></span><br><span class="line">        url = <span class="string">'http://139.196.108.241:8080'</span> + &#123;</span><br><span class="line">            <span class="number">1</span>: <span class="string">'/Api/HttpSendSMYzm.ashx'</span>,</span><br><span class="line">            <span class="number">2</span>: <span class="string">'/Api/HttpSendSMYx.ashx'</span>,</span><br><span class="line">            <span class="number">3</span>: <span class="string">'/Api/HttpSendSMVoice.ashx'</span></span><br><span class="line">        &#125;[state]</span><br><span class="line">        <span class="keyword">if</span> ts != <span class="string">""</span>:</span><br><span class="line">            m = hashlib.md5()</span><br><span class="line">            strs = account + pswd + str(ts)</span><br><span class="line">            m.update(strs.encode(<span class="string">"utf8"</span>))</span><br><span class="line">            pswd = m.hexdigest()</span><br><span class="line">        body = &#123;<span class="string">"account"</span>: account, <span class="string">"pswd"</span>: pswd, <span class="string">"mobile"</span>: mobile, <span class="string">"msg"</span>: msg, <span class="string">"ts"</span>: str(ts)&#125;</span><br><span class="line"></span><br><span class="line">        header_dict = &#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko'</span>,</span><br><span class="line">                       <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>&#125;</span><br><span class="line"></span><br><span class="line">        response = requests.post(url, data=body, headers=header_dict)</span><br><span class="line">        <span class="keyword">return</span> json.loads(response.text)</span><br><span class="line"><span class="comment"># account 用户账号</span></span><br><span class="line"><span class="comment"># pswd 必填参数。用户密码</span></span><br><span class="line"><span class="comment"># mobile 必填参数。合法的手机号码</span></span><br><span class="line"><span class="comment"># msg  必填参数。短信内容</span></span><br><span class="line"><span class="comment"># ts  可选参数，时间戳，格式yyyyMMddHHmmss</span></span><br><span class="line"><span class="comment"># state 必填参数   状态  1:验证码短信  2:营销短信  3:语音验证码</span></span><br></pre></td></tr></table></figure>
+<p><strong>进行自己的封装</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ACCOUNT = xxx</span><br><span class="line">PASSWORD = xxx</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_code</span><span class="params">(length=<span class="number">6</span>)</span>:</span></span><br><span class="line">    items = StringIO()</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(length):</span><br><span class="line">        items.write(str(random.randint(<span class="number">0</span>, <span class="number">9</span>)))</span><br><span class="line">    <span class="keyword">return</span> items.getvalue()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">message</span><span class="params">(code)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f'您的验证码是<span class="subst">&#123;code&#125;</span>，如非本人操作，请忽略本短信！'</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_msg</span><span class="params">(mobile, code)</span>:</span></span><br><span class="line">    sd = SendCode()</span><br><span class="line">    msg = message(code)</span><br><span class="line">    res = sd.send(ACCOUNT, PASSWORD, mobile, msg, (int(time.time())), <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>视图函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">message_code</span><span class="params">(request, mobile)</span>:</span></span><br><span class="line">    <span class="string">"""发送短信验证码"""</span></span><br><span class="line">    code = random_code()</span><br><span class="line">    res = send_msg(mobile, code)</span><br><span class="line">    <span class="comment"># 调用短信网关的函数返回字典对象就用JsonResponse处理</span></span><br><span class="line">    <span class="comment"># 若返回字符串就用HttpResponse并制定MIME类型处理即可, ensure_ascii使在返回的数据能以真正的编码方式呈现(这里是utf-8,没有返回的数据就会以utf-8编码的字节形式呈现)</span></span><br><span class="line">    msg = json.dumps(&#123;<span class="string">'code'</span>: <span class="number">200</span>, <span class="string">'msg'</span>: <span class="string">'短信已发出, 注意查收'</span>&#125;, ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(msg, content_type=<span class="string">'application/json'</span>)</span><br><span class="line">    <span class="comment"># return JsonResponse(&#123;'code': 200, 'msg': '短信已发出, 注意查收'&#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><h4 id="缓存配置"><a href="#缓存配置" class="headerlink" title="缓存配置"></a>缓存配置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">CACHES = &#123;</span><br><span class="line">    <span class="comment"># 默认缓存</span></span><br><span class="line">    <span class="comment"># LOCATION中配置redis的实际位置, 如果有奴隶redis, 只需将他们放到主人的后面即可.</span></span><br><span class="line">    <span class="comment"># 例如: 'LOCATION': [master, slave1, slave2 ...]</span></span><br><span class="line">    <span class="comment"># KEY_PREFIX 键的前缀, 在实际开发中区分不同应用的关键</span></span><br><span class="line">    <span class="comment"># redis默认下有16库, 索引号0-15, 端口号6379后接数据库索引号</span></span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django_redis.cache.RedisCache'</span>,</span><br><span class="line">        <span class="string">'LOCATION'</span>: [</span><br><span class="line">            <span class="string">'redis://xx.xxx.xxx.xx:6379/0'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'KEY_PREFIX'</span>: <span class="string">'app_name'</span>,</span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'CLIENT_CLASS'</span>: <span class="string">'django_redis.client.DefaultClient'</span>,</span><br><span class="line">            <span class="string">'CONNECTION_POOL_KWARGS'</span>: &#123;</span><br><span class="line">                <span class="string">'max_connections'</span>: <span class="number">1000</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 页面缓存</span></span><br><span class="line">    <span class="string">'page'</span>: &#123;</span><br><span class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django_redis.cache.RedisCache'</span>,</span><br><span class="line">        <span class="string">'LOCATION'</span>: [</span><br><span class="line">            <span class="string">'redis://xx.xxx.xxx.xx:6379/1'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'KEY_PREFIX'</span>: <span class="string">'app_name:page'</span>,</span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'CLIENT_CLASS'</span>: <span class="string">'django_redis.client.DefaultClient'</span>,</span><br><span class="line">            <span class="string">'CONNECTION_POOL_KWARGS'</span>: &#123;</span><br><span class="line">                <span class="string">'max_connections'</span>: <span class="number">500</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 会话缓存</span></span><br><span class="line">    <span class="comment"># TIMEOUT 超时时间, 此处为14天</span></span><br><span class="line">    <span class="string">'session'</span>: &#123;</span><br><span class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django_redis.cache.RedisCache'</span>,</span><br><span class="line">        <span class="string">'LOCATION'</span>: [</span><br><span class="line">            <span class="string">'redis://xx.xxx.xxx.xx:6379/2'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'KEY_PREFIX'</span>: <span class="string">'app_name:session'</span>,</span><br><span class="line">        <span class="string">'TIMEOUT'</span>: <span class="number">1209600</span>,</span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'CLIENT_CLASS'</span>: <span class="string">'django_redis.client.DefaultClient'</span>,</span><br><span class="line">            <span class="string">'CONNECTION_POOL_KWARGS'</span>: &#123;</span><br><span class="line">                <span class="string">'max_connections'</span>: <span class="number">2000</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment"># 接口数据缓存</span></span><br><span class="line">    <span class="string">'api'</span>: &#123;</span><br><span class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django_redis.cache.RedisCache'</span>,</span><br><span class="line">        <span class="string">'LOCATION'</span>: [</span><br><span class="line">            <span class="string">'redis://xx.xxx.xxx.xx:6379/3'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'KEY_PREFIX'</span>: <span class="string">'app_name:api'</span>,</span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'CLIENT_CLASS'</span>: <span class="string">'django_redis.client.DefaultClient'</span>,</span><br><span class="line">            <span class="string">'CONNECTION_POOL_KWARGS'</span>: &#123;</span><br><span class="line">                <span class="string">'max_connections'</span>: <span class="number">500</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="session信息缓存到redis中"><a href="#session信息缓存到redis中" class="headerlink" title="session信息缓存到redis中"></a>session信息缓存到redis中</h4><p>在已经配置好缓存的情况下, 将下面的配置添加到系统配置中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SESSION_ENGINE = <span class="string">'django.contrib.sessions.backends.cache'</span></span><br><span class="line">SESSION_CACHE_ALIAS = <span class="string">'session'</span></span><br></pre></td></tr></table></figure>
+<p>添加session信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在视图函数执行的时候, 添加session信息, 将会将session缓存到redis中</span></span><br><span class="line">request.session[<span class="string">'mobile_code'</span>] = code</span><br></pre></td></tr></table></figure>
+<h4 id="短信记录缓存到redis中"><a href="#短信记录缓存到redis中" class="headerlink" title="短信记录缓存到redis中"></a>短信记录缓存到redis中</h4><p>由于已经配置好了redis缓存, 我们利用缓存直接在发送短信时候, 将自定义内容缓存到redis中;当然, 也可以通过redis连接的方式,将数据存入到redis中</p>
+<p><strong>通过cache和caches</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cache使用缓存中的key为default的库, cache使用键值对的方式去找配置的对应一个redis库 </span></span><br><span class="line"><span class="keyword">from</span> django.core.cache <span class="keyword">import</span> cache, caches</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在发送短信时, 将短信记录存入redis, 设置超时时间120秒</span></span><br><span class="line">caches[<span class="string">'default'</span>].set(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>, code, timeout=<span class="number">120</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>通过redis连接</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过django-redis获得原生redis连接, 功能过多, 更具有拓展性</span></span><br><span class="line"><span class="comment"># django-redis默认使用Pickle序列化来(反)序列化字符串(字符串与字节变换)</span></span><br><span class="line"><span class="keyword">from</span> django_redis <span class="keyword">import</span> get_redis_connection</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在发送短信, 将短信记录存入到redis, 设置超时时间120秒, alias可以指定是哪个redis库</span></span><br><span class="line">redis_conn = get_redis_connection(alias=<span class="string">'default'</span>)</span><br><span class="line">redis_conn.set(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>, code, ex=<span class="number">120</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="短信发送频率限制"><a href="#短信发送频率限制" class="headerlink" title="短信发送频率限制"></a>短信发送频率限制</h4><p>实际使用中, 我们不可能让用户发送短信后又可以马上发复发送短信, 这无疑大大增加了成本, 并且短信的处理也是需要时间的, 因此应该将发送短信限制一个有效时间, 如60秒或者120秒</p>
+<p>上面已经实现了将发送短信的记录存入到redis中, 因此我们只需在发送短信给一个判断, 去取这个redis记录, 如果没有, 当然你可以继续发送短信, 若有记录, 你就必须等待这个记录的有效时间长度了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 采用django框架封装的redis调用(简单弱小)</span></span><br><span class="line"><span class="keyword">if</span> caches[<span class="string">'default'</span>].get(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>):</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'code'</span>: <span class="number">1001</span>, <span class="string">'message'</span>: <span class="string">'120秒后可重新发送'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 采用原生redis连接, 可以使用所有redis的方法或者类型</span></span><br><span class="line"><span class="keyword">if</span> get_redis_connection().get(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>):</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'code'</span>: <span class="number">1001</span>, <span class="string">'message'</span>: <span class="string">'120秒后可重新发送'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="中间件控制"><a href="#中间件控制" class="headerlink" title="中间件控制"></a>中间件控制</h4><p>对应上面短信有效时间限制处理的另外一种有效的方式, 就是中间件。它更准确应该成为拦截过滤器, 属于代理模式</p>
+<p>django最新关于中间件的写法, 已经变成了类似于装饰器的写法, 在函数中写函数的方式。</p>
+<p><strong>中间件函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> django_redis <span class="keyword">import</span> get_redis_connection</span><br><span class="line"></span><br><span class="line">PATTERN = re.compile(<span class="string">r'/common/send_msg/(?P&lt;mobile&gt;1[3-9]\d&#123;9&#125;)'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">block_sms_middleware</span><span class="params">(get_resp)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">middleware</span><span class="params">(request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="comment"># 对应执行函数匹配执行的路由</span></span><br><span class="line">        <span class="keyword">if</span> request.path.startswith(<span class="string">'/common/send_msg'</span>):</span><br><span class="line">            matcher = PATTERN.fullmatch(request.path)</span><br><span class="line">            <span class="comment"># 手机号码格式正确</span></span><br><span class="line">            <span class="keyword">if</span> matcher:</span><br><span class="line">                mobile = matcher.group(<span class="string">'mobile'</span>)</span><br><span class="line">                conn = get_redis_connection(alias=<span class="string">'default'</span>)</span><br><span class="line">                <span class="comment"># 如果redis中已经存在短信记录, 就直接返回</span></span><br><span class="line">                <span class="keyword">if</span> conn.get(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>):</span><br><span class="line">                    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'code'</span>: <span class="number">1001</span>, <span class="string">'message'</span>: <span class="string">'120秒后可重新发送'</span>&#125;)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    resp = get_resp(request, *args, **kwargs)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'code'</span>: <span class="number">1001</span>, <span class="string">'message'</span>: <span class="string">'手机号码不正确'</span>&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            resp = get_resp(request, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> resp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> middleware</span><br></pre></td></tr></table></figure>
+<p><strong>配置</strong>   在系统配置文件中加入要使用中间件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'common.middlewares.block_sms_middleware'</span>,</span><br></pre></td></tr></table></figure>
+<h4 id="异步化处理"><a href="#异步化处理" class="headerlink" title="异步化处理"></a>异步化处理</h4><p>如上, 调用第三方平台而且不需要马上出结果的应用, 我们都应该进行异步化处理。因为, 调用三方平台所需要的时间总是不可预估的, 不能使这个调用阻塞到其他功能，而解决这个问题的方式, 可以采用消息队列处理, 让执行函数延期执行</p>
+<p>python三方库中, 提供一个异步化处理的库– <code>celery</code></p>
+<p>注意: 如果你使用的是<strong>windows系统并且celery的版本是4</strong>以上的时候, 因为celery对它已经不再支持, 你就需要考虑再安装一个<strong><code>eventlet</code></strong>的库.</p>
+<p><strong>配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注册环境变量</span></span><br><span class="line">os.environ.setdefault(<span class="string">'DJANGO_SETTINGS_MODULE'</span>, <span class="string">'fangtx.settings'</span>)</span><br><span class="line"><span class="comment"># broker代表消息代理(从哪里获取队列服务), backend将所得结果存储起来</span></span><br><span class="line">app = celery.Celery(<span class="string">'common.utils'</span>,</span><br><span class="line">                     broker=<span class="string">'redis://:123456@xx.xxx.xxx.xx:6379/0'</span>,)</span><br><span class="line"><span class="comment"># 从项目的配置文件读取Celery配置信息</span></span><br><span class="line">app.config_from_object(<span class="string">'django.conf:settings'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>使用</strong></p>
+<p>有了上面的配置, 就是使用<a href="mailto:`@app.task" target="_blank" rel="noopener">`@app.task</a>`作为你想要使用函数的装饰器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_msg</span><span class="params">(mobile, code)</span>:</span></span><br><span class="line">    sd = SendCode()</span><br><span class="line">    msg = message(code)</span><br><span class="line">    res = sd.send(ACCOUNT, PASSWORD, mobile, msg, (int(time.time())), <span class="number">1</span>)</span><br><span class="line">    redis_conn = get_redis_connection(alias=<span class="string">'default'</span>)</span><br><span class="line">    redis_conn.set(<span class="string">f'mobile_code:<span class="subst">&#123;mobile&#125;</span>'</span>, code, ex=<span class="number">120</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>在调用上面被装饰的函数时, 使用<code>send_msg.delay()</code>的方式, 使用异步化处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">message_code</span><span class="params">(request, mobile)</span>:</span></span><br><span class="line">    <span class="string">"""发送短信验证码"""</span></span><br><span class="line">    code = random_code()</span><br><span class="line">    request.session[<span class="string">'mobile_code'</span>] = code</span><br><span class="line">    <span class="comment"># delay延期处理</span></span><br><span class="line">    res = send_msg.delay(mobile, code)</span><br><span class="line">    msg = json.dumps(&#123;<span class="string">'code'</span>: <span class="number">200</span>, <span class="string">'msg'</span>: <span class="string">'短信已发出, 注意查收'</span>&#125;, ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(msg, content_type=<span class="string">'application/json'</span>)</span><br></pre></td></tr></table></figure>
+<p>此时, 我们发送的短信就会被缓存到redis的列表类型的数据中， 它会帮我们创建一个<strong>key为celery的列表数据</strong>, 并<strong>遵守队列即先入先出</strong>的原则。当我们使用下面的命令就会帮我们处理. 这也是典型的空间换取时间的做法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A common.utils worker -l info -P eventlet</span><br></pre></td></tr></table></figure>
+<h2 id="Django-Rest-Framework"><a href="#Django-Rest-Framework" class="headerlink" title="Django-Rest-Framework"></a>Django-Rest-Framework</h2><p><strong>rest</strong>和<strong>restful</strong> 知识点</p>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p><strong>安装</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install djangorestframework</span><br></pre></td></tr></table></figure>
+<p><strong>配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'rest-framework'</span>,</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p><strong>rest-framework配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">REST_FRAMEWORK = &#123;</span><br><span class="line">    <span class="comment"># 配置默认页面大小</span></span><br><span class="line">    <span class="string">'PAGE_SIZE'</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="comment"># 配置默认的分页类</span></span><br><span class="line">    <span class="string">'DEFAULT_PAGINATION_CLASS'</span>: <span class="string">'rest_framework.pagination.PageNumberPagination'</span>,</span><br><span class="line">    <span class="comment"># 配置默认的限流类</span></span><br><span class="line">    <span class="string">'DEFAULT_THROTTLE_CLASSES'</span>: (<span class="string">'rest_framework.throttling.AnonRateThrottle'</span>, ),</span><br><span class="line">    <span class="comment"># 配置限流的策略</span></span><br><span class="line">    <span class="comment"># 'DEFAULT_THROTTLE_RATES': &#123;</span></span><br><span class="line">    <span class="comment">#    'anon': '3/min',</span></span><br><span class="line">    <span class="comment"># &#125;,</span></span><br><span class="line">    <span class="comment"># 配置默认授权类</span></span><br><span class="line">    <span class="comment"># 'DEFAULT_PERMISSION_CLASSES': (</span></span><br><span class="line">    <span class="comment">#     'rest_framework.permissions.IsAuthenticated',</span></span><br><span class="line">    <span class="comment"># ),</span></span><br><span class="line">    <span class="comment"># 配置默认认证类</span></span><br><span class="line">    <span class="comment"># 'DEFAULT_AUTHENTICATION_CLASSES': (</span></span><br><span class="line">    <span class="comment">#     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',</span></span><br><span class="line">    <span class="comment"># ),</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>rest-framework分页器有3种: 分别为<code>PageNumberPagination / LimitOffsetPagination / CursorPagination</code></li>
+<li>限流策略, 即限制同一个ip访问接口的次数, 在FBV中使用<code>@throttle_classes(())</code>装饰器能够阻止限流</li>
+</ul>
+<h3 id="序列化器"><a href="#序列化器" class="headerlink" title="序列化器"></a>序列化器</h3><p>如果我想要返回的数据是几张表(多个模型)结合出来的复杂数据结构, 这个时候直接返回模型中全部数据是不满足的, 可以利用<code>rest_framework</code>中的<code>serializers</code>编写序列化模块, 将数据序列化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> common.models <span class="keyword">import</span> District</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DistrictSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = District</span><br><span class="line">        <span class="comment"># fields = __all__ 就是使用所有字段</span></span><br><span class="line">        fields = (<span class="string">'distid'</span>, <span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DistrictDetailSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="comment"># 定义一个使用序列化方法的字段</span></span><br><span class="line">    cities = serializers.SerializerMethodField()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 方法名要与上面的字段对应</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_cities</span><span class="params">(district)</span>:</span></span><br><span class="line">        <span class="comment"># 使用自关联字段去找distid</span></span><br><span class="line">        queryset = District.objects.filter(parent__distid=district.distid).only(<span class="string">'distid'</span>, <span class="string">'name'</span>)</span><br><span class="line">        <span class="comment"># results = []</span></span><br><span class="line">        <span class="comment"># for city in queryset:</span></span><br><span class="line">        <span class="comment">#     results.append(DistrictSerializer(city).data)</span></span><br><span class="line">        <span class="comment"># return results</span></span><br><span class="line">        <span class="keyword">return</span> DistrictSerializer(queryset, many=<span class="keyword">True</span>).data</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = District</span><br><span class="line">        fields = (<span class="string">'distid'</span>, <span class="string">'name'</span>, <span class="string">'intro'</span>, <span class="string">'cities'</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AgentSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Agent</span><br><span class="line">        fields = (<span class="string">'agentid'</span>, <span class="string">'name'</span>, <span class="string">'tel'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EstateSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    district = serializers.SerializerMethodField()</span><br><span class="line">    agents = serializers.SerializerMethodField()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_district</span><span class="params">(estate)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> DistrictSerializer(estate.district).data</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_agents</span><span class="params">(estate)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> AgentSerializer(estate.agents, many=<span class="keyword">True</span>).data</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Estate</span><br><span class="line">        fields = <span class="string">'__all__'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HouseTypeSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = HouseType</span><br><span class="line">        fields = <span class="string">'__all__'</span></span><br></pre></td></tr></table></figure>
+<h3 id="装饰器实现缓存"><a href="#装饰器实现缓存" class="headerlink" title="装饰器实现缓存"></a>装饰器实现缓存</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.decorators.cache <span class="keyword">import</span> cache_page</span><br><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> api.serializers <span class="keyword">import</span> DistrictSerializer</span><br><span class="line"><span class="keyword">from</span> api.serializers <span class="keyword">import</span> DistrictDetailSerializer</span><br><span class="line"><span class="comment"># 指定http只使用GET操作</span></span><br><span class="line"><span class="meta">@api_view(['GET'])</span></span><br><span class="line"><span class="comment"># 对于经常使用又不修改的数据, 进行缓存, 下次使用的时候直接读缓存</span></span><br><span class="line"><span class="meta">@cache_page(timeout=None, cache='api')</span></span><br><span class="line"><span class="comment"># 通过cache_page装饰器, 配置缓存和超时时间</span></span><br><span class="line"><span class="comment"># @throttle_classes(())</span></span><br><span class="line"><span class="comment"># 阻止限流</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">provinces</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># 通过自关联字段去找其有没有distid值, 若没有就是省级区域</span></span><br><span class="line">    queryset = District.objects.filter(parent__isnull=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 通过自定义的序列化器序列化数据  many=True表示查询多个对象</span></span><br><span class="line">    serializer = DistrictSerializer(queryset, many=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 通过序列化器获得序列化之后的数据(字典或列表)生成响应</span></span><br><span class="line">    <span class="comment"># 方式1</span></span><br><span class="line">    <span class="comment"># msg = json.dumps(serializer.data, ensure_ascii=False)</span></span><br><span class="line">    <span class="comment"># return HttpResponse(msg, content_type='application/json')</span></span><br><span class="line">    <span class="comment"># 方式2</span></span><br><span class="line">    <span class="comment"># return JsonResponse(serializer.data, safe=False)</span></span><br><span class="line">    <span class="comment"># 方式3</span></span><br><span class="line">    <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(['GET'])</span></span><br><span class="line"><span class="meta">@cache_page(timeout=None, cache='api')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cities</span><span class="params">(request, distid)</span>:</span></span><br><span class="line">    district = District.objects.filter(distid=distid).first()</span><br><span class="line">    serializer = DistrictDetailSerializer(district)</span><br><span class="line">    <span class="keyword">return</span> Response(serializer.data)</span><br></pre></td></tr></table></figure>
+<p>使用id和pid的方式, pid为id的上一级id, 并且将pid指定为自关联字段, 通过上面的<strong>cities</strong>方法, 就能逐层显示数据(查询省显示市一级, 查询市显示县一级)。主要应用于<strong>能够自关联</strong>的模型结构。</p>
+<table>
+<thead>
+<tr>
+<th>通过省查看市一级</th>
+<th>通过市查看县一级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://upload-images.jianshu.io/upload_images/13692213-87f1f5532b59d86f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="district"></td>
+<td><img src="https://upload-images.jianshu.io/upload_images/13692213-afcac788148a4b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="district"></td>
+</tr>
+</tbody>
+</table>
+<p><code>@cache_page</code>用于基于函数的视图函数提供缓存的装饰器</p>
+<p>rest-framework配置中已经提供了<strong>分页</strong>功能, 但是注意, 这个功能只对CBV(基于类的视图函数)生效, 而不对上面的FBV(基于函数的视图函数)生效。</p>
+<p><strong>基于类使用装饰器缓存</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@method_decorator(cache_page(timeout=120, cache=&apos;api&apos;), name=&apos;get&apos;)</span><br><span class="line">class EstatesView(ListAPIView):</span><br><span class="line">    # 指定查询集</span><br><span class="line">    queryset = Estate.objects.all().select_related(&apos;district&apos;).prefetch_related(&apos;agents&apos;)</span><br><span class="line">    # 指定序列化器</span><br><span class="line">    serializer_class = EstateSerializer</span><br></pre></td></tr></table></figure>
+<p>对于使用类的视图函数, 要使用<code>@method_decorator</code>装饰器, <code>name=&#39;get&#39;</code>参数表示装饰器要装饰的函数使用, 它也表示HTTP要操作的动词</p>
+<p>使用装饰器非常灵活, 这样我们能够自定义</p>
+<h3 id="ListAPIView"><a href="#ListAPIView" class="headerlink" title="ListAPIView"></a>ListAPIView</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过drf-extension配置缓存, 使用CacheResponseMixin混入类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EstatesView</span><span class="params">(CacheResponseMixin, ListAPIView)</span>:</span></span><br><span class="line">    <span class="comment"># 指定查询集</span></span><br><span class="line">    queryset = Estate.objects.all().select_related(<span class="string">'district'</span>).prefetch_related(<span class="string">'agents'</span>)</span><br><span class="line">    <span class="comment"># 指定序列化器</span></span><br><span class="line">    serializer_class = EstateSerializer</span><br></pre></td></tr></table></figure>
+<p><strong>路由</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'estates/'</span>, views.EstatesView.as_view(), name=<span class="string">'estates'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><code>ListAPIView</code>是继承于<code>mixins.ListModelMixin, GenericAPIView</code>, 所以有列出所有记录的功能</p>
+<p><strong>drf-extensions</strong>的使用需要安装<code>pip install drf-extensions</code>， 并且配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置DRF扩展来支持缓存API接口调用结果</span></span><br><span class="line">REST_FRAMEWORK_EXTENSIONS = &#123;</span><br><span class="line">    <span class="string">'DEFAULT_CACHE_RESPONSE_TIMEOUT'</span>: <span class="number">300</span>,</span><br><span class="line">    <span class="comment"># 使用哪个缓存库的key</span></span><br><span class="line">    <span class="string">'DEFAULT_USE_CACHE'</span>: <span class="string">'api'</span>,</span><br><span class="line">    <span class="comment"># 配置默认缓存单个对象的key函数</span></span><br><span class="line">    <span class="string">'DEFAULT_OBJECT_CACHE_KEY_FUNC'</span>: <span class="string">'rest_framework_extensions.utils.default_object_cache_key_func'</span>,</span><br><span class="line">    <span class="comment"># 配置默认缓存对象列表的key函数</span></span><br><span class="line">    <span class="string">'DEFAULT_LIST_CACHE_KEY_FUNC'</span>: <span class="string">'rest_framework_extensions.utils.default_list_cache_key_func'</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="ModelViewSet"><a href="#ModelViewSet" class="headerlink" title="ModelViewSet"></a>ModelViewSet</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HouseTypeViewSet</span><span class="params">(CacheResponseMixin, ModelViewSet)</span>:</span></span><br><span class="line">    queryset = HouseType.objects.all()</span><br><span class="line">    serializer_class = HouseTypeSerializer</span><br><span class="line">    <span class="comment"># 指定不分页</span></span><br><span class="line">    pagination_class = <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<p><code>ModelViewSet</code>这个类其实继承于多个操作模型的类, 因此它能够实现查看一条或多条记录, 增加, 修改, 删除的功能</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.ListModelMixin, GenericViewSet</span><br></pre></td></tr></table></figure>
+<p>除此还有一个<code>ReadOnlyModelViewSet</code> 它只支持查看一条和多条的功能</p>
+<p><strong>路由</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router = DefaultRouter()</span><br><span class="line"><span class="comment"># 注册路由集, 可使用多个路由path</span></span><br><span class="line">router.register(<span class="string">'housetypes'</span>, HouseTypeViewSet)</span><br><span class="line">urlpatterns += router.urls</span><br></pre></td></tr></table></figure>
+<h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><h3 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h3><h2 id="Django-Debug-Toolbar"><a href="#Django-Debug-Toolbar" class="headerlink" title="Django-Debug-Toolbar"></a>Django-Debug-Toolbar</h2><p>用于Django调试的工具栏, 提供了查看SQL执行记录 / 查看缓存记录 / 查看执行时间 / 查看日志 / 查看模板 / 查看使用静态文件记录等功能, 非常强大。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-debug-toolbar</span><br></pre></td></tr></table></figure>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p><strong>系统配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'debug_toolbar'</span>,</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEBUG_TOOLBAR_CONFIG = &#123;</span><br><span class="line">    <span class="string">'JQUERY_URL'</span>: <span class="string">'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js'</span>,</span><br><span class="line">    <span class="string">'SHOW_COLLAPSED'</span>: <span class="keyword">True</span>,</span><br><span class="line">    <span class="string">'SHOW_TOOLBAR_CALLBACK'</span>: <span class="keyword">lambda</span> x: <span class="keyword">True</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    <span class="string">'debug_toolbar.middleware.DebugToolbarMiddleware'</span>,</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p><strong>路由</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">if</span> settings.DEBUG:</span><br><span class="line">    <span class="keyword">import</span> debug_toolbar</span><br><span class="line">    urlpatterns.insert(<span class="number">0</span>, path(<span class="string">"__debug__/"</span>, include(debug_toolbar.urls)))</span><br></pre></td></tr></table></figure>
+<p><strong>运行</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-030f9b4658bd1da5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620" alt="DRF"></p>
+<h2 id="图形验证码"><a href="#图形验证码" class="headerlink" title="图形验证码"></a>图形验证码</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+<div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------end-------------</div>
+
+</div>
+
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/inspectdb/" rel="tag"><i class="fa fa-tag"></i> inspectdb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/docker简单上手/" rel="next" title="docker简单上手">
+                <i class="fa fa-chevron-left"></i> docker简单上手
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/12/Django反向迁移多数据库/" rel="prev" title="Django-扩展">
+                Django-扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/you.jpeg"
+                alt="rzlong" />
+            
+              <p class="site-author-name" itemprop="name">rzlong</p>
+              <p class="site-description motion-element" itemprop="description">If should see you, after long year. How <br> should i greet, with silence and tears.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/rzlong" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="coding"><i class="fa fa-fw fa-spinner"></i>coding</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.baidu.com" target="_blank" title="weibo"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/cae36121456c" target="_blank" title="简书"><i class="fa fa-fw fa-copy"></i>简书</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多路数据库"><span class="nav-number">1.</span> <span class="nav-text">多路数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移"><span class="nav-number">1.2.</span> <span class="nav-text">迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向迁移"><span class="nav-number">1.3.</span> <span class="nav-text">正向迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向生成"><span class="nav-number">1.4.</span> <span class="nav-text">反向生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库性能优化"><span class="nav-number">2.</span> <span class="nav-text">数据库性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志"><span class="nav-number">2.1.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消外键约束"><span class="nav-number">2.2.</span> <span class="nav-text">取消外键约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接查询"><span class="nav-number">2.3.</span> <span class="nav-text">连接查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射"><span class="nav-number">2.4.</span> <span class="nav-text">映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短信服务"><span class="nav-number">3.</span> <span class="nav-text">短信服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">3.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.2.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存配置"><span class="nav-number">3.2.1.</span> <span class="nav-text">缓存配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session信息缓存到redis中"><span class="nav-number">3.2.2.</span> <span class="nav-text">session信息缓存到redis中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#短信记录缓存到redis中"><span class="nav-number">3.2.3.</span> <span class="nav-text">短信记录缓存到redis中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#短信发送频率限制"><span class="nav-number">3.2.4.</span> <span class="nav-text">短信发送频率限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间件控制"><span class="nav-number">3.2.5.</span> <span class="nav-text">中间件控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步化处理"><span class="nav-number">3.2.6.</span> <span class="nav-text">异步化处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django-Rest-Framework"><span class="nav-number">4.</span> <span class="nav-text">Django-Rest-Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置"><span class="nav-number">4.1.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化器"><span class="nav-number">4.2.</span> <span class="nav-text">序列化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器实现缓存"><span class="nav-number">4.3.</span> <span class="nav-text">装饰器实现缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ListAPIView"><span class="nav-number">4.4.</span> <span class="nav-text">ListAPIView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelViewSet"><span class="nav-number">4.5.</span> <span class="nav-text">ModelViewSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证"><span class="nav-number">4.6.</span> <span class="nav-text">认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#授权"><span class="nav-number">4.7.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流"><span class="nav-number">4.8.</span> <span class="nav-text">限流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django-Debug-Toolbar"><span class="nav-number">5.</span> <span class="nav-text">Django-Debug-Toolbar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-1"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形验证码"><span class="nav-number">6.</span> <span class="nav-text">图形验证码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rzlong</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+  <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共61.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+
+</body>
+</html>
