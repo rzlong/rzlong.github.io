@@ -125,18 +125,18 @@
 
 
 
-  <meta name="description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+  <meta name="description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。（相当于虚拟机）">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker简单上手">
 <meta property="og:url" content="http://yoursite.com/2019/01/11/docker简单上手/index.html">
 <meta property="og:site_name" content="拆南墙">
-<meta property="og:description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+<meta property="og:description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。（相当于虚拟机）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-18T11:18:32.537Z">
+<meta property="og:updated_time" content="2019-10-21T09:23:42.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker简单上手">
-<meta name="twitter:description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+<meta name="twitter:description" content="介绍Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。（相当于虚拟机）">
 
 
 
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-18 19:18:32" itemprop="dateModified" datetime="2019-01-18T19:18:32+08:00">2019-01-18</time>
+                <time title="修改时间：2019-10-21 17:23:42" itemprop="dateModified" datetime="2019-10-21T17:23:42+08:00">2019-10-21</time>
               
             
           </span>
@@ -471,12 +471,12 @@
       
 
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。（相当于虚拟机）</p>
 <a id="more"></a>
 <p>Docker属于对Linux容器技术的一种封装，它提供了简单易用的容器使用接口，是目前最流行的 Linux 容器解决方案。Docker将应用程序与该程序的依赖打包在一个文件里面，运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了Docker就再也不用担心环境问题了</p>
 <p>Docker<a href="http://www.docker.org.cn/index.html" target="_blank" rel="noopener">中文社区</a></p>
 <p>Docker<a href="https://www.docker.com/" target="_blank" rel="noopener">官网</a></p>
-<h2 id="安装和操作"><a href="#安装和操作" class="headerlink" title="安装和操作"></a>安装和操作</h2><p>以Cent OS系统为例,  Ubuntu和Mac OS<a href="https://baijiahao.baidu.com/s?id=1592846051245987256&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">可以点这里</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>以Cent OS系统为例,  Ubuntu和Mac OS<a href="https://baijiahao.baidu.com/s?id=1592846051245987256&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">可以点这里</a></p>
 <p><strong>首先</strong>要确认Linux系统是64位的, 目前还不支持32位的系统；Cent OS 7确保内核版本3.10+, CentOS确保内核版本2.6+</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
 <p><strong>安装</strong> 使用包管理工具yum</p>
@@ -489,6 +489,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --help</span><br><span class="line">docker pull --help</span><br><span class="line">总是可以在任何时候使用--help</span><br></pre></td></tr></table></figure>
 <p><strong>下载镜像文件</strong>可以使用docker search <part>检索镜像文件</part></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull xxx</span><br><span class="line">如:</span><br><span class="line">docker pull redis</span><br></pre></td></tr></table></figure>
+<p>对于部分文件可能下载下载非常慢，可以配置镜像<code>curl -sSL http://oyh1cogl9.bkt.clouddn.com/setmirror.sh | sh -s &lt;镜像加速地址&gt;</code></p>
+<p>镜像加速地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;https://reg-mirror.qiniu.com&quot;</span><br><span class="line">&quot;http://hub-mirror.c.163.com&quot;,</span><br><span class="line">&quot;https://registry.docker-cn.com&quot;</span><br></pre></td></tr></table></figure>
+<p>也可以直接到<code>/etc/docker/daemon.json</code>写入配值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;http://hub-mirror.c.163.com&quot;,</span><br><span class="line">        &quot;https://registry.docker-cn.com&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>查看镜像文件</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
 <p><strong>查看已运行的容器</strong></p>
@@ -496,28 +501,71 @@
 <p><strong>查看所有的容器</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container ls -a</span><br></pre></td></tr></table></figure>
 <p><strong>删除容器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rm &lt;container-name&gt;</span><br><span class="line">docker rm -f &lt;container-name&gt; -- 强删</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rm &lt;container-name&gt;</span><br><span class="line">docker rm -f &lt;container-name&gt; -- 强删（删除正在运行中的容器）</span><br><span class="line">docker rmi &lt;container-name&gt;  删除容器的镜像文件</span><br></pre></td></tr></table></figure>
 <p><strong>删除所有容器</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container prune</span><br></pre></td></tr></table></figure>
 <p><strong>停止容器</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;container-name&gt;</span><br><span class="line">docker stop &lt;container-id&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>强行停止</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container kill &lt;container-id&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><p><strong>下载镜像文件</strong></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><p><strong>下载镜像文件</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:5.7</span><br><span class="line"><span class="meta">#</span> 若不输入版本, 默认下最新版本latest</span><br></pre></td></tr></table></figure>
 <p><strong>创建容器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --name mysql57 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 </span><br><span class="line"><span class="meta">#</span> -d表示容器后台运行 -p为宿主机对容器的端口</span><br><span class="line"><span class="meta">#</span> --name指定容器名</span><br><span class="line"><span class="meta">#</span> -e指定mysql的root用户</span><br><span class="line"><span class="meta">#</span> 最后是镜像文件名</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --name mysql57 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 </span><br><span class="line"><span class="meta">#</span> -d表示容器后台运行 -p为宿主机对容器的端口</span><br><span class="line"><span class="meta">#</span> --name指定容器名（用于后续访问）</span><br><span class="line"><span class="meta">#</span> -e指定mysql的root用户</span><br><span class="line"><span class="meta">#</span> 最后是镜像文件名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>docker run</code>命令，如果没有镜像文件，会直接下载再进行搭建服务</p>
+</blockquote>
 <p><strong>数据卷映射</strong>  将数据映射到指定的文件夹中</p>
 <p>实际开发中或应用中, 我们可以随时删除一个容器, 但是应该将数据库类的容器中数据保存起来</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -v /root/mysql/conf:/etc/mysql/mysql.conf.d -v /root/mysql/data:/var/lib/mysql --name mysql57 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7</span><br><span class="line"><span class="meta">#</span> -v 是将docker指定的文件夹映射到本地文件夹</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 配置mysqld.cnf文件</span><br><span class="line">[mysqld]</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pid</span><br><span class="line">socket=/var/run/mysqld/mysqld.sock</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">log-error=/var/log/mysql/error.log</span><br><span class="line">server-id=1</span><br><span class="line">log-bin=/var/log/mysql/mysql-bin.log</span><br><span class="line">expire_logs_days=30</span><br><span class="line">max_binlog_size=256M</span><br><span class="line">symbolic-links=0</span><br></pre></td></tr></table></figure>
-<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><p><strong>下载镜像文件</strong></p>
+<p><strong>进入容器</strong></p>
+<p>当我们创建好容器，此时若想连接数据库，首先需要先进入容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mysql57是mysql对应的容器名</span><br><span class="line">docker exec -it mysql57 /bin/bash</span><br></pre></td></tr></table></figure>
+<p>然后通过<code>mysql -uroot -p</code>的命令连接容器中的数据库</p>
+<p><strong>白名单</strong></p>
+<p>在大量同一公网IP用户访问阿里云服务会导致阿里云判断服务器异常，会隔断所有部署在上面服务，通过<code>个人头像 -&gt; 安全管控 -&gt;IP白名单 -&gt;添加</code>，添加的IP来源为公网IP</p>
+<h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><p><strong>下载镜像文件</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure>
 <p><strong>创建容器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6379:6379 --name redis-master redis:latest redis-server --requirepass 123456</span><br><span class="line">--port 6379</span><br><span class="line"><span class="meta">#</span> --requirepass 指定redis密码</span><br><span class="line"><span class="meta">#</span> --port修改容器的端口, 后面修改后, -p 参数也要改变</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6379:6379 --name redis-master redis:latest redis-server [--requirepass 123456]</span><br><span class="line">[--port 6379]</span><br><span class="line"><span class="meta">#</span> --requirepass 指定redis密码</span><br><span class="line"><span class="meta">#</span> --port修改容器的端口, 后面修改后, -p 参数也要改变</span><br></pre></td></tr></table></figure>
 <p><strong>奴隶容器</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name redis-slave-1 --link redis-master:redis-master redis:latest redis-server --slaveof redis-master 6379 --masterauth 123456</span><br><span class="line"><span class="meta">#</span> 奴隶是不需要给端口, 主人会将自己传给奴隶</span><br><span class="line"><span class="meta">#</span> --link 给主人容器取别名,就取相同值 </span><br><span class="line"><span class="meta">#</span> redis:latest 指定镜像名, 最新的redis镜像</span><br><span class="line"><span class="meta">#</span> --slaveof 指定主人容器名 端口号</span><br><span class="line"><span class="meta">#</span> --masterauth 指定主人容器redis的密码</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6380:6379 --name redis-slave-1 --link redis-master:redis-master redis:latest redis-server --replicaof redis-master 6379</span><br><span class="line">[--slaveof redis-master 6379 --masterauth 123456] </span><br><span class="line"><span class="meta">#</span> 奴隶是不需要给端口, 主人会将自己传给奴隶</span><br><span class="line"><span class="meta">#</span> --link 容器的ip地址可能因为容器重启发生变化导致无法连接主机，因此给主人容器取别名,而不是ip地址(取别名取相同值) </span><br><span class="line"><span class="meta">#</span> redis:latest 指定镜像名, 最新的redis镜像</span><br><span class="line"><span class="meta">#</span> --slaveof 指定主人容器名 端口号</span><br><span class="line"><span class="meta">#</span> --replicaof 指定使用别名而不是地址</span><br><span class="line"><span class="meta">#</span> --masterauth 指定主人容器redis的密码</span><br><span class="line"><span class="meta">#</span> redis-server 指定服务器的命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -d --name redis-slave-1 redis:lastest redis-server --slaveof 127.17.0.2 6379</span><br><span class="line"><span class="meta">#</span> /etc/hosts 当前主机上的网络地址</span><br></pre></td></tr></table></figure>
+<p><strong>使用</strong></p>
+<p>当redis服务配置完成后，可以根据其对外暴露的端口进行访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 6380</span><br></pre></td></tr></table></figure>
 <p><strong>进入容器</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 以命令终端的形式进入redis-master容器</span><br><span class="line">docker exec -it redis-master /bin/bash</span><br><span class="line"><span class="meta">#</span> 进入客户端</span><br><span class="line">redis-cli</span><br><span class="line"><span class="meta">#</span> 查看奴隶</span><br><span class="line">info replication</span><br></pre></td></tr></table></figure>
+<h3 id="安装GitLab"><a href="#安装GitLab" class="headerlink" title="安装GitLab"></a>安装GitLab</h3><p>由于GitLab会使用<code>SSH</code>协议，即使用<code>22</code>端口，因此如果使用阿里云(连接服务器需要22端口)，就</p>
+<p>需要修改端口，进入文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<p>修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>Port 22</span><br><span class="line">Port 220</span><br></pre></td></tr></table></figure>
+<p>重启<code>sshd</code>服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure>
+<p>基于<code>gitlab/gitlab-ce</code> 创建镜像容器，并暴露22和80端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 -p 22:22 --name gitlab -v /root/gitlab/config:/etc/gitlab -v /root/gitlab/logs:/var/log/gitlab -v /root/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>gitlab/gitlab-ce是镜像文件名 可以使用<code>docker pull gitlab/git/gitlab-ce</code>进行下载</p>
+</blockquote>
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><h3 id="commit方式"><a href="#commit方式" class="headerlink" title="commit方式"></a>commit方式</h3><p>假设现有使用Docker配置好一个服务，以MySQL为例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                               NAMES</span><br><span class="line">87a1144796bb        mysql:5.7           "docker-entrypoint..."   2 hours ago         Up 2 hours          0.0.0.0:3306-&gt;3306/tcp, 33060/tcp      mysql57</span><br></pre></td></tr></table></figure>
+<p>使用<code>docker commit</code>指定容器id来构建镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit 87a1144796bb rzlong/rz_mysql</span><br></pre></td></tr></table></figure>
+<p>查看这个镜像文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY          TAG        IMAGE ID         CREATED           SIZE</span><br><span class="line">rzlong/rz_mysql     latest     4fb387f72318     9 minutes ago     372 MB</span><br></pre></td></tr></table></figure>
+<h3 id="build-Dockerfile"><a href="#build-Dockerfile" class="headerlink" title="build+Dockerfile"></a>build+Dockerfile</h3><ul>
+<li>在一个空文件夹下创建一个<code>Dockerfile</code>文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch Dockerfile</span><br><span class="line">vim Dockerfile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑文件</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># version: 0.0.1</span></span><br><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">14.04</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> rzlong <span class="string">"rzlongs@126.com"</span></span><br><span class="line"><span class="keyword">RUN</span> apt-get update &amp;&amp; apt-get install -y nginx</span><br><span class="line">RUN echo 'hello, world!' &gt; /usr/share/nginx/html/index.html</span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于编辑好的<code>Dockerfile</code>文件，使用<code>build</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker build -t=&quot;rzlong/rz_server:0.1&quot; .</span><br><span class="line"># . 表示当前文件夹下的文件</span><br><span class="line"># -t 后面接镜像名和版本(注意后面一个小数点，表示当前文件夹下)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker build -t=&quot;rzlong/rz_server:0.1&quot; -f /root/Dockerfile</span><br><span class="line"># -f 指定Dockerfile文件路径  ？？</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -571,8 +619,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/12/Django反向迁移多数据库/" rel="prev" title="Django-扩展">
-                Django-扩展 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/12/Django进阶/" rel="prev" title="Django进阶">
+                Django进阶 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -647,7 +695,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -659,8 +707,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -769,7 +815,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">31</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -829,7 +881,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和操作"><span class="nav-number">2.</span> <span class="nav-text">安装和操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装mysql"><span class="nav-number">3.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装redis"><span class="nav-number">4.</span> <span class="nav-text">安装redis</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装MySQL"><span class="nav-number">3.1.</span> <span class="nav-text">安装MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Redis"><span class="nav-number">3.2.</span> <span class="nav-text">安装Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装GitLab"><span class="nav-number">3.3.</span> <span class="nav-text">安装GitLab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">4.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#commit方式"><span class="nav-number">4.1.</span> <span class="nav-text">commit方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build-Dockerfile"><span class="nav-number">4.2.</span> <span class="nav-text">build+Dockerfile</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -886,7 +938,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共62.2k字</span>
+  <span class="post-count">博客全站共68.7k字</span>
 </div>
 
         

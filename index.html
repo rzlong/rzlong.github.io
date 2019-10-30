@@ -360,6 +360,1287 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/18/Python烹饪/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/18/Python烹饪/" itemprop="url">
+                  Python烹饪
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-18 09:46:02 / 修改时间：14:02:06" itemprop="dateCreated datePublished" datetime="2019-10-18T09:46:02+08:00">2019-10-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h2><h2 id="猴子补丁"><a href="#猴子补丁" class="headerlink" title="猴子补丁"></a>猴子补丁</h2><h2 id="新旧式类"><a href="#新旧式类" class="headerlink" title="新旧式类"></a>新旧式类</h2><p>在Python 3中所有的类都是新式类</p>
+<p>在Python 2中，只有显示的指明父类才是新式类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="string">"""旧式类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""旧式类（没有显示的指明父类）"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""新式类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="混入类"><a href="#混入类" class="headerlink" title="混入类"></a>混入类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SetOnceDictMinxin</span>:</span></span><br><span class="line">    <span class="string">"""定义混入类"""</span></span><br><span class="line">	__slots__ = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self:</span><br><span class="line">            <span class="keyword">raise</span> KeyError(<span class="string">f'<span class="subst">&#123;key&#125;</span> already exists'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__setitem__(key, value)</span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SetOnceDict</span><span class="params">(SetOnceDictMixin, dict)</span>:</span></span><br><span class="line">    <span class="comment"># </span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(metaclass=SetOnceDict)</span></span></span><br><span class="line"><span class="class">	<span class="title">pass</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="方法解析顺序MRO"><a href="#方法解析顺序MRO" class="headerlink" title="方法解析顺序MRO"></a>方法解析顺序MRO</h2><p><code>MRO</code>即Method Resolution Order</p>
+<p>如果是单一继承</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># super(xx, self)  就是找self当前对象关于xx类的父类</span></span><br><span class="line"><span class="comment"># 因此下述B类中 super(A, self).who() 就相当于找self对象关于A类的父类，即object类的who方法，报错AttributeError: 'super' object has no attribute 'who'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(B, self).who()</span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>)</span><br><span class="line">b = B()</span><br><span class="line">b.who()</span><br></pre></td></tr></table></figure>
+<p>如果是多继承</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(C, self).who()</span><br><span class="line">        print(<span class="string">'C'</span>, end=<span class="string">''</span>)</span><br><span class="line">c = C()</span><br><span class="line">c.who()</span><br><span class="line"></span><br><span class="line"><span class="comment"># AC</span></span><br></pre></td></tr></table></figure>
+<p>如果出现菱形继承(钻石继承)，方法解析顺序</p>
+<ul>
+<li>Python 3中，类似于广度优先搜索 C3算法，可以使用<code>class.mro()</code>就可以直接查到类的执行顺序</li>
+<li>Python 2中旧式类，类似于深度优先搜索</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>) <span class="comment"># 5</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(B, self).who() <span class="comment"># 3</span></span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>) <span class="comment"># 7</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(C, self).who() <span class="comment"># 4 </span></span><br><span class="line">        print(<span class="string">'C'</span>, end=<span class="string">''</span>) <span class="comment"># 6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(B, C)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(D, self).who() <span class="comment"># 2</span></span><br><span class="line">        print(<span class="string">'D'</span>, end=<span class="string">''</span>) <span class="comment"># 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mro() 有魔方方法 __mro__</span></span><br><span class="line">print(D.mro())</span><br><span class="line">d = D()</span><br><span class="line">d.who() <span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># d.who() 执行，先到D类，先到B类(B类中super(B, self).who()的self是D类的对象)，此时根据类方法解析顺序到C类的who方法，再到A类的who方法，输出A，再返回到C类的输出C，再返回B类的输出B，再返回到D类输出B</span></span><br><span class="line"><span class="comment"># 如果上述B类中self是A对象，那么就会直接调到A类，打印A</span></span><br><span class="line">[&lt;class '__main__.D'&gt;, &lt;class '__main__.B'&gt;, &lt;class '__main__.C'&gt;, &lt;class '__main__.A'&gt;, &lt;class 'object'&gt;]</span><br><span class="line">ACBD</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/jieba中文分词和词云/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/10/jieba中文分词和词云/" itemprop="url">
+                  jieba中文分词和词云
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-10 19:13:16 / 修改时间：20:30:34" itemprop="dateCreated datePublished" datetime="2019-10-10T19:13:16+08:00">2019-10-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="中文分词和词云"><a href="#中文分词和词云" class="headerlink" title="中文分词和词云"></a>中文分词和词云</h2><p>利用<a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">jieba</a>和<a href="https://github.com/amueller/word_cloud" target="_blank" rel="noopener">wordcloud</a>分别处理中文分词和词云制作</p>
+<p>下面是根据github上的文档做的词云</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, STOPWORDS</span><br><span class="line"></span><br><span class="line"><span class="comment"># get data directory (using getcwd() is needed to support running example in generated IPython notebook)</span></span><br><span class="line">d = path.dirname(__file__) <span class="keyword">if</span> <span class="string">"__file__"</span> <span class="keyword">in</span> locals() <span class="keyword">else</span> os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(path.join(d, <span class="string">'sky.txt'</span>),encoding=<span class="string">'utf-8'</span>).read()</span><br><span class="line"><span class="comment"># 通过词性过滤</span></span><br><span class="line">allow_pos = (<span class="string">'nr'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行jieba分词</span></span><br><span class="line">content2 = jieba.analyse.extract_tags(text, topK=<span class="number">100</span>, withWeight=<span class="keyword">False</span>, allowPOS=allow_pos)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接字符串</span></span><br><span class="line">result = <span class="string">' '</span>.join(c <span class="keyword">for</span> c <span class="keyword">in</span> content2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the mask image</span></span><br><span class="line"><span class="comment"># taken from</span></span><br><span class="line"><span class="comment"># https://raw.githubusercontent.com/amueller/word_cloud/master/examples/alice_mask.png</span></span><br><span class="line">alice_mask = np.array(Image.open(path.join(d, <span class="string">"alice_mask.png"</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后面用来过滤使用的，但源文档中均是对英语词汇的过滤(可以自己写一个过滤文档或者使用jieba进行词性过滤)</span></span><br><span class="line">stopwords = set(STOPWORDS)</span><br><span class="line">stopwords.add(<span class="string">"said"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意需要添加字体(汉语)</span></span><br><span class="line">wc = WordCloud(background_color=<span class="string">"white"</span>, max_words=<span class="number">2000</span>, mask=alice_mask,</span><br><span class="line">               stopwords=stopwords, contour_width=<span class="number">3</span>, contour_color=<span class="string">'steelblue'</span>,</span><br><span class="line">               font_path=<span class="string">r'C:\Windows\Fonts\simhei.ttf'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># generate word cloud</span></span><br><span class="line">wc.generate(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># store to file</span></span><br><span class="line">wc.to_file(path.join(d, <span class="string">"alice.png"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># show</span></span><br><span class="line">plt.imshow(wc, interpolation=<span class="string">'bilinear'</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(alice_mask, cmap=plt.cm.gray, interpolation=<span class="string">'bilinear'</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>效果图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13692213-212ac4e9ed5e383e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="逆天邪神.png"></p>
+<h2 id="在线词云生成工具"><a href="#在线词云生成工具" class="headerlink" title="在线词云生成工具"></a>在线词云生成工具</h2><p><a href="https://www.jianshu.com/p/615c9d285c54" target="_blank" rel="noopener">推荐站点</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/30/pandas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/30/pandas/" itemprop="url">
+                  pandas
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-30 09:39:08" itemprop="dateCreated datePublished" datetime="2019-09-30T09:39:08+08:00">2019-09-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-08 21:07:15" itemprop="dateModified" datetime="2019-10-08T21:07:15+08:00">2019-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/data-analyses/" itemprop="url" rel="index"><span itemprop="name">data_analyses</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>pandas</strong>是一个Python软件包，提供快速，灵活和富于表现力的数据结构，旨在使结构化（表格，多维，潜在异构）和时间序列数据的处理既简单又直观。</p>
+<ul>
+<li>具有异构类型列的表格数据，例如在SQL表或Excel电子表格中</li>
+<li>有序和无序（不一定是固定频率）时间序列数据。</li>
+<li>具有行和列标签的任意矩阵数据（同类型或异类）</li>
+<li>观察/统计数据集的任何其他形式。实际上，数据根本不需要标记即可放入pandas数据结构中</li>
+</ul>
+<p>pandas的两个主要数据结构分别是<strong>Series</strong>（一维）和<strong>DataFrame</strong>（二维），可处理金融，统计，社会科学以及许多工程领域中的绝大多数典型用例。pandas建立在numpy上，旨在与许多其他第三库很好地集成在科学计算环境中。</p>
+<blockquote>
+<ul>
+<li>轻松处理浮点数据和非浮点数据中的<strong>缺失数据</strong>（表示为NaN）</li>
+<li>大小可变性：可以从DataFrame和更高维的对象中<strong>插入和删除</strong>列</li>
+<li>自动和显式的<strong>数据对齐</strong>：可以将对象显式地对齐到一组标签，或者用户可以简单地忽略标签并让Series，DataFrame等自动为您对齐数据</li>
+<li>强大，灵活的<strong>分组</strong>功能，可对数据集执行拆分应用合并操作，以汇总和转换数据</li>
+<li>使它<strong>易于转换</strong>其他Python和NumPy的数据结构参差不齐，不同索引的数据转换成数据帧对象</li>
+<li>基于智能标签的<strong>切片</strong>，<strong>花式索引</strong>和 <strong>大数据集子集</strong></li>
+<li>直观的<strong>合并</strong>和<strong>联接</strong>数据集</li>
+<li>灵活地<strong>重塑</strong>和旋转数据集</li>
+<li>轴的<strong>分层</strong>标签（每个刻度可能有多个标签）</li>
+<li>强大的IO工具，用于从<strong>平面文件</strong>（CSV和定界），Excel文件，数据库加载数据，以及从超快<strong>HDF5格式</strong>保存/加载数据</li>
+<li>特定于<strong>时间序列的</strong>功能：日期范围生成和频率转换，移动窗口统计信息，移动窗口线性回归，日期移动和滞后等。</li>
+</ul>
+</blockquote>
+<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><p>行索引</p>
+<p>索引取值</p>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/一个简易的桌面自动变换程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/一个简易的桌面自动变换程序/" itemprop="url">
+                  python实现windows桌面背景自动变换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-27 20:47:06 / 修改时间：21:24:52" itemprop="dateCreated datePublished" datetime="2019-09-27T20:47:06+08:00">2019-09-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。</p>
+<p>想法：</p>
+<ul>
+<li>搞一个bat执行文件</li>
+<li>写个python程序，转成exe执行文件</li>
+</ul>
+<p>后面确认第二个想法</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="三方库"><a href="#三方库" class="headerlink" title="三方库"></a>三方库</h4><p>安装需要的包，处理图片的<strong>Pillow</strong>（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需要打开web支持；现在主流windows都是支持的），处理windows功能的<strong>pywin32</strong>（64位的系统也装这个）h和<strong>win32gui</strong>，打包exe的<strong>PyInstaller</strong></p>
+<h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> win32api</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> win32gui</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">DAY_DICT = &#123;<span class="number">0</span>: <span class="string">'Mon'</span>, <span class="number">1</span>: <span class="string">'TUE'</span>,</span><br><span class="line">            <span class="number">2</span>: <span class="string">'WE'</span>, <span class="number">3</span>: <span class="string">'THU'</span>,</span><br><span class="line">            <span class="number">4</span>: <span class="string">'FRI'</span>, <span class="number">5</span>: <span class="string">'SA'</span>,</span><br><span class="line">            <span class="number">6</span>: <span class="string">'SU'</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_desktop</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="string">"""修改桌面图片"""</span></span><br><span class="line">    key = win32api.RegOpenKeyEx(win32con.HKEY_CURRENT_USER,</span><br><span class="line">                                <span class="string">"Control Panel\\Desktop"</span>, <span class="number">0</span>, win32con.KEY_SET_VALUE)</span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"WallpaperStyle"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"2"</span>)</span><br><span class="line">    <span class="comment"># 2拉伸适应桌面,0桌面居中</span></span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"TileWallpaper"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"0"</span>)</span><br><span class="line">    win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, today_pic, <span class="number">1</span>+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jpg2bmp</span><span class="params">()</span>:</span></span><br><span class="line">    pic_file = os.listdir(<span class="string">'pics'</span>)</span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    <span class="comment"># 将jpg转换为bmp图片</span></span><br><span class="line">    <span class="keyword">for</span> pic <span class="keyword">in</span> pic_file:</span><br><span class="line">        image = Image.open(pic_loc + pic)</span><br><span class="line">        image.save((pic_loc + pic).replace(<span class="string">'jpg'</span>, <span class="string">'bmp'</span>), <span class="string">'BMP'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rtn_pic</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># weekday 返回0-6 对应周一到周日</span></span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    day_of_week = datetime.datetime.today().weekday()</span><br><span class="line">    today_pic = pic_loc + DAY_DICT[day_of_week + <span class="number">1</span>] + <span class="string">'.bmp'</span></span><br><span class="line">    <span class="keyword">return</span> today_pic</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        set_desktop(today_pic)</span><br><span class="line">        today = datetime.date.today()</span><br><span class="line">        new_time = time.time()</span><br><span class="line">        <span class="comment"># 明天时间</span></span><br><span class="line">        tomorrow = today + datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 明天时间戳</span></span><br><span class="line">        tomorrow_start_time = int(time.mktime(time.strptime(str(tomorrow), <span class="string">'%Y-%m-%d'</span>)))</span><br><span class="line">        diff = tomorrow_start_time - new_time</span><br><span class="line">        <span class="keyword">if</span> diff &gt; <span class="number">0</span>:</span><br><span class="line">            time.sleep(diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main(rtn_pic())</span><br></pre></td></tr></table></figure>
+<h4 id="打包exe"><a href="#打包exe" class="headerlink" title="打包exe"></a>打包exe</h4><p>使用时，在主程序文件目录使用命令</p>
+<p><code>pyinstaller -F -w -i 图标文件 程序文件</code></p>
+<ul>
+<li>-F 指的打包成exe文件</li>
+<li>-w 取消控制台显示</li>
+<li>-i 忽略错误继续打包</li>
+</ul>
+<p>举例</p>
+<p><code>pyinstaller -F -w -i my.ico release_1.py</code></p>
+<p>由于我的功能只需要一个执行文件就解决了，当有多个执行文件，可以参看这篇<a href="https://blog.csdn.net/qq_33521184/article/details/89391354" target="_blank" rel="noopener">文档</a></p>
+<p>操作成功后会在当前目录下生成build目录(存放配置文件和库文件)，dist目录(执行文件)，程序名.spec(包含引用程序文件、总结、包文件说明等等)</p>
+<h4 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h4><p>自启动主要是通过修改注册表项文件而实现的</p>
+<p>具体位置，通常位于</p>
+<p><code>计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code></p>
+<p>然后点击Run，能看见本机已经存在的很多启动项，<strong>新建项</strong>(程序名)和<strong>数值数据</strong>（程序存放位置 如d:\work\a.exe）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/绘图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/绘图/" itemprop="url">
+                  绘图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-25 12:12:18 / 修改时间：12:20:37" itemprop="dateCreated datePublished" datetime="2019-09-25T12:12:18+08:00">2019-09-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/data-analyses/" itemprop="url" rel="index"><span itemprop="name">data_analyses</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>matplotlib</p>
+<p>pandas</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/Mysql命令行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/23/Mysql命令行/" itemprop="url">
+                  Mysql命令行程序相关
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-23 19:26:06" itemprop="dateCreated datePublished" datetime="2019-09-23T19:26:06+08:00">2019-09-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-12 17:35:23" itemprop="dateModified" datetime="2019-10-12T17:35:23+08:00">2019-10-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常规命令"><a href="#常规命令" class="headerlink" title="常规命令"></a>常规命令</h2><p><strong>查看/使用使用数据库</strong></p>
+<p><code>show databases;</code> |<code>use database;</code></p>
+<p><strong>查看表/查看表结构</strong></p>
+<p><code>show tables;</code>  | <code>show columns from table / desc table</code></p>
+<p><strong>查看已创建的表、数据库的语句</strong></p>
+<p><code>show create table tb_name / show create database db_name</code></p>
+<p><strong>查看相关的帮助命令</strong></p>
+<p><code>help show</code></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>MySQL不要求单条语句后加上分号，但是在命令行程序中单条语句必须分号结束</li>
+<li>不区分大小写，但是最好按大小写惯例来写(标识符大写，表库等名小写，函数名首字母大写)</li>
+<li>NULL和空值(‘’)是不一样的，NULL占有空间，而后者不占空间(装空气打的杯子和真空的杯子); 判断NULL使用 IS NULL和IS NOT  NULL，判断空值使用&lt;&gt;、==和!=</li>
+<li>MySQL可以使用任意AND和OR的组合，但是AND的优先级高于OR，因此特殊情况别忘了给OR加括号，并且鼓励在任何使用AND和OR操作符时都加上括号，它并不会给你带来任何损失</li>
+<li>%通配符匹配0、1和多个字符，并且它是不能匹配NULL的， _只能匹配1个字符；除此，不要过度使用它，除非有必要，也不要将通配符放在首位(%放在首位索引不能命中)。</li>
+<li>like匹配整个值，REGEXP可以匹配值的任意长度(若想匹配特定值可以使用定位符^和$)</li>
+<li>组合查询UNION会去重，并且在使用ORDER BY时，只能使用一次排序，并且只能对最后一个SELECT语句使用</li>
+<li>使用一个INSERT插入多条语句比多次使用INSERT插入一条语句快得多</li>
+<li>使用EXPLAIN命令可以查询索引命中情况</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/python富比较/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rzlong">
+      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
+      <meta itemprop="image" content="/uploads/you.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="拆南墙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/20/python富比较/" itemprop="url">
+                  python富比较
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-20 10:51:27 / 修改时间：11:23:10" itemprop="dateCreated datePublished" datetime="2019-09-20T10:51:27+08:00">2019-09-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python富比较</p>
+<p>富比较，即Rich Comparisons，创立于python2.1时期，使用富比较取代了<code>__cmp__</code>返回值(0,-1,1)的传统比较方式(后者在python3.4已被废除)。</p>
+<p>富比较的主要方式有<code>__eq__ __ne__ __gt__ __lt__ __ge__ __le__</code>6种比较</p>
+<p>其主要用于复杂对象之间的比较</p>
+<p>下面分析其主要用法和注意事项：</p>
+<ul>
+<li><p>当程序员定义了所有的比较方式，此时对象之间的比较就会一一对应到其定义的方法</p>
+</li>
+<li><p>当同时实现<code>__eq__</code>方法和<code>__ne__</code>方法时，此时使用!=和==会调用各自的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __eq__(self, other):</span><br><span class="line">		print(&apos;execute __eq__&apos;)</span><br><span class="line">		return self.price == other.price</span><br><span class="line"></span><br><span class="line">	def __ne__(self, other):</span><br><span class="line">		print(&apos;execute __ne__&apos;)</span><br><span class="line">		return self.price != other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">execute __eq__</span><br><span class="line">True</span><br><span class="line">execute __ne__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>当实现<code>__eq__</code>方法，未实现<code>__ne__</code>方法，此时使用!=相当于执行<code>__eq__</code>后再取反</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __eq__(self, other):</span><br><span class="line">		print(&apos;execute __eq__&apos;)</span><br><span class="line">		return self.price == other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">execute __eq__</span><br><span class="line">True</span><br><span class="line">execute __eq__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>当实现<code>__ne__</code>方法，未实现<code>__eq__</code>方法，此时使用==相当于使用is</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __ne__(self, other):</span><br><span class="line">		print(&apos;execute __ne__&apos;)</span><br><span class="line">		return self.price != other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">False</span><br><span class="line">execute __ne__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>当单独实现<code>__gt__</code>(或<code>__lt__</code>)，此时使用&lt;(或&gt;)相当于执行<code>__gt__</code>(或<code>__lt__</code>)再取反</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+	
+	<div>
+
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/加密和数字摘要/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -712,7 +1993,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/Django扩展/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/Django进阶/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="rzlong">
@@ -731,8 +2012,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/Django扩展/" itemprop="url">
-                  Django-扩展
+                <a class="post-title-link" href="/2019/01/12/Django进阶/" itemprop="url">
+                  Django进阶
                 </a>
               
             
@@ -775,7 +2056,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-13 12:15:08" itemprop="dateModified" datetime="2019-02-13T12:15:08+08:00">2019-02-13</time>
+                <time title="修改时间：2019-10-25 21:22:51" itemprop="dateModified" datetime="2019-10-25T21:22:51+08:00">2019-10-25</time>
               
             
           </span>
@@ -838,1420 +2119,7 @@
 <p>在Django中支持多路数据库联合使用, ·详细内容可以查看官方<a href="https://docs.djangoproject.com/en/2.1/topics/db/multi-db/#topics-db-multi-db-routing" target="_blank" rel="noopener">文档</a></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/12/Django扩展/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/Django反向迁移多数据库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/12/Django反向迁移多数据库/" itemprop="url">
-                  Django-扩展
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-12 10:45:15" itemprop="dateCreated datePublished" datetime="2019-01-12T10:45:15+08:00">2019-01-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-15 12:00:40" itemprop="dateModified" datetime="2019-01-15T12:00:40+08:00">2019-01-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="多路数据库"><a href="#多路数据库" class="headerlink" title="多路数据库"></a>多路数据库</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>使用多个数据库的最简单方法是设置数据库路由方案。默认路由方案可确保对象对其原始数据库保持“粘性”（即，从<code>foo</code>数据库检索的对象将保存在同一数据库中）。默认路由方案可确保在未指定数据库的情况下，所有查询都会回退到<code>default</code>数据库。</p>
-<p>在Django中支持多路数据库联合使用, ·详细内容可以查看官方<a href="https://docs.djangoproject.com/en/2.1/topics/db/multi-db/#topics-db-multi-db-routing" target="_blank" rel="noopener">文档</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/12/Django反向迁移多数据库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/docker简单上手/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/11/docker简单上手/" itemprop="url">
-                  docker简单上手
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-11 19:48:36" itemprop="dateCreated datePublished" datetime="2019-01-11T19:48:36+08:00">2019-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-18 19:18:32" itemprop="dateModified" datetime="2019-01-18T19:18:32+08:00">2019-01-18</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/11/docker简单上手/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/算法/" itemprop="url">
-                  基础算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-09 17:46:38" itemprop="dateCreated datePublished" datetime="2019-01-09T17:46:38+08:00">2019-01-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-20 11:02:39" itemprop="dateModified" datetime="2019-02-20T11:02:39+08:00">2019-02-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/算法问题/" itemprop="url" rel="index"><span itemprop="name">算法问题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>程序调用自身的编程技巧称为递归（ recursion）。</p>
-<p><strong>阶乘</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="string">"""阶乘"""</span></span><br><span class="line">    <span class="keyword">assert</span> num &gt;= <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> num * factorial(num - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。</p>
-<p><strong>小偷问题</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Goods</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""物品类"""</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, price, weight)</span>:</span></span><br><span class="line">        <span class="string">"""初始化"""</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.price = price</span><br><span class="line">        self.weight = weight</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">values</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回物品价格重量比"""</span></span><br><span class="line">        <span class="keyword">return</span> self.price / self.weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thing</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""输入物品信息"""</span></span><br><span class="line">    inputs = input().split()</span><br><span class="line">    <span class="keyword">return</span> inputs[<span class="number">0</span>], int(inputs[<span class="number">1</span>]), int(inputs[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""主函数"""</span></span><br><span class="line">    total_weight, total_nums = map(int, input().split())</span><br><span class="line">    goods_list = []</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(total_nums):</span><br><span class="line">        <span class="comment"># 解包语法(对thing方法返回的元组进行解包操作)</span></span><br><span class="line">        goods_list.append(Goods(*thing()))</span><br><span class="line">    goods_list.sort(key=<span class="keyword">lambda</span> x: x.values, reverse=<span class="keyword">True</span>)</span><br><span class="line">    final_weight, final_price = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> goods <span class="keyword">in</span> goods_list:</span><br><span class="line">        <span class="keyword">if</span> goods.weight + final_weight &lt;= total_weight:</span><br><span class="line">            final_weight += goods.weight</span><br><span class="line">            final_price += goods.price</span><br><span class="line">            print(<span class="string">f'小偷拿了<span class="subst">&#123;goods.name&#125;</span>'</span>)</span><br><span class="line">    print(<span class="string">f'小偷偷取的物品总价为<span class="subst">&#123;final_price&#125;</span>'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">20 6</span></span><br><span class="line"><span class="string">电脑 200 20</span></span><br><span class="line"><span class="string">收⾳机 20 4</span></span><br><span class="line"><span class="string">钟 175 10</span></span><br><span class="line"><span class="string">花瓶 50 2</span></span><br><span class="line"><span class="string">书 10 1</span></span><br><span class="line"><span class="string">油画 90 9</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解，创立了解决这类过程优化问题的新方法——动态规划</p>
-<p>在编程中, 我们通常使用空间换时间的方式是是实现”动态规划”</p>
-<p><strong>斐波那契数列</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(num, results=&#123;&#125;)</span>:</span></span><br><span class="line">    <span class="string">"""递归-斐波那契数列"""</span></span><br><span class="line">    <span class="keyword">assert</span> num &gt; <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> results[num]</span><br><span class="line">    <span class="keyword">except</span> KeyError:</span><br><span class="line">        results[num] = fib(num - <span class="number">1</span>) + fib(num - <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> results[num]</span><br></pre></td></tr></table></figure>
-<p>通过<code>牺牲空间换取时间</code>的方式，将每次得到的值存到字典中, 需要计算的时候直接去取值，代替每次都去计算, 这种方式能够极大地缩短程序运行时间, 对代码的性能提高很大。</p>
-<p>###分治</p>
-<p>分而治之，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</p>
-<p><strong>归并排序</strong></p>
-<p><strong>快速排序</strong></p>
-<p>###回溯</p>
-<p>回溯法（探索与回溯法）是一种选优搜索法，又称为试探法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。</p>
-<p><strong>骑士巡游问题</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import os</span></span><br><span class="line"><span class="comment"># import time</span></span><br><span class="line"><span class="comment"># import sys</span></span><br><span class="line"></span><br><span class="line">SIZE = <span class="number">5</span></span><br><span class="line">TOTAL = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_loc</span><span class="params">(board)</span>:</span></span><br><span class="line">    <span class="string">"""打印每一步的数字"""</span></span><br><span class="line">    <span class="comment"># 清屏, 有的是os.system('clear')</span></span><br><span class="line">    <span class="comment"># os.system('cls')</span></span><br><span class="line">    <span class="keyword">for</span> raw <span class="keyword">in</span> board:</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> raw:</span><br><span class="line">            print(str(col).center(<span class="number">4</span>), end=<span class="string">' '</span>)</span><br><span class="line">        print()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">move</span><span class="params">(board, raw, col, step=<span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="string">"""移动"""</span></span><br><span class="line">    <span class="keyword">if</span> raw &gt;= <span class="number">0</span> <span class="keyword">and</span> raw &lt; SIZE <span class="keyword">and</span> \</span><br><span class="line">        col &gt;= <span class="number">0</span> <span class="keyword">and</span> col &lt; SIZE <span class="keyword">and</span> \</span><br><span class="line">         board[raw][col] == <span class="number">0</span>:</span><br><span class="line">        board[raw][col] = step</span><br><span class="line">        <span class="comment"># 单步骤打印</span></span><br><span class="line">        <span class="comment"># time.sleep(1)</span></span><br><span class="line">        <span class="comment"># print_loc(board)</span></span><br><span class="line">        <span class="keyword">if</span> board[raw][col] == SIZE * SIZE:</span><br><span class="line">            <span class="keyword">global</span> TOTAL</span><br><span class="line">            TOTAL += <span class="number">1</span></span><br><span class="line">            print(<span class="string">f'第<span class="subst">&#123;TOTAL&#125;</span>个'</span>)</span><br><span class="line">            print_loc(board)</span><br><span class="line"></span><br><span class="line">        move(board, raw + <span class="number">2</span>, col + <span class="number">1</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw + <span class="number">1</span>, col + <span class="number">2</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw - <span class="number">1</span>, col + <span class="number">2</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw - <span class="number">2</span>, col + <span class="number">1</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw - <span class="number">2</span>, col - <span class="number">1</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw - <span class="number">1</span>, col - <span class="number">2</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw + <span class="number">1</span>, col - <span class="number">2</span>, step + <span class="number">1</span>)</span><br><span class="line">        move(board, raw + <span class="number">2</span>, col - <span class="number">1</span>, step + <span class="number">1</span>)</span><br><span class="line">        board[raw][col] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""主函数"""</span></span><br><span class="line">    board = [[<span class="number">0</span>] * SIZE <span class="keyword">for</span> _ <span class="keyword">in</span> range(SIZE)]</span><br><span class="line">    move(board, SIZE - <span class="number">1</span>, SIZE - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="深度优先算法"><a href="#深度优先算法" class="headerlink" title="深度优先算法"></a>深度优先算法</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/06/排序和查找/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/06/排序和查找/" itemprop="url">
-                  排序和查找
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-06 22:19:53" itemprop="dateCreated datePublished" datetime="2019-01-06T22:19:53+08:00">2019-01-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-22 11:35:36" itemprop="dateModified" datetime="2019-02-22T11:35:36+08:00">2019-02-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="算法评定"><a href="#算法评定" class="headerlink" title="算法评定"></a>算法评定</h2><p>评价一个算法的好坏, 通常是由空间复杂度和时间复杂度决定的。</p>
-<p>而现实中很难做到时间复杂度time complexity和空间复杂度space complexity都很低, 一种被认可的的做法就是牺牲空间换取时间。</p>
-<p><strong>常见时间复杂度</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">表示方法</th>
-<th style="text-align:center">解释</th>
-<th style="text-align:center">算法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(c)</td>
-<td style="text-align:center">常量级</td>
-<td style="text-align:center">哈希存储/bloom过滤器</td>
-</tr>
-<tr>
-<td style="text-align:center">O(log2n)</td>
-<td style="text-align:center">对数级</td>
-<td style="text-align:center">二分查找</td>
-</tr>
-<tr>
-<td style="text-align:center">O(n)</td>
-<td style="text-align:center">线性级</td>
-<td style="text-align:center">顺序查找</td>
-</tr>
-<tr>
-<td style="text-align:center">O(nlog2n)</td>
-<td style="text-align:center">线性对数级</td>
-<td style="text-align:center">归并排序/快速排序</td>
-</tr>
-<tr>
-<td style="text-align:center">O(n^2)</td>
-<td style="text-align:center">平方级</td>
-<td style="text-align:center">冒泡排序/选择排序</td>
-</tr>
-<tr>
-<td style="text-align:center">O(n^3)</td>
-<td style="text-align:center">立方级</td>
-<td style="text-align:center">Floyd算法</td>
-</tr>
-<tr>
-<td style="text-align:center">O(2^n)</td>
-<td style="text-align:center">指数级</td>
-<td style="text-align:center">汉诺塔问题</td>
-</tr>
-<tr>
-<td style="text-align:center">O(n!)</td>
-<td style="text-align:center">阶乘级</td>
-<td style="text-align:center">旅行经销商问题</td>
-</tr>
-</tbody>
-</table>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h3><p><strong>说明</strong></p>
-<p><code>顺序查找</code>是按照序列原有顺序对数组进行遍历比较查询的基本查找算法。</p>
-<p><strong>时间复杂度</strong></p>
-<p> <code>O(n)</code>, 即线性时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seq_search</span><span class="params">(items, elem)</span>:</span></span><br><span class="line">    <span class="string">"""顺序查找"""</span></span><br><span class="line">    <span class="keyword">for</span> index, item <span class="keyword">in</span> enumerate(items):</span><br><span class="line">        <span class="keyword">if</span> item == elem:</span><br><span class="line">            <span class="keyword">return</span> index</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
-<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p><strong>说明</strong></p>
-<p>二分查找也称<code>折半查找</code>（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。</p>
-<p><strong>时间复杂度</strong></p>
-<p> <code>O(log2n)</code>, 即对数时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span><span class="params">(items, elem)</span>:</span></span><br><span class="line">    <span class="string">"""二分查找"""</span></span><br><span class="line">    start, end = <span class="number">0</span>, len(items) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = (start + end) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> elem &gt; items[mid]:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> elem &lt; items[mid]:</span><br><span class="line">            end = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p><strong>说明</strong></p>
-<p>快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
-<p><strong>图解</strong></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13692213-d7448cdef525fa0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QuickSort"></p>
-<p><strong>时间复杂度</strong></p>
-<p>O(nlog2n), 即线性对数时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sort_arr</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""快速排序"""</span></span><br><span class="line">    _less = []</span><br><span class="line">    _greater = []</span><br><span class="line">    <span class="keyword">if</span> len(arr) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    _pivot = arr.pop()</span><br><span class="line">    <span class="keyword">for</span> _item <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> _item &lt;= _pivot:</span><br><span class="line">            _less.append(_item)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            _greater.append(_item)</span><br><span class="line">    <span class="keyword">return</span> sort_arr(_less) + [_pivot] + sort_arr(_greater)</span><br></pre></td></tr></table></figure>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p><strong>说明</strong></p>
-<p>归并排序（MERGE-SORT）是建立在归并操作上的一种有效的排序算法,该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为二路归并。</p>
-<p><strong>图解</strong></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13692213-76662d89ef613469.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240width=200&amp;height" alt="MergeSort"></p>
-<p><strong>时间复杂度</strong></p>
-<p>O(nlog2n), 即线性对数时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(items, cmp=lambda x, y: x &gt; y)</span>:</span></span><br><span class="line">    <span class="string">"""归并排序"""</span></span><br><span class="line">    <span class="keyword">if</span> len(items) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> items[:]</span><br><span class="line">    mid = len(items) // <span class="number">2</span></span><br><span class="line">    left = merge_sort(items[:mid], cmp)</span><br><span class="line">    right = merge_sort(items[mid:], cmp)</span><br><span class="line">    <span class="keyword">return</span> merge(left, right, cmp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(items1, items2, cmp=lambda x, y: x &gt; y)</span>:</span></span><br><span class="line">    <span class="string">"""将两个有序列表组成一个新的有序列表"""</span></span><br><span class="line">    items = []</span><br><span class="line">    index1, index2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index1 &lt; len(items1) <span class="keyword">and</span> index2 &lt; len(items2):</span><br><span class="line">        <span class="keyword">if</span> cmp(items1[index1], items2[index2]):</span><br><span class="line">            items.append(items2[index2])</span><br><span class="line">            index2 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            items.append(items1[index1])</span><br><span class="line">            index1 += <span class="number">1</span></span><br><span class="line">    items += items1[index1:]</span><br><span class="line">    items += items2[index2:]</span><br><span class="line">    <span class="keyword">return</span> items</span><br></pre></td></tr></table></figure>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><strong>说明</strong></p>
-<p>冒泡排序（Bubble Sort），是一种计算机科学领域的较简单的排序算法。<br>它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果他们的顺序（如从大到小、首字母从A到Z）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素已经排序完成。</p>
-<p><strong>图解</strong></p>
-<p><strong>时间复杂度</strong></p>
-<p>O(n^2), 即平方时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(origin_items, *, cmp=lambda x, y: x &gt; y)</span>:</span></span><br><span class="line">    <span class="string">"""冒泡排序"""</span></span><br><span class="line">    items = origin_items[:]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(items)):</span><br><span class="line">        swapped = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i - <span class="number">1</span>, len(items) - i):</span><br><span class="line">            <span class="keyword">if</span> cmp(items[j], items[j + <span class="number">1</span>]):</span><br><span class="line">                items[j + <span class="number">1</span>], items[j] = items[j], items[j + <span class="number">1</span>]</span><br><span class="line">                swapped = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> swapped:</span><br><span class="line">            swapped = <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(items)- i - <span class="number">1</span>, i - <span class="number">1</span>, <span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> cmp(items[j - <span class="number">1</span>], items[j]):</span><br><span class="line">                    items[j], items[j - <span class="number">1</span>] = items[j - <span class="number">1</span>], items[j]</span><br><span class="line">                    swapped = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> swapped:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> items</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">注:</span></span><br><span class="line"><span class="string">1. 初始冒泡程序</span></span><br><span class="line"><span class="string">2. 对其进行开头检测, 若遇到已经排好序的情况break</span></span><br><span class="line"><span class="string">3. 对其进行末尾检测, 若遇到已经排好序的情况break</span></span><br><span class="line"><span class="string">4. 解耦合， 通过函数对数据进行比较, 默认用lambda x,y: x&gt;y(对类的实例的进行比较可以使用__gt__)</span></span><br><span class="line"><span class="string">5. *符号其分界作用, 它之后为命名关键字参数, 前面为位置参数</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p><strong>说明</strong></p>
-<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理是每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到全部待排序的数据元素排完。 选择排序是不稳定的排序方法。</p>
-<p><strong>图解</strong></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13692213-2eb2fc2338d1d96d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="selectSort"></p>
-<p><strong>时间复杂度</strong></p>
-<p>O(n^2), 即平方时间复杂度</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(origin_items, cmp=lambda x, y: x &gt; y)</span>:</span></span><br><span class="line">    <span class="string">"""选择排序"""</span></span><br><span class="line">    items = origin_items[:]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(items)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(items)):</span><br><span class="line">            <span class="keyword">if</span> items[i] &gt; items[j]:</span><br><span class="line">                items[i], items[j] = items[j], items[i]</span><br><span class="line">    <span class="keyword">return</span> items</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/06/代码检测/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/06/代码检测/" itemprop="url">
-                  代码检测
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-06 22:18:39" itemprop="dateCreated datePublished" datetime="2019-01-06T22:18:39+08:00">2019-01-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-07 20:54:54" itemprop="dateModified" datetime="2019-01-07T20:54:54+08:00">2019-01-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="代码检查工具"><a href="#代码检查工具" class="headerlink" title="代码检查工具"></a>代码检查工具</h2><h3 id="pep8-pycodestyle"><a href="#pep8-pycodestyle" class="headerlink" title="pep8/pycodestyle"></a>pep8/pycodestyle</h3><p><strong>pep8</strong></p>
-<p>安装:  <code>pip3 install pep8</code></p>
-<p>使用: <code>pep8 &lt;file name or directory name&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(practice) D:\pycharm\pythoncode\practice\whiteboard&gt;pep8 practice01.py</span><br><span class="line">d:\pycharm\venv\practice\lib\site-packages\pep8.py:2124: UserWarning:</span><br><span class="line"></span><br><span class="line">pep8 has been renamed to pycodestyle (GitHub issue #466)</span><br><span class="line">Use of the pep8 tool will be removed in a future release.</span><br><span class="line">Please install and use `pycodestyle` instead.</span><br><span class="line"></span><br><span class="line">$ pip install pycodestyle</span><br><span class="line">$ pycodestyle ...</span><br><span class="line"></span><br><span class="line">  &apos;\n\n&apos;</span><br><span class="line">practice01.py:16:1: E302 expected 2 blank lines, found 0</span><br><span class="line">practice01.py:49:1: E302 expected 2 blank lines, found 1</span><br><span class="line">practice01.py:53:80: E501 line too long (94 &gt; 79 characters)</span><br><span class="line">practice01.py:64:16: W291 trailing whitespace</span><br><span class="line">practice01.py:94:1: W391 blank line at end of file</span><br></pre></td></tr></table></figure>
-<p><code>他告诉我们pep8工具在未来将会被移除, 并且使用pycodestyle来代替</code></p>
-<p><strong>pycodestyle</strong></p>
-<p>安装: <code>pip3 install pycodestyle</code></p>
-<p>使用: <code>pycodestyle &lt;file name or directory name&gt;</code></p>
-<p><a href="https://pypi.org/search/?q=pycodestyle" target="_blank" rel="noopener">pycodestyle</a>的使用非常灵活, 他有很多参数, 我们可以自己去选择或者配置, 他的<a href="https://pycodestyle.readthedocs.io/en/latest/intro.html#example-usage-and-output" target="_blank" rel="noopener">文档</a>在这里。可以在<a href="https://pypi.org/" target="_blank" rel="noopener">pypi.org</a>上面去查看这个第三方库。下面将几种可能使用的参数</p>
-<ul>
-<li><p><code>--statistics -qq</code>对结果进行汇总</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test01.py --statistics -qq</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>--show-source</code>  查看更详细的输出, 它会具体告诉是哪个文件的具体位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test01.py --show-source</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>--ignore</code> 忽略指定的输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python test01.py --ignore=E302,E501</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-<h3 id="pyflakes"><a href="#pyflakes" class="headerlink" title="pyflakes"></a>pyflakes</h3><p><a href="https://github.com/PyCQA/pyflakes" target="_blank" rel="noopener">Pyflakes</a>做出了一个简单的承诺：<strong>它永远不会抱怨风格，它会非常非常努力地永远不会发出误报。</strong></p>
-<p>Pyflakes也快于<a href="http://www.pylint.org/" target="_blank" rel="noopener">pylint的</a> 或<a href="http://pychecker.sourceforge.net/" target="_blank" rel="noopener">Pychecker</a>。这主要是因为Pyflakes只分别检查每个文件的语法树。因此，Pyflakes在它可以检查的事物类型方面受到更多限制。</p>
-<p>如果你喜欢Pyflakes但也想要风格检查，你需要 <a href="https://pypi.org/project/flake8/" target="_blank" rel="noopener">flake8</a>，它将Pyflakes与<a href="http://legacy.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8</a>样式检查相结合， 并增加了每个项目的配置能力。</p>
-<p><strong>安装</strong></p>
-<p><code>pip3 install pyflakes</code></p>
-<p><strong>使用</strong></p>
-<p><code>pyflasks &lt;file name or directory name&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">举例:</span><br><span class="line">(practice) D:\pycharm\pythoncode\practice\whiteboard&gt;pyflakes practice02.py</span><br><span class="line">practice02.py:15: &apos;line_profiler&apos; imported but unused</span><br></pre></td></tr></table></figure>
-<h3 id="flake8"><a href="#flake8" class="headerlink" title="flake8"></a>flake8</h3><p><a href="http://flake8.pycqa.org/en/latest/" target="_blank" rel="noopener">flake8</a>结合了pep8和pyflakes的特点, 并添加了新的特点。因此我们可以使用flake8完全代替pep8和pyflakes。</p>
-<p><strong>安装</strong></p>
-<p><code>pip3 install flake8</code></p>
-<p><strong>使用</strong></p>
-<p><code>flake8 &lt;file name or directory name&gt;</code></p>
-<h3 id="pylint"><a href="#pylint" class="headerlink" title="pylint"></a>pylint</h3><p><a href="https://pypi.org/project/pylint/" target="_blank" rel="noopener">Pylint</a>是一个Python静态代码分析工具，它可以查找编程错误，帮助强制执行编码标准，嗅探代码异味并提供简单的重构建议。</p>
-<p>它具有高度可配置性，具有特殊的编译指示来控制代码中的错误和警告，以及广泛的配置文件。也可以编写自己的插件来添加自己的检查或以某种方式扩展pylint。</p>
-<p>它是根据GNU通用公共许可证分发的免费软件。</p>
-<p>pylint的实用性很高, 对有代码洁癖的人很友好, 但是它可能也会产生一些误判风格问题。它会对代码进行打分, 如果你的代码产生了负分, 可能你不得不想办法改正这些问题, 否则, 它不在优雅。</p>
-<p>pylint 和 flake8都是值得推荐的静态代码检测工具</p>
-<p><strong>安装</strong></p>
-<p><code>pip3 install pylint</code></p>
-<p><strong>使用</strong></p>
-<p><code>pylint &lt;file name or directory&gt;</code>, pylint相当严格, 检测文件夹时,产生很多问题不益于查看.</p>
-<p><strong>例子</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(practice) D:\pycharm\pythoncode\practice\whiteboard&gt;pylint example09.py</span><br><span class="line">************* Module example09</span><br><span class="line">example09.py:28:0: R0903: Too few public methods (1/2) (too-few-public-methods)</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">Your code has been rated at 9.62/10 (previous run: 9.23/10, +0.38)</span><br></pre></td></tr></table></figure>
-<h2 id="代码执行效率检测"><a href="#代码执行效率检测" class="headerlink" title="代码执行效率检测"></a>代码执行效率检测</h2><h3 id="line-profiler和kernprof"><a href="#line-profiler和kernprof" class="headerlink" title="line_profiler和kernprof"></a>line_profiler和kernprof</h3><h3 id="memory-profiler"><a href="#memory-profiler" class="headerlink" title="memory_profiler"></a>memory_profiler</h3><h3 id="cprofiler"><a href="#cprofiler" class="headerlink" title="cprofiler"></a>cprofiler</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/postgresql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/postgresql/" itemprop="url">
-                  postgresql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-02 20:50:50 / 修改时间：20:53:04" itemprop="dateCreated datePublished" datetime="2019-01-02T20:50:50+08:00">2019-01-02</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Postgresql/" itemprop="url" rel="index"><span itemprop="name">Postgresql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>sudo apt-get install postgresql</code></p>
-<p>安装成功后, 默认会创建:</p>
-<ul>
-<li>创建名为<code>postgres</code>的linux用户</li>
-<li>创建名为<code>postgres</code> 不带月密码的默认数据库账号作为数据库管理员</li>
-<li>创建名为<code>postgres</code>的表</li>
-</ul>
-<p>有关postgresql的默认信息如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">config /etc/postgresql/9.5/main </span><br><span class="line">data /var/lib/postgresql/9.5/main </span><br><span class="line">locale en_US.UTF-8  --&gt; 我们是zh_CN.UTF-8</span><br><span class="line">socket /var/run/postgresql </span><br><span class="line">port 5432</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/postgresql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-	
-	<div>
-
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/python进阶/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rzlong">
-      <meta itemprop="description" content="If should see you, after long year. How <br> should i greet, with silence and tears.">
-      <meta itemprop="image" content="/uploads/you.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拆南墙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/python进阶/" itemprop="url">
-                  python进阶
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-02 20:48:31" itemprop="dateCreated datePublished" datetime="2019-01-02T20:48:31+08:00">2019-01-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-27 22:37:40" itemprop="dateModified" datetime="2019-06-27T22:37:40+08:00">2019-06-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="魔法方法"><a href="#魔法方法" class="headerlink" title="魔法方法"></a>魔法方法</h2><h3 id="init-和-new"><a href="#init-和-new" class="headerlink" title="__init__ 和 __new__"></a>__init__ 和 __new__</h3><h4 id="区分"><a href="#区分" class="headerlink" title="区分"></a>区分</h4><ul>
-<li><code>__init__</code>通常用于初始化一个新实例, 对这个实例添加一些属性, 做一些额外的工作, 属于<code>对象方法</code></li>
-<li><code>__new__</code>通常用于控制生成一个新的实例, 属于<code>类方法</code></li>
-<li><code>__init__</code>在实例生成后生效, <code>__new__</code>控制实例生成, 因此<code>__init__</code>在<code>__new__</code>后执行</li>
-</ul>
-<h4 id="new实现单例"><a href="#new实现单例" class="headerlink" title="new实现单例"></a><strong>new</strong>实现单例</h4><p><code>单例指的是对一个单一的类, 它负责创建自己的对象, 同时确保单个对象只有一个实例。</code></p>
-<p>注意:</p>
-<ol>
-<li>单例类只能有一个实例</li>
-<li>单例类必须自己创建自己的唯一实例</li>
-<li>单例类必须给所有其他对象提供这个实例</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/python进阶/#more" rel="contents">
+            <a class="btn" href="/2019/01/12/Django进阶/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2347,7 +2215,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2359,8 +2227,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -2469,7 +2335,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">31</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2570,7 +2442,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共62.2k字</span>
+  <span class="post-count">博客全站共68.7k字</span>
 </div>
 
         
