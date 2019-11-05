@@ -380,7 +380,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2019/10/18/Python烹饪/" itemprop="url">
-                  Python烹饪
+                  中火烹饪
                 </a>
               
             
@@ -406,12 +406,24 @@
                 
               
 
-              <time title="创建时间：2019-10-18 09:46:02 / 修改时间：14:02:06" itemprop="dateCreated datePublished" datetime="2019-10-18T09:46:02+08:00">2019-10-18</time>
+              <time title="创建时间：2019-10-18 09:46:02" itemprop="dateCreated datePublished" datetime="2019-10-18T09:46:02+08:00">2019-10-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-05 16:28:38" itemprop="dateModified" datetime="2019-11-05T16:28:38+08:00">2019-11-05</time>
               
             
           </span>
@@ -463,24 +475,22 @@
 
       
         
-          
-            <h2 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h2><h2 id="猴子补丁"><a href="#猴子补丁" class="headerlink" title="猴子补丁"></a>猴子补丁</h2><h2 id="新旧式类"><a href="#新旧式类" class="headerlink" title="新旧式类"></a>新旧式类</h2><p>在Python 3中所有的类都是新式类</p>
-<p>在Python 2中，只有显示的指明父类才是新式类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="string">"""旧式类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""旧式类（没有显示的指明父类）"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""新式类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h2 id="混入类"><a href="#混入类" class="headerlink" title="混入类"></a>混入类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SetOnceDictMinxin</span>:</span></span><br><span class="line">    <span class="string">"""定义混入类"""</span></span><br><span class="line">	__slots__ = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self:</span><br><span class="line">            <span class="keyword">raise</span> KeyError(<span class="string">f'<span class="subst">&#123;key&#125;</span> already exists'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__setitem__(key, value)</span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SetOnceDict</span><span class="params">(SetOnceDictMixin, dict)</span>:</span></span><br><span class="line">    <span class="comment"># </span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(metaclass=SetOnceDict)</span></span></span><br><span class="line"><span class="class">	<span class="title">pass</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="方法解析顺序MRO"><a href="#方法解析顺序MRO" class="headerlink" title="方法解析顺序MRO"></a>方法解析顺序MRO</h2><p><code>MRO</code>即Method Resolution Order</p>
-<p>如果是单一继承</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># super(xx, self)  就是找self当前对象关于xx类的父类</span></span><br><span class="line"><span class="comment"># 因此下述B类中 super(A, self).who() 就相当于找self对象关于A类的父类，即object类的who方法，报错AttributeError: 'super' object has no attribute 'who'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(B, self).who()</span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>)</span><br><span class="line">b = B()</span><br><span class="line">b.who()</span><br></pre></td></tr></table></figure>
-<p>如果是多继承</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(C, self).who()</span><br><span class="line">        print(<span class="string">'C'</span>, end=<span class="string">''</span>)</span><br><span class="line">c = C()</span><br><span class="line">c.who()</span><br><span class="line"></span><br><span class="line"><span class="comment"># AC</span></span><br></pre></td></tr></table></figure>
-<p>如果出现菱形继承(钻石继承)，方法解析顺序</p>
+          <h2 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h2><p>鸭子类型总是在动态语言中被提到，所谓鸭子类型就是：如果走起路来像鸭子，叫起来也像鸭子，那么它就是鸭子（If it walks like a duck and quacks like a duck, it must be a duck）。我们不关心它到底是不是鸭子，只关注行为（即关注对象的是不是有相似的方法）</p>
+<blockquote>
+<p>动态语言与静态语言：动态语言能够在运行的时候改变其结构（属性、方法），如Python的类定义完成后，可以随时添加或删除它的属性；相比较静态语言，任何类一旦定义后，就决不能在运行时改变其结构（引申出强类型和弱类型语言问题：）</p>
+</blockquote>
+<p>可以举出很多例子：</p>
 <ul>
-<li>Python 3中，类似于广度优先搜索 C3算法，可以使用<code>class.mro()</code>就可以直接查到类的执行顺序</li>
-<li>Python 2中旧式类，类似于深度优先搜索</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>, end=<span class="string">''</span>) <span class="comment"># 5</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(B, self).who() <span class="comment"># 3</span></span><br><span class="line">        print(<span class="string">'B'</span>, end=<span class="string">''</span>) <span class="comment"># 7</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(C, self).who() <span class="comment"># 4 </span></span><br><span class="line">        print(<span class="string">'C'</span>, end=<span class="string">''</span>) <span class="comment"># 6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(B, C)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">who</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(D, self).who() <span class="comment"># 2</span></span><br><span class="line">        print(<span class="string">'D'</span>, end=<span class="string">''</span>) <span class="comment"># 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mro() 有魔方方法 __mro__</span></span><br><span class="line">print(D.mro())</span><br><span class="line">d = D()</span><br><span class="line">d.who() <span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># d.who() 执行，先到D类，先到B类(B类中super(B, self).who()的self是D类的对象)，此时根据类方法解析顺序到C类的who方法，再到A类的who方法，输出A，再返回到C类的输出C，再返回B类的输出B，再返回到D类输出B</span></span><br><span class="line"><span class="comment"># 如果上述B类中self是A对象，那么就会直接调到A类，打印A</span></span><br><span class="line">[&lt;class '__main__.D'&gt;, &lt;class '__main__.B'&gt;, &lt;class '__main__.C'&gt;, &lt;class '__main__.A'&gt;, &lt;class 'object'&gt;]</span><br><span class="line">ACBD</span><br></pre></td></tr></table></figure>
-
-          
+<li><p>对于定义了<code>__iter__</code>和<code>__next__</code>的方法的任何对象就是迭代器，对象本身不收限制，它可以是列表、元组或者类</p>
+</li>
+<li><p>列表的extend方法，它的参数可以是任何可迭代的对象（list、tuple、str），而不局限与列表</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/18/Python烹饪/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -582,12 +592,24 @@
                 
               
 
-              <time title="创建时间：2019-10-10 19:13:16 / 修改时间：20:30:34" itemprop="dateCreated datePublished" datetime="2019-10-10T19:13:16+08:00">2019-10-10</time>
+              <time title="创建时间：2019-10-10 19:13:16" itemprop="dateCreated datePublished" datetime="2019-10-10T19:13:16+08:00">2019-10-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-05 16:29:14" itemprop="dateModified" datetime="2019-11-05T16:29:14+08:00">2019-11-05</time>
               
             
           </span>
@@ -639,15 +661,14 @@
 
       
         
-          
-            <h2 id="中文分词和词云"><a href="#中文分词和词云" class="headerlink" title="中文分词和词云"></a>中文分词和词云</h2><p>利用<a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">jieba</a>和<a href="https://github.com/amueller/word_cloud" target="_blank" rel="noopener">wordcloud</a>分别处理中文分词和词云制作</p>
-<p>下面是根据github上的文档做的词云</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, STOPWORDS</span><br><span class="line"></span><br><span class="line"><span class="comment"># get data directory (using getcwd() is needed to support running example in generated IPython notebook)</span></span><br><span class="line">d = path.dirname(__file__) <span class="keyword">if</span> <span class="string">"__file__"</span> <span class="keyword">in</span> locals() <span class="keyword">else</span> os.getcwd()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(path.join(d, <span class="string">'sky.txt'</span>),encoding=<span class="string">'utf-8'</span>).read()</span><br><span class="line"><span class="comment"># 通过词性过滤</span></span><br><span class="line">allow_pos = (<span class="string">'nr'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行jieba分词</span></span><br><span class="line">content2 = jieba.analyse.extract_tags(text, topK=<span class="number">100</span>, withWeight=<span class="keyword">False</span>, allowPOS=allow_pos)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接字符串</span></span><br><span class="line">result = <span class="string">' '</span>.join(c <span class="keyword">for</span> c <span class="keyword">in</span> content2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the mask image</span></span><br><span class="line"><span class="comment"># taken from</span></span><br><span class="line"><span class="comment"># https://raw.githubusercontent.com/amueller/word_cloud/master/examples/alice_mask.png</span></span><br><span class="line">alice_mask = np.array(Image.open(path.join(d, <span class="string">"alice_mask.png"</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后面用来过滤使用的，但源文档中均是对英语词汇的过滤(可以自己写一个过滤文档或者使用jieba进行词性过滤)</span></span><br><span class="line">stopwords = set(STOPWORDS)</span><br><span class="line">stopwords.add(<span class="string">"said"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意需要添加字体(汉语)</span></span><br><span class="line">wc = WordCloud(background_color=<span class="string">"white"</span>, max_words=<span class="number">2000</span>, mask=alice_mask,</span><br><span class="line">               stopwords=stopwords, contour_width=<span class="number">3</span>, contour_color=<span class="string">'steelblue'</span>,</span><br><span class="line">               font_path=<span class="string">r'C:\Windows\Fonts\simhei.ttf'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># generate word cloud</span></span><br><span class="line">wc.generate(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># store to file</span></span><br><span class="line">wc.to_file(path.join(d, <span class="string">"alice.png"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># show</span></span><br><span class="line">plt.imshow(wc, interpolation=<span class="string">'bilinear'</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.imshow(alice_mask, cmap=plt.cm.gray, interpolation=<span class="string">'bilinear'</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p>效果图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/13692213-212ac4e9ed5e383e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="逆天邪神.png"></p>
-<h2 id="在线词云生成工具"><a href="#在线词云生成工具" class="headerlink" title="在线词云生成工具"></a>在线词云生成工具</h2><p><a href="https://www.jianshu.com/p/615c9d285c54" target="_blank" rel="noopener">推荐站点</a></p>
-
-          
+          <h2 id="中文分词和词云"><a href="#中文分词和词云" class="headerlink" title="中文分词和词云"></a>中文分词和词云</h2><p>利用<a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">jieba</a>和<a href="https://github.com/amueller/word_cloud" target="_blank" rel="noopener">wordcloud</a>分别处理中文分词和词云制作</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/10/jieba中文分词和词云/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -766,7 +787,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-08 21:07:15" itemprop="dateModified" datetime="2019-10-08T21:07:15+08:00">2019-10-08</time>
+                <time title="修改时间：2019-11-05 16:29:50" itemprop="dateModified" datetime="2019-11-05T16:29:50+08:00">2019-11-05</time>
               
             
           </span>
@@ -825,34 +846,20 @@
 
       
         
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>pandas</strong>是一个Python软件包，提供快速，灵活和富于表现力的数据结构，旨在使结构化（表格，多维，潜在异构）和时间序列数据的处理既简单又直观。</p>
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>pandas</strong>是一个Python软件包，提供快速，灵活和富于表现力的数据结构，旨在使结构化（表格，多维，潜在异构）和时间序列数据的处理既简单又直观。</p>
 <ul>
 <li>具有异构类型列的表格数据，例如在SQL表或Excel电子表格中</li>
 <li>有序和无序（不一定是固定频率）时间序列数据。</li>
 <li>具有行和列标签的任意矩阵数据（同类型或异类）</li>
 <li>观察/统计数据集的任何其他形式。实际上，数据根本不需要标记即可放入pandas数据结构中</li>
 </ul>
-<p>pandas的两个主要数据结构分别是<strong>Series</strong>（一维）和<strong>DataFrame</strong>（二维），可处理金融，统计，社会科学以及许多工程领域中的绝大多数典型用例。pandas建立在numpy上，旨在与许多其他第三库很好地集成在科学计算环境中。</p>
-<blockquote>
-<ul>
-<li>轻松处理浮点数据和非浮点数据中的<strong>缺失数据</strong>（表示为NaN）</li>
-<li>大小可变性：可以从DataFrame和更高维的对象中<strong>插入和删除</strong>列</li>
-<li>自动和显式的<strong>数据对齐</strong>：可以将对象显式地对齐到一组标签，或者用户可以简单地忽略标签并让Series，DataFrame等自动为您对齐数据</li>
-<li>强大，灵活的<strong>分组</strong>功能，可对数据集执行拆分应用合并操作，以汇总和转换数据</li>
-<li>使它<strong>易于转换</strong>其他Python和NumPy的数据结构参差不齐，不同索引的数据转换成数据帧对象</li>
-<li>基于智能标签的<strong>切片</strong>，<strong>花式索引</strong>和 <strong>大数据集子集</strong></li>
-<li>直观的<strong>合并</strong>和<strong>联接</strong>数据集</li>
-<li>灵活地<strong>重塑</strong>和旋转数据集</li>
-<li>轴的<strong>分层</strong>标签（每个刻度可能有多个标签）</li>
-<li>强大的IO工具，用于从<strong>平面文件</strong>（CSV和定界），Excel文件，数据库加载数据，以及从超快<strong>HDF5格式</strong>保存/加载数据</li>
-<li>特定于<strong>时间序列的</strong>功能：日期范围生成和频率转换，移动窗口统计信息，移动窗口线性回归，日期移动和滞后等。</li>
-</ul>
-</blockquote>
-<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><p>行索引</p>
-<p>索引取值</p>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/30/pandas/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -954,12 +961,24 @@
                 
               
 
-              <time title="创建时间：2019-09-27 20:47:06 / 修改时间：21:24:52" itemprop="dateCreated datePublished" datetime="2019-09-27T20:47:06+08:00">2019-09-27</time>
+              <time title="创建时间：2019-09-27 20:47:06" itemprop="dateCreated datePublished" datetime="2019-09-27T20:47:06+08:00">2019-09-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-05 16:30:49" itemprop="dateModified" datetime="2019-11-05T16:30:49+08:00">2019-11-05</time>
               
             
           </span>
@@ -1011,33 +1030,19 @@
 
       
         
-          
-            <h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。</p>
+          <h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。</p>
 <p>想法：</p>
 <ul>
 <li>搞一个bat执行文件</li>
 <li>写个python程序，转成exe执行文件</li>
 </ul>
-<p>后面确认第二个想法</p>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="三方库"><a href="#三方库" class="headerlink" title="三方库"></a>三方库</h4><p>安装需要的包，处理图片的<strong>Pillow</strong>（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需要打开web支持；现在主流windows都是支持的），处理windows功能的<strong>pywin32</strong>（64位的系统也装这个）h和<strong>win32gui</strong>，打包exe的<strong>PyInstaller</strong></p>
-<h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> win32api</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> win32gui</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">DAY_DICT = &#123;<span class="number">0</span>: <span class="string">'Mon'</span>, <span class="number">1</span>: <span class="string">'TUE'</span>,</span><br><span class="line">            <span class="number">2</span>: <span class="string">'WE'</span>, <span class="number">3</span>: <span class="string">'THU'</span>,</span><br><span class="line">            <span class="number">4</span>: <span class="string">'FRI'</span>, <span class="number">5</span>: <span class="string">'SA'</span>,</span><br><span class="line">            <span class="number">6</span>: <span class="string">'SU'</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_desktop</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="string">"""修改桌面图片"""</span></span><br><span class="line">    key = win32api.RegOpenKeyEx(win32con.HKEY_CURRENT_USER,</span><br><span class="line">                                <span class="string">"Control Panel\\Desktop"</span>, <span class="number">0</span>, win32con.KEY_SET_VALUE)</span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"WallpaperStyle"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"2"</span>)</span><br><span class="line">    <span class="comment"># 2拉伸适应桌面,0桌面居中</span></span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"TileWallpaper"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"0"</span>)</span><br><span class="line">    win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, today_pic, <span class="number">1</span>+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jpg2bmp</span><span class="params">()</span>:</span></span><br><span class="line">    pic_file = os.listdir(<span class="string">'pics'</span>)</span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    <span class="comment"># 将jpg转换为bmp图片</span></span><br><span class="line">    <span class="keyword">for</span> pic <span class="keyword">in</span> pic_file:</span><br><span class="line">        image = Image.open(pic_loc + pic)</span><br><span class="line">        image.save((pic_loc + pic).replace(<span class="string">'jpg'</span>, <span class="string">'bmp'</span>), <span class="string">'BMP'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rtn_pic</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># weekday 返回0-6 对应周一到周日</span></span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    day_of_week = datetime.datetime.today().weekday()</span><br><span class="line">    today_pic = pic_loc + DAY_DICT[day_of_week + <span class="number">1</span>] + <span class="string">'.bmp'</span></span><br><span class="line">    <span class="keyword">return</span> today_pic</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        set_desktop(today_pic)</span><br><span class="line">        today = datetime.date.today()</span><br><span class="line">        new_time = time.time()</span><br><span class="line">        <span class="comment"># 明天时间</span></span><br><span class="line">        tomorrow = today + datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 明天时间戳</span></span><br><span class="line">        tomorrow_start_time = int(time.mktime(time.strptime(str(tomorrow), <span class="string">'%Y-%m-%d'</span>)))</span><br><span class="line">        diff = tomorrow_start_time - new_time</span><br><span class="line">        <span class="keyword">if</span> diff &gt; <span class="number">0</span>:</span><br><span class="line">            time.sleep(diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main(rtn_pic())</span><br></pre></td></tr></table></figure>
-<h4 id="打包exe"><a href="#打包exe" class="headerlink" title="打包exe"></a>打包exe</h4><p>使用时，在主程序文件目录使用命令</p>
-<p><code>pyinstaller -F -w -i 图标文件 程序文件</code></p>
-<ul>
-<li>-F 指的打包成exe文件</li>
-<li>-w 取消控制台显示</li>
-<li>-i 忽略错误继续打包</li>
-</ul>
-<p>举例</p>
-<p><code>pyinstaller -F -w -i my.ico release_1.py</code></p>
-<p>由于我的功能只需要一个执行文件就解决了，当有多个执行文件，可以参看这篇<a href="https://blog.csdn.net/qq_33521184/article/details/89391354" target="_blank" rel="noopener">文档</a></p>
-<p>操作成功后会在当前目录下生成build目录(存放配置文件和库文件)，dist目录(执行文件)，程序名.spec(包含引用程序文件、总结、包文件说明等等)</p>
-<h4 id="设置自启动"><a href="#设置自启动" class="headerlink" title="设置自启动"></a>设置自启动</h4><p>自启动主要是通过修改注册表项文件而实现的</p>
-<p>具体位置，通常位于</p>
-<p><code>计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code></p>
-<p>然后点击Run，能看见本机已经存在的很多启动项，<strong>新建项</strong>(程序名)和<strong>数值数据</strong>（程序存放位置 如d:\work\a.exe）</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/27/一个简易的桌面自动变换程序/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1326,7 +1331,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-12 17:35:23" itemprop="dateModified" datetime="2019-10-12T17:35:23+08:00">2019-10-12</time>
+                <time title="修改时间：2019-11-05 16:31:29" itemprop="dateModified" datetime="2019-11-05T16:31:29+08:00">2019-11-05</time>
               
             
           </span>
@@ -1378,8 +1383,7 @@
 
       
         
-          
-            <h2 id="常规命令"><a href="#常规命令" class="headerlink" title="常规命令"></a>常规命令</h2><p><strong>查看/使用使用数据库</strong></p>
+          <h2 id="常规命令"><a href="#常规命令" class="headerlink" title="常规命令"></a>常规命令</h2><p><strong>查看/使用使用数据库</strong></p>
 <p><code>show databases;</code> |<code>use database;</code></p>
 <p><strong>查看表/查看表结构</strong></p>
 <p><code>show tables;</code>  | <code>show columns from table / desc table</code></p>
@@ -1387,19 +1391,13 @@
 <p><code>show create table tb_name / show create database db_name</code></p>
 <p><strong>查看相关的帮助命令</strong></p>
 <p><code>help show</code></p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>MySQL不要求单条语句后加上分号，但是在命令行程序中单条语句必须分号结束</li>
-<li>不区分大小写，但是最好按大小写惯例来写(标识符大写，表库等名小写，函数名首字母大写)</li>
-<li>NULL和空值(‘’)是不一样的，NULL占有空间，而后者不占空间(装空气打的杯子和真空的杯子); 判断NULL使用 IS NULL和IS NOT  NULL，判断空值使用&lt;&gt;、==和!=</li>
-<li>MySQL可以使用任意AND和OR的组合，但是AND的优先级高于OR，因此特殊情况别忘了给OR加括号，并且鼓励在任何使用AND和OR操作符时都加上括号，它并不会给你带来任何损失</li>
-<li>%通配符匹配0、1和多个字符，并且它是不能匹配NULL的， _只能匹配1个字符；除此，不要过度使用它，除非有必要，也不要将通配符放在首位(%放在首位索引不能命中)。</li>
-<li>like匹配整个值，REGEXP可以匹配值的任意长度(若想匹配特定值可以使用定位符^和$)</li>
-<li>组合查询UNION会去重，并且在使用ORDER BY时，只能使用一次排序，并且只能对最后一个SELECT语句使用</li>
-<li>使用一个INSERT插入多条语句比多次使用INSERT插入一条语句快得多</li>
-<li>使用EXPLAIN命令可以查询索引命中情况</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/23/Mysql命令行/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1501,12 +1499,24 @@
                 
               
 
-              <time title="创建时间：2019-09-20 10:51:27 / 修改时间：11:23:10" itemprop="dateCreated datePublished" datetime="2019-09-20T10:51:27+08:00">2019-09-20</time>
+              <time title="创建时间：2019-09-20 10:51:27" itemprop="dateCreated datePublished" datetime="2019-09-20T10:51:27+08:00">2019-09-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-05 16:31:51" itemprop="dateModified" datetime="2019-11-05T16:31:51+08:00">2019-11-05</time>
               
             
           </span>
@@ -1558,34 +1568,16 @@
 
       
         
-          
-            <p>Python富比较</p>
+          <p>Python富比较</p>
 <p>富比较，即Rich Comparisons，创立于python2.1时期，使用富比较取代了<code>__cmp__</code>返回值(0,-1,1)的传统比较方式(后者在python3.4已被废除)。</p>
 <p>富比较的主要方式有<code>__eq__ __ne__ __gt__ __lt__ __ge__ __le__</code>6种比较</p>
-<p>其主要用于复杂对象之间的比较</p>
-<p>下面分析其主要用法和注意事项：</p>
-<ul>
-<li><p>当程序员定义了所有的比较方式，此时对象之间的比较就会一一对应到其定义的方法</p>
-</li>
-<li><p>当同时实现<code>__eq__</code>方法和<code>__ne__</code>方法时，此时使用!=和==会调用各自的方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __eq__(self, other):</span><br><span class="line">		print(&apos;execute __eq__&apos;)</span><br><span class="line">		return self.price == other.price</span><br><span class="line"></span><br><span class="line">	def __ne__(self, other):</span><br><span class="line">		print(&apos;execute __ne__&apos;)</span><br><span class="line">		return self.price != other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">execute __eq__</span><br><span class="line">True</span><br><span class="line">execute __ne__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>当实现<code>__eq__</code>方法，未实现<code>__ne__</code>方法，此时使用!=相当于执行<code>__eq__</code>后再取反</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __eq__(self, other):</span><br><span class="line">		print(&apos;execute __eq__&apos;)</span><br><span class="line">		return self.price == other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">execute __eq__</span><br><span class="line">True</span><br><span class="line">execute __eq__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>当实现<code>__ne__</code>方法，未实现<code>__eq__</code>方法，此时使用==相当于使用is</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Apple:</span><br><span class="line"></span><br><span class="line">	def __init__(self, color, price):</span><br><span class="line">		self.color = color</span><br><span class="line">		self.price = price</span><br><span class="line"></span><br><span class="line">	def __ne__(self, other):</span><br><span class="line">		print(&apos;execute __ne__&apos;)</span><br><span class="line">		return self.price != other.price</span><br><span class="line"></span><br><span class="line">ap1 = Apple(&apos;red&apos;, 10)</span><br><span class="line">ap2 = Apple(&apos;green&apos;, 10)</span><br><span class="line">print(ap1==ap2)</span><br><span class="line">print(ap1!=ap2)</span><br><span class="line"></span><br><span class="line">False</span><br><span class="line">execute __ne__</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>当单独实现<code>__gt__</code>(或<code>__lt__</code>)，此时使用&lt;(或&gt;)相当于执行<code>__gt__</code>(或<code>__lt__</code>)再取反</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/20/python富比较/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2341,7 +2333,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2444,7 +2438,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共68.7k字</span>
+  <span class="post-count">博客全站共69.2k字</span>
 </div>
 
         

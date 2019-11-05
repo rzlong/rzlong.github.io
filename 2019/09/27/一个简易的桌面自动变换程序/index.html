@@ -125,18 +125,18 @@
 
 
 
-  <meta name="description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件  后面确认第二个想法 具体实现三方库安装需要的包，处理图片的Pillow（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需">
+  <meta name="description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件">
 <meta name="keywords" content="桌面背景">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python实现windows桌面背景自动变换">
 <meta property="og:url" content="http://yoursite.com/2019/09/27/一个简易的桌面自动变换程序/index.html">
 <meta property="og:site_name" content="拆南墙">
-<meta property="og:description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件  后面确认第二个想法 具体实现三方库安装需要的包，处理图片的Pillow（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需">
+<meta property="og:description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-27T13:24:52.907Z">
+<meta property="og:updated_time" content="2019-11-05T08:30:49.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python实现windows桌面背景自动变换">
-<meta name="twitter:description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件  后面确认第二个想法 具体实现三方库安装需要的包，处理图片的Pillow（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需">
+<meta name="twitter:description" content="首先​    在某个下午，无意中感觉自己的桌面背景太丑了，想换一张有特色的的图。马上就上花瓣网，找到类似的星期图，然后就想到自己能不能写个程序，让它根据时间自己变换到符合星期X的图片。 想法：  搞一个bat执行文件 写个python程序，转成exe执行文件">
 
 
 
@@ -403,12 +403,24 @@
                 
               
 
-              <time title="创建时间：2019-09-27 20:47:06 / 修改时间：21:24:52" itemprop="dateCreated datePublished" datetime="2019-09-27T20:47:06+08:00">2019-09-27</time>
+              <time title="创建时间：2019-09-27 20:47:06" itemprop="dateCreated datePublished" datetime="2019-09-27T20:47:06+08:00">2019-09-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-05 16:30:49" itemprop="dateModified" datetime="2019-11-05T16:30:49+08:00">2019-11-05</time>
               
             
           </span>
@@ -465,6 +477,7 @@
 <li>搞一个bat执行文件</li>
 <li>写个python程序，转成exe执行文件</li>
 </ul>
+<a id="more"></a>
 <p>后面确认第二个想法</p>
 <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="三方库"><a href="#三方库" class="headerlink" title="三方库"></a>三方库</h4><p>安装需要的包，处理图片的<strong>Pillow</strong>（远古win9x时期，通常使用bmp作为图片格式，使用jpeg格式需要打开web支持；现在主流windows都是支持的），处理windows功能的<strong>pywin32</strong>（64位的系统也装这个）h和<strong>win32gui</strong>，打包exe的<strong>PyInstaller</strong></p>
 <h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> win32api</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> win32gui</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">DAY_DICT = &#123;<span class="number">0</span>: <span class="string">'Mon'</span>, <span class="number">1</span>: <span class="string">'TUE'</span>,</span><br><span class="line">            <span class="number">2</span>: <span class="string">'WE'</span>, <span class="number">3</span>: <span class="string">'THU'</span>,</span><br><span class="line">            <span class="number">4</span>: <span class="string">'FRI'</span>, <span class="number">5</span>: <span class="string">'SA'</span>,</span><br><span class="line">            <span class="number">6</span>: <span class="string">'SU'</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_desktop</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="string">"""修改桌面图片"""</span></span><br><span class="line">    key = win32api.RegOpenKeyEx(win32con.HKEY_CURRENT_USER,</span><br><span class="line">                                <span class="string">"Control Panel\\Desktop"</span>, <span class="number">0</span>, win32con.KEY_SET_VALUE)</span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"WallpaperStyle"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"2"</span>)</span><br><span class="line">    <span class="comment"># 2拉伸适应桌面,0桌面居中</span></span><br><span class="line">    win32api.RegSetValueEx(key, <span class="string">"TileWallpaper"</span>, <span class="number">0</span>, win32con.REG_SZ, <span class="string">"0"</span>)</span><br><span class="line">    win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, today_pic, <span class="number">1</span>+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jpg2bmp</span><span class="params">()</span>:</span></span><br><span class="line">    pic_file = os.listdir(<span class="string">'pics'</span>)</span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    <span class="comment"># 将jpg转换为bmp图片</span></span><br><span class="line">    <span class="keyword">for</span> pic <span class="keyword">in</span> pic_file:</span><br><span class="line">        image = Image.open(pic_loc + pic)</span><br><span class="line">        image.save((pic_loc + pic).replace(<span class="string">'jpg'</span>, <span class="string">'bmp'</span>), <span class="string">'BMP'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rtn_pic</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># weekday 返回0-6 对应周一到周日</span></span><br><span class="line">    pic_loc = os.path.dirname(os.path.abspath(__file__)) + <span class="string">'\\pics\\'</span></span><br><span class="line">    day_of_week = datetime.datetime.today().weekday()</span><br><span class="line">    today_pic = pic_loc + DAY_DICT[day_of_week + <span class="number">1</span>] + <span class="string">'.bmp'</span></span><br><span class="line">    <span class="keyword">return</span> today_pic</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(today_pic)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        set_desktop(today_pic)</span><br><span class="line">        today = datetime.date.today()</span><br><span class="line">        new_time = time.time()</span><br><span class="line">        <span class="comment"># 明天时间</span></span><br><span class="line">        tomorrow = today + datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 明天时间戳</span></span><br><span class="line">        tomorrow_start_time = int(time.mktime(time.strptime(str(tomorrow), <span class="string">'%Y-%m-%d'</span>)))</span><br><span class="line">        diff = tomorrow_start_time - new_time</span><br><span class="line">        <span class="keyword">if</span> diff &gt; <span class="number">0</span>:</span><br><span class="line">            time.sleep(diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main(rtn_pic())</span><br></pre></td></tr></table></figure>
@@ -739,7 +752,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -858,7 +873,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共68.7k字</span>
+  <span class="post-count">博客全站共69.2k字</span>
 </div>
 
         
